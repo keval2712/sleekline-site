@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products — Sleekline | Metal Ceiling Systems & Sun Louvers</title>
+    <meta name="description" content="Explore Sleekline's full range of architectural metal systems: Linear Ceiling C &amp; R Series, U Shaped Baffle Ceiling, Exterior Louvers &amp; Cladding, Sun Louvers, Linear 150 F, Open Cell Ceiling, and Tile Ceiling (Lay-in &amp; Clip-in)." />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .product-section-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        font-weight: 600;
+        color: var(--clr-white);
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .product-section-title::before {
+        content: "";
+        display: block;
+        width: 4px;
+        height: 28px;
+        background: var(--gradient-accent);
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      .product-detail-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
+      .product-card-lg {
+        background: var(--gradient-card);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .product-card-lg:hover {
+        border-color: rgba(200, 169, 110, 0.3);
+        transform: translateY(-8px);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+      }
+      .product-vis-lg {
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .product-vis-lg svg {
+        position: relative;
+        z-index: 1;
+      }
+      .product-body-lg {
+        padding: 1.75rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.875rem;
+      }
+      .product-body-lg h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--clr-white);
+      }
+      .product-body-lg p {
+        font-size: 0.9rem;
+        color: var(--clr-steel);
+        line-height: 1.7;
+        flex: 1;
+      }
+      .product-specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.25rem;
+      }
+      .spec-tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        background: rgba(200, 169, 110, 0.1);
+        border: 1px solid rgba(200, 169, 110, 0.2);
+        color: var(--clr-accent);
+      }
+      .product-card-lg .product-footer {
+        padding: 0 1.75rem 1.75rem;
+      }
+      .products-add-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      .product-add-card {
+        background: var(--gradient-card);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: var(--transition);
+      }
+      .product-add-card:hover {
+        border-color: rgba(200, 169, 110, 0.25);
+        transform: translateY(-5px);
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+      }
+      .product-add-vis {
+        height: 160px;
+        position: relative;
+        overflow: hidden;
+      }
+      @media (max-width: 900px) {
+        .product-detail-grid,
+        .products-add-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 540px) {
+        .product-detail-grid,
+        .products-add-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .finish-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
+      }
+      .finish-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .finish-swatch {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: var(--transition);
+      }
+      .finish-item:hover .finish-swatch {
+        transform: scale(1.15);
+        border-color: rgba(200, 169, 110, 0.4);
+      }
+      .finish-label {
+        font-size: 0.72rem;
+        color: var(--clr-steel);
+        text-align: center;
+      }
+      @media (max-width: 768px) {
+        .finish-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="page-hero-grid"></div>
+      <div class="page-hero-glow"></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a><span class="sep">›</span
+          ><span>Products</span>
+        </div>
+        <div class="badge" style="margin: 0 auto 1rem">Our Range</div>
+        <h1>Our Products</h1>
+        <p>
+          Precision-crafted architectural metal ceiling systems engineered for
+          modern spaces
+        </p>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="product-section-title reveal">
+          Featured Architectural Solutions
+        </div>
+        <div class="product-detail-grid">
+          <!-- Linear Ceiling C Series -->
+          <div class="product-card-lg reveal">
+            <div class="product-vis-lg vis-linear-c">
+              <svg
+                viewBox="0 0 280 220"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 90%; height: 90%; z-index: 1; position: relative"
+              >
+                <defs>
+                  <linearGradient id="lc1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.9" />
+                    <stop
+                      offset="100%"
+                      stop-color="#e8c98e"
+                      stop-opacity="0.5"
+                    />
+                  </linearGradient>
+                  <linearGradient id="lc2" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.4" />
+                    <stop
+                      offset="50%"
+                      stop-color="#e8d8b0"
+                      stop-opacity="0.3"
+                    />
+                    <stop
+                      offset="100%"
+                      stop-color="#c8a96e"
+                      stop-opacity="0.4"
+                    />
+                  </linearGradient>
+                </defs>
+                <g fill="url(#lc2)" stroke="url(#lc1)" stroke-width="1.5">
+                  <path d="M20 60 L260 60 L260 80 L20 80 Z" />
+                  <path d="M20 100 L260 100 L260 120 L20 120 Z" />
+                  <path d="M20 140 L260 140 L260 160 L20 160 Z" />
+                  <path d="M20 180 L260 180 L260 200 L20 200 Z" opacity="0.7" />
+                </g>
+                <text
+                  x="140"
+                  y="20"
+                  text-anchor="middle"
+                  fill="#c8a96e"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.7"
+                >
+                  C SERIES LINEAR
+                </text>
+              </svg>
+              <div class="product-tag">Signature</div>
+            </div>
+            <div class="product-body-lg">
+              <h3>Linear Ceiling – C Series</h3>
+              <p>
+                Our premium linear system features closed-panel styling for a
+                sleek, flush aesthetic. The C Series offers continuous visual
+                flow, perfect for long corridors, large public spaces, and
+                sophisticated corporate interiors.
+              </p>
+              <div class="product-specs">
+                <span class="spec-tag">Flush Aesthetic</span>
+                <span class="spec-tag">Continuous Flow</span>
+                <span class="spec-tag">Acoustic Integration</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <span class="product-material"
+                  >Galvanized Steel / Aluminum</span
+                >
+                <a
+                  href="contact.html"
+                  class="btn btn-outline"
+                  style="padding: 0.5rem 1rem; font-size: 0.82rem"
+                  id="p-linear-c-btn"
+                  >Enquire</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- U Shaped Baffle Ceiling -->
+          <div class="product-card-lg reveal reveal-delay-1">
+            <div class="product-vis-lg vis-baffle">
+              <svg
+                viewBox="0 0 280 220"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 90%; height: 90%; z-index: 1; position: relative"
+              >
+                <defs>
+                  <linearGradient id="mw1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#8fa8c8" stop-opacity="0.9" />
+                    <stop
+                      offset="100%"
+                      stop-color="#b0c8e8"
+                      stop-opacity="0.5"
+                    />
+                  </linearGradient>
+                  <linearGradient id="mw2" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#8fa8c8" stop-opacity="0.3" />
+                    <stop
+                      offset="100%"
+                      stop-color="#c8a96e"
+                      stop-opacity="0.2"
+                    />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="20"
+                  y="30"
+                  width="240"
+                  height="6"
+                  fill="#8fa8c8"
+                  rx="1"
+                  opacity="0.5"
+                />
+                <g fill="url(#mw2)" stroke="url(#mw1)" stroke-width="1.5">
+                  <path d="M40 80 L60 80 L60 140 L40 140 Z" />
+                  <path d="M100 80 L120 80 L120 140 L100 140 Z" />
+                  <path d="M160 80 L180 80 L180 140 L160 140 Z" />
+                  <path d="M220 80 L240 80 L240 140 L220 140 Z" />
+                </g>
+                <text
+                  x="140"
+                  y="12"
+                  text-anchor="middle"
+                  fill="#8fa8c8"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.7"
+                >
+                  U SHAPE PROFILE
+                </text>
+              </svg>
+              <div class="product-tag">Popular</div>
+            </div>
+            <div class="product-body-lg">
+              <h3>U Shaped Baffle Ceiling</h3>
+              <p>
+                Architecturally striking parallel U-shaped channels. Ideal for
+                masking plenums while maintaining easy access to services,
+                offering excellent acoustic performance and dynamic lighting
+                possibilities.
+              </p>
+              <div class="product-specs">
+                <span class="spec-tag">Open Plenum</span>
+                <span class="spec-tag">Bold Lines</span>
+                <span class="spec-tag">Acoustic Control</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <span class="product-material">Aluminum</span>
+                <a
+                  href="contact.html"
+                  class="btn btn-outline"
+                  style="padding: 0.5rem 1rem; font-size: 0.82rem"
+                  id="p-baffle-u-btn"
+                  >Enquire</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Exterior Louvers -->
+          <div class="product-card-lg reveal reveal-delay-2">
+            <div class="product-vis-lg vis-louver-ext">
+              <svg
+                viewBox="0 0 280 220"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 90%; height: 90%; z-index: 1; position: relative"
+              >
+                <defs>
+                  <linearGradient id="mh1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#6ec8a9" stop-opacity="0.9" />
+                    <stop
+                      offset="100%"
+                      stop-color="#a0d8c0"
+                      stop-opacity="0.5"
+                    />
+                  </linearGradient>
+                  <linearGradient id="mh2" x1="0" y1="0" x2="1" y2="0">
+                    <stop
+                      offset="0%"
+                      stop-color="#6ec8a9"
+                      stop-opacity="0.25"
+                    />
+                    <stop
+                      offset="100%"
+                      stop-color="#c8a96e"
+                      stop-opacity="0.15"
+                    />
+                  </linearGradient>
+                </defs>
+                <g fill="url(#mh2)" stroke="url(#mh1)" stroke-width="1.5">
+                  <path d="M20 30 L260 50 L260 70 L20 50 Z" />
+                  <path d="M20 80 L260 100 L260 120 L20 100 Z" />
+                  <path d="M20 130 L260 150 L260 170 L20 150 Z" />
+                  <path d="M20 180 L260 200 L260 220 L20 200 Z" />
+                </g>
+                <text
+                  x="140"
+                  y="8"
+                  text-anchor="middle"
+                  fill="#6ec8a9"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.7"
+                >
+                  EXTERIOR FACADE
+                </text>
+              </svg>
+              <div class="product-tag">Designer</div>
+            </div>
+            <div class="product-body-lg">
+              <h3>Exterior Louvers and Cladding</h3>
+              <p>
+                Engineered for architectural excellence, our exterior systems
+                provide vital solar shading, privacy, and weather protection
+                while defining a building’s modern facade identity.
+              </p>
+              <div class="product-specs">
+                <span class="spec-tag">Sun Control</span>
+                <span class="spec-tag">Weather Resistant</span>
+                <span class="spec-tag">Striking Facade</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <span class="product-material">Aluminum</span>
+                <a
+                  href="contact.html"
+                  class="btn btn-outline"
+                  style="padding: 0.5rem 1rem; font-size: 0.82rem"
+                  id="p-louver-ext-btn"
+                  >Enquire</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Products -->
+        <div class="product-section-title reveal">Complete Product Range</div>
+        <div class="products-add-grid">
+          <!-- Linear Ceiling - R Series -->
+          <div class="product-add-card reveal">
+            <div class="product-add-vis vis-linear">
+              <svg
+                viewBox="0 0 280 160"
+                xmlns="http://www.w3.org/2000/svg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                "
+              >
+                <defs>
+                  <linearGradient id="lc1" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.6" />
+                    <stop
+                      offset="100%"
+                      stop-color="#e8c98e"
+                      stop-opacity="0.3"
+                    />
+                  </linearGradient>
+                </defs>
+                <g
+                  fill="none"
+                  stroke="url(#lc1)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                >
+                  <line x1="20" y1="30" x2="260" y2="30" />
+                  <line x1="20" y1="55" x2="260" y2="55" />
+                  <line x1="20" y1="80" x2="260" y2="80" />
+                  <line x1="20" y1="105" x2="260" y2="105" />
+                  <line x1="20" y1="130" x2="260" y2="130" />
+                </g>
+                <text
+                  x="140"
+                  y="152"
+                  text-anchor="middle"
+                  fill="#c8a96e"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.6"
+                >
+                  R SERIES LINEAR
+                </text>
+              </svg>
+            </div>
+            <div class="product-body">
+              <h3>Linear Ceiling – R Series</h3>
+              <p>
+                Featuring distinctive rounded edges, the R Series creates a
+                softer, elegant directional aesthetic ideal for airports, retail
+                spaces, and modern offices.
+              </p>
+            </div>
+            <div class="product-footer">
+              <span class="product-material">Aluminum / GI Steel</span>
+              <a href="contact.html" class="product-arrow" id="p-linear-r-btn"
+                >→</a
+              >
+            </div>
+          </div>
+
+          <!-- Sun Louvers -->
+          <div class="product-add-card reveal reveal-delay-1">
+            <div class="product-add-vis vis-louver">
+              <svg
+                viewBox="0 0 280 160"
+                xmlns="http://www.w3.org/2000/svg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                "
+              >
+                <defs>
+                  <linearGradient id="sl1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#8fa8c8" stop-opacity="0.7" />
+                    <stop
+                      offset="100%"
+                      stop-color="#c8a96e"
+                      stop-opacity="0.5"
+                    />
+                  </linearGradient>
+                </defs>
+                <g
+                  fill="rgba(143,168,200,0.05)"
+                  stroke="url(#sl1)"
+                  stroke-width="1.5"
+                >
+                  <rect x="20" y="18" width="240" height="18" rx="2" />
+                  <rect x="20" y="44" width="240" height="18" rx="2" />
+                  <rect x="20" y="70" width="240" height="18" rx="2" />
+                  <rect x="20" y="96" width="240" height="18" rx="2" />
+                  <rect x="20" y="122" width="240" height="18" rx="2" />
+                </g>
+                <text
+                  x="140"
+                  y="152"
+                  text-anchor="middle"
+                  fill="#8fa8c8"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.6"
+                >
+                  SUN LOUVERS
+                </text>
+              </svg>
+            </div>
+            <div class="product-body">
+              <h3>Sun Louvers</h3>
+              <p>
+                Smart shading systems that significantly reduce thermal load,
+                enhance energy efficiency, and present a sharp, modern building
+                profile.
+              </p>
+            </div>
+            <div class="product-footer">
+              <span class="product-material">Aluminum</span>
+              <a href="contact.html" class="product-arrow" id="p-louver-sun-btn"
+                >→</a
+              >
+            </div>
+          </div>
+
+          <!-- Linear 150 F -->
+          <div class="product-add-card reveal reveal-delay-2">
+            <div class="product-add-vis vis-linear-150">
+              <svg
+                viewBox="0 0 280 160"
+                xmlns="http://www.w3.org/2000/svg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                "
+              >
+                <defs>
+                  <linearGradient id="lcf" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#6ec8a9" stop-opacity="0.5" />
+                    <stop
+                      offset="100%"
+                      stop-color="#8fa8c8"
+                      stop-opacity="0.4"
+                    />
+                  </linearGradient>
+                </defs>
+                <g
+                  fill="rgba(110,200,169,0.05)"
+                  stroke="url(#lcf)"
+                  stroke-width="1.5"
+                >
+                  <rect x="20" y="20" width="240" height="25" />
+                  <rect x="20" y="55" width="240" height="25" />
+                  <rect x="20" y="90" width="240" height="25" />
+                  <rect x="20" y="125" width="240" height="25" />
+                </g>
+                <text
+                  x="140"
+                  y="152"
+                  text-anchor="middle"
+                  fill="#6ec8a9"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.6"
+                >
+                  150 F LINEAR
+                </text>
+              </svg>
+            </div>
+            <div class="product-body">
+              <h3>Linear 150 F</h3>
+              <p>
+                Wide 150mm flush panels creating a robust, monolithic ceiling
+                plane. Suitable for large commercial interiors demanding a
+                strong visual presence.
+              </p>
+            </div>
+            <div class="product-footer">
+              <span class="product-material">Galvanized Steel / Aluminum</span>
+              <a href="contact.html" class="product-arrow" id="p-linear-150-btn"
+                >→</a
+              >
+            </div>
+          </div>
+
+          <!-- Open Cell Ceiling -->
+          <div class="product-add-card reveal">
+            <div class="product-add-vis vis-grid-ceil">
+              <svg
+                viewBox="0 0 280 160"
+                xmlns="http://www.w3.org/2000/svg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                "
+              >
+                <defs>
+                  <linearGradient id="gc1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.5" />
+                    <stop
+                      offset="100%"
+                      stop-color="#8fa8c8"
+                      stop-opacity="0.4"
+                    />
+                  </linearGradient>
+                </defs>
+                <g
+                  stroke="url(#gc1)"
+                  stroke-width="1.5"
+                  fill="rgba(200,169,110,0.04)"
+                >
+                  <rect x="30" y="20" width="50" height="50" />
+                  <rect x="90" y="20" width="50" height="50" />
+                  <rect x="150" y="20" width="50" height="50" />
+                  <rect x="210" y="20" width="50" height="50" />
+                  <rect x="30" y="80" width="50" height="50" />
+                  <rect x="90" y="80" width="50" height="50" />
+                  <rect x="150" y="80" width="50" height="50" />
+                  <rect x="210" y="80" width="50" height="50" />
+                </g>
+                <text
+                  x="140"
+                  y="152"
+                  text-anchor="middle"
+                  fill="#c8a96e"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.6"
+                >
+                  OPEN CELL
+                </text>
+              </svg>
+            </div>
+            <div class="product-body">
+              <h3>Open Cell Ceiling / Cell Cladding</h3>
+              <p>
+                A continuous open-grille design that masks the plenum while
+                creating an expansive, layered feel. Excellent for airflow and
+                lighting integration.
+              </p>
+            </div>
+            <div class="product-footer">
+              <span class="product-material">Aluminum</span>
+              <a href="contact.html" class="product-arrow" id="p-opencell-btn"
+                >→</a
+              >
+            </div>
+          </div>
+
+          <!-- Tile Ceiling -->
+          <div class="product-add-card reveal reveal-delay-1">
+            <div class="product-add-vis vis-tile">
+              <svg
+                viewBox="0 0 280 160"
+                xmlns="http://www.w3.org/2000/svg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                "
+              >
+                <defs>
+                  <linearGradient id="tc1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#8fa8c8" stop-opacity="0.5" />
+                    <stop
+                      offset="100%"
+                      stop-color="#c8a96e"
+                      stop-opacity="0.4"
+                    />
+                  </linearGradient>
+                </defs>
+                <g
+                  fill="rgba(143,168,200,0.05)"
+                  stroke="url(#tc1)"
+                  stroke-width="1"
+                >
+                  <rect x="20" y="20" width="115" height="115" />
+                  <rect x="145" y="20" width="115" height="115" />
+                </g>
+                <text
+                  x="140"
+                  y="152"
+                  text-anchor="middle"
+                  fill="#8fa8c8"
+                  font-size="8"
+                  font-family="Inter,sans-serif"
+                  letter-spacing="3"
+                  opacity="0.6"
+                >
+                  TILE CEILING
+                </text>
+              </svg>
+            </div>
+            <div class="product-body">
+              <h3>Tile Ceiling (Lay-in &amp; Clip-in)</h3>
+              <p>
+                Versatile square tiles offering total accessibility to the
+                ceiling void. Available in exposed lay-in or concealed clip-in
+                options for clean aesthetics.
+              </p>
+            </div>
+            <div class="product-footer">
+              <span class="product-material">Galvanized Steel / Aluminum</span>
+              <a href="contact.html" class="product-arrow" id="p-tile-btn">→</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band">
+      <div class="cta-band-bg"></div>
+      <div class="container">
+        <div class="cta-band-content reveal">
+          <h2 class="section-title">
+            Need a Product <span class="text-accent">Sample?</span>
+          </h2>
+          <p class="section-subtitle" style="margin: 0 auto 2rem">
+            Request physical samples, technical data sheets, or a customized
+            product quotation for your project.
+          </p>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary" id="prod-cta-btn"
+              >Request Samples / Quote</a
+            >
+            <a
+              href="applications.html"
+              class="btn btn-outline"
+              id="prod-app-btn"
+              >View Applications</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="components.js"></script>
+    <script>
+      initSleekline("products");
+    </script>
+  </body>
+</html>

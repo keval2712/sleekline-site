@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs — Sleekline | Frequently Asked Questions</title>
+  <meta name="description" content="Find answers to frequently asked questions about Sleekline's architectural metal products, materials, certifications, customization, installation, and how to get a quote." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .faq-page-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .faq-sidebar {
+      position: sticky;
+      top: calc(var(--nav-height) + 2rem);
+    }
+    .faq-categories { display: flex; flex-direction: column; gap: 0.5rem; }
+    .faq-cat-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.875rem 1.25rem;
+      background: var(--gradient-card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--clr-silver);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .faq-cat-btn:hover, .faq-cat-btn.active {
+      border-color: rgba(200,169,110,0.3);
+      color: var(--clr-accent);
+      background: rgba(200,169,110,0.07);
+    }
+    .faq-cat-icon { font-size: 1rem; }
+    .faq-section-block { margin-bottom: 3rem; }
+    .faq-section-block h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(200,169,110,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .faq-section-block h3 span { font-size: 1.1rem; }
+    .faq-contact-panel {
+      background: linear-gradient(135deg, rgba(200,169,110,0.08) 0%, rgba(200,169,110,0.04) 100%);
+      border: 1px solid rgba(200,169,110,0.2);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .faq-contact-panel h4 { font-size: 1rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.5rem; }
+    .faq-contact-panel p { font-size: 0.875rem; color: var(--clr-steel); margin-bottom: 1.25rem; }
+    @media (max-width: 900px) {
+      .faq-page-layout { grid-template-columns: 1fr; }
+      .faq-sidebar { position: static; }
+      .faq-categories { flex-direction: row; flex-wrap: wrap; }
+      .faq-cat-btn { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>FAQs</span></div>
+      <div class="badge" style="margin:0 auto 1rem;">Got Questions?</div>
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything you need to know about Sleekline products and services</p>
+    </div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="faq-page-layout">
+
+        <!-- Sidebar -->
+        <div class="faq-sidebar reveal">
+          <h4 style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--clr-steel); margin-bottom:1rem;">Categories</h4>
+          <div class="faq-categories">
+            <button class="faq-cat-btn active" onclick="jumpTo('materials')"><span class="faq-cat-icon">🧱</span> Materials</button>
+            <button class="faq-cat-btn" onclick="jumpTo('certification')"><span class="faq-cat-icon">🏆</span> Certification</button>
+            <button class="faq-cat-btn" onclick="jumpTo('customization')"><span class="faq-cat-icon">🎨</span> Customization</button>
+            <button class="faq-cat-btn" onclick="jumpTo('installation')"><span class="faq-cat-icon">🔧</span> Supply &amp; Installation</button>
+            <button class="faq-cat-btn" onclick="jumpTo('purchase')"><span class="faq-cat-icon">🛒</span> Purchase</button>
+            <button class="faq-cat-btn" onclick="jumpTo('quote')"><span class="faq-cat-icon">📋</span> Quotes &amp; Brochures</button>
+          </div>
+          <div class="faq-contact-panel">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">💬</div>
+            <h4>Still have questions?</h4>
+            <p>Our expert team is ready to help with any specific queries about our products or your project.</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%; justify-content:center;" id="faq-contact-btn">Contact Us</a>
+          </div>
+        </div>
+
+        <!-- FAQ Main -->
+        <div class="faq-main reveal reveal-delay-1">
+
+          <!-- Materials -->
+          <div class="faq-section-block" id="materials">
+            <h3><span>🧱</span> Materials &amp; Products</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <div class="faq-question">
+                  What materials are used in Sleekline ceiling systems?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Sleekline uses two primary base materials for its ceiling systems: <strong style="color:var(--clr-white);">hot-dip galvanized steel</strong> and <strong style="color:var(--clr-white);">high-grade aluminum alloy</strong>. Galvanized steel offers exceptional strength-to-weight ratio and corrosion resistance, making it ideal for humid and industrial environments. Aluminum is lightweight, naturally corrosion-resistant, and is preferred for its aesthetic versatility—it accepts a wide range of powder coating and anodizing finishes. All raw materials comply with relevant Indian and international standards.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  What is the difference between galvanized steel and aluminum ceiling panels?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <strong style="color:var(--clr-white);">Galvanized Steel</strong> is stronger and heavier, suitable for industrial or structurally demanding applications. Its zinc coating provides excellent corrosion resistance. <strong style="color:var(--clr-white);">Aluminum</strong> is lighter (often preferred for large-span suspended systems), naturally corrosion-resistant without coating, and offers more design flexibility—it can be extruded into complex profiles and accepts anodizing for premium finishes. Our team can recommend the right material based on your specific load requirements, environment, and aesthetic goals.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  How durable are Sleekline products?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Our ceiling systems are engineered for a service life of <strong style="color:var(--clr-white);">20+ years</strong> under normal conditions. Galvanized steel components are protected by a zinc coating that prevents rust and corrosion. Aluminum components are inherently corrosion-resistant and can be further protected with powder coating or anodizing. All finished surfaces undergo adhesion testing, salt-spray testing, and UV resistance testing before leaving our facility.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  Are Sleekline sun louvers suitable for exterior use in Indian weather conditions?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Yes. Our sun louvers are specifically designed for India's diverse climate conditions—from the heat and humidity of coastal regions to the dryness of arid zones. They are fabricated from marine-grade aluminum alloy with PVDF or powder coating that withstands UV radiation, monsoon rains, and high-temperature cycles without fading, warping, or corroding. They are routinely installed on commercial buildings across coastal cities including Mumbai, Chennai, and Kochi.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certification -->
+          <div class="faq-section-block" id="certification">
+            <h3><span>🏆</span> Certification &amp; Quality</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <div class="faq-question">
+                  Are Sleekline products certified?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Yes. Sleekline is <strong style="color:var(--clr-white);">ISO 9001:2013 certified</strong>, which is the international standard for Quality Management Systems. This certification covers our entire operation—from the sourcing of raw materials, fabrication processes, quality control inspections, to delivery and installation. It ensures that every product you receive has undergone rigorous quality checks at multiple stages of production.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  What quality checks does each product undergo?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Every batch of products undergoes a multi-stage quality control process: <strong style="color:var(--clr-white);">(1)</strong> Incoming material inspection for grade verification, <strong style="color:var(--clr-white);">(2)</strong> In-process checks at every CNC machining step for dimensional accuracy, <strong style="color:var(--clr-white);">(3)</strong> Surface finish inspection for powder coat adhesion and uniformity, <strong style="color:var(--clr-white);">(4)</strong> Load and structural integrity testing for suspended systems, and <strong style="color:var(--clr-white);">(5)</strong> Final visual inspection before packaging and dispatch. Certificates of conformance can be provided on request.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Customization -->
+          <div class="faq-section-block" id="customization">
+            <h3><span>🎨</span> Customization &amp; Design</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <div class="faq-question">
+                  Can sizes and finishes be customized?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Absolutely. Customization is at the heart of what we do. Our products can be manufactured in <strong style="color:var(--clr-white);">custom dimensions</strong> to fit any space. For finishes, we offer:<br><br>
+                    • <strong style="color:var(--clr-white);">Powder Coating:</strong> Available in any standard RAL color or custom shade matched to your brand/design palette<br>
+                    • <strong style="color:var(--clr-white);">Anodizing:</strong> For aluminum—natural silver, champagne, bronze, black, and gold tones<br>
+                    • <strong style="color:var(--clr-white);">Special Effects:</strong> Brushed, satin, or mirror finishes available on selected products<br><br>
+                    Share your specifications or design brief with our team and we will prepare a detailed sample and quotation.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  Do you provide CAD drawings or design support?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Yes. Our engineering team provides comprehensive design support including <strong style="color:var(--clr-white);">2D AutoCAD drawings, 3D Revit models, and BIM-ready files</strong> for architects and interior designers. We can also provide shop drawings for contractor coordination, structural load calculations, and material take-offs (BOQ) for your tendering process. This service is offered as part of our custom design and engineering service—contact us to discuss your specific documentation requirements.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  What is the minimum order quantity for custom products?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Minimum order quantities vary by product type. Standard products (from our regular product catalogue) can be ordered in smaller quantities for sample or pilot projects. <strong style="color:var(--clr-white);">Custom fabricated products</strong> typically require a minimum order based on economical production batch sizes—our sales team will advise on minimums based on your specific product and configuration. We accommodate orders from small residential renovations to large commercial projects.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Installation -->
+          <div class="faq-section-block" id="installation">
+            <h3><span>🔧</span> Supply &amp; Installation</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <div class="faq-question">
+                  Do you provide installation support?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Yes. Sleekline offers <strong style="color:var(--clr-white);">full supply and installation services</strong> through our trained and certified installation teams operating across 15+ cities in India. Our service includes:<br><br>
+                    • Site survey and pre-installation assessment<br>
+                    • Structural anchor point verification<br>
+                    • Professional installation by certified crews<br>
+                    • On-site quality inspection at completion<br>
+                    • Post-installation walkthrough and handover documentation<br><br>
+                    For projects where you have your own contractors, we also provide <strong style="color:var(--clr-white);">technical installation guidance</strong>, training, and on-site supervision.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  How long does installation typically take?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Installation timelines depend on the project scale and complexity. As a general guide: a <strong style="color:var(--clr-white);">small residential or retail space</strong> (up to 500 sq ft) can typically be completed in 1–2 days. A <strong style="color:var(--clr-white);">medium commercial project</strong> (1,000–5,000 sq ft) generally requires 3–7 days. Large-scale projects are scheduled in phases with milestones agreed in advance. We provide a detailed project schedule before work begins.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  Do you offer after-sales maintenance support?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Yes. We offer <strong style="color:var(--clr-white);">post-installation maintenance support</strong> including periodic inspection packages, replacement of individual panels or components, and technical support for any issues encountered after project completion. Metal ceiling systems are generally very low-maintenance, but our team is available to advise on cleaning procedures, minor adjustments, and any necessary repairs throughout the lifecycle of your installation.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Purchase -->
+          <div class="faq-section-block" id="purchase">
+            <h3><span>🛒</span> Purchase &amp; Availability</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <div class="faq-question">
+                  Where can I purchase Sleekline products?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Sleekline products are available through multiple channels:<br><br>
+                    • <strong style="color:var(--clr-white);">Direct from Sleekline:</strong> Contact our sales team directly for projects of all sizes—we handle from sample orders to large commercial projects.<br>
+                    • <strong style="color:var(--clr-white);">Authorized Dealers:</strong> We have an expanding network of authorized dealers across 15+ cities in India who can provide local service, samples, and orders.<br>
+                    • <strong style="color:var(--clr-white);">Architect/Contractor Procurement:</strong> We regularly supply architects, interior designers, and contractors directly through project-specific purchase orders.<br><br>
+                    Contact us to find the nearest dealer or to place a direct order.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  What is the typical lead time for delivery?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Lead times vary based on product type and quantity:<br><br>
+                    • <strong style="color:var(--clr-white);">Standard catalog products:</strong> 7–14 working days from order confirmation<br>
+                    • <strong style="color:var(--clr-white);">Custom fabricated products:</strong> 3–6 weeks depending on complexity, quantity, and finish specification<br>
+                    • <strong style="color:var(--clr-white);">Large-scale commercial orders:</strong> Scheduled in batches—timeline confirmed at order stage<br><br>
+                    We always provide confirmed delivery schedules at the time of order placement to support your project planning.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quote & Brochure -->
+          <div class="faq-section-block" id="quote">
+            <h3><span>📋</span> Quotes &amp; Brochures</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <div class="faq-question">
+                  How can I request a quote or brochure?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Requesting a quote or product brochure is simple:<br><br>
+                    • <strong style="color:var(--clr-white);">Online Form:</strong> Fill in our <a href="contact.html" style="color:var(--clr-accent);">contact form</a> with your project details—product type, approximate area, location, and timeline.<br>
+                    • <strong style="color:var(--clr-white);">Email:</strong> Send your requirements directly to <a href="mailto:sleekline7@gmail.com" style="color:var(--clr-accent);">sleekline7@gmail.com</a>.<br>
+                    • <strong style="color:var(--clr-white);">Phone:</strong> Call us at <a href="tel:+919265246156" style="color:var(--clr-accent);">+91 92652 46156</a> or <a href="tel:+918238814293" style="color:var(--clr-accent);">+91 82388 14293</a>.<br><br>
+                    Our team typically responds within <strong style="color:var(--clr-white);">24–48 hours</strong> with an initial quotation or brochure. For large and complex projects, we may request a site visit for an accurate assessment.
+                  </div>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  Can I request physical product samples before ordering?
+                  <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Yes. We strongly encourage customers, architects, and designers to <strong style="color:var(--clr-white);">request physical samples</strong> before finalizing their selection. Sample kits can include individual baffle profiles, finish swatches, and assembled mini-mock-ups showing the visual effect of a specific product in your chosen finish. Contact our sales team or your nearest dealer to arrange sample delivery.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="cta-band-bg"></div>
+    <div class="container">
+      <div class="cta-band-content reveal">
+        <h2 class="section-title">Didn't Find Your <span class="text-accent">Answer?</span></h2>
+        <p class="section-subtitle" style="margin:0 auto 2rem;">Our expert team is happy to answer any specific questions about your project, product selection, or technical requirements.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-primary" id="faq-cta-btn">Contact Our Team</a>
+          <a href="products.html" class="btn btn-outline" id="faq-prod-btn">Browse Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="components.js"></script>
+  <script>
+    initSleekline('faq');
+
+    function jumpTo(id) {
+      document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+      event.target.closest('.faq-cat-btn').classList.add('active');
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = el.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    }
+  </script>
+</body>
+</html>

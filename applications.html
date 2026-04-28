@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applications — Sleekline | Metal Ceilings for Every Sector</title>
+  <meta name="description" content="Sleekline's premium Linear Ceiling, Baffle, Open Cell, Tile, and Sun Louver systems installed across corporate offices, retail, hospitals, hotels, airports, and schools across India." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .app-hero-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .app-hero-card {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 3/4;
+      transition: var(--transition);
+      cursor: default;
+    }
+    .app-hero-card:first-child {
+      grid-row: span 2;
+      aspect-ratio: unset;
+    }
+    .app-hero-card:hover { transform: scale(1.015); }
+    .app-hero-card:hover .app-hero-overlay { background: linear-gradient(180deg, rgba(10,10,11,0.1) 0%, rgba(10,10,11,0.9) 100%); }
+    .app-hero-bg { position: absolute; inset: 0; transition: transform 0.5s ease; }
+    .app-hero-card:hover .app-hero-bg { transform: scale(1.06); }
+    .app-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,10,11,0.05) 0%, rgba(10,10,11,0.8) 100%);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+    .app-hero-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .app-hero-card h2 { font-size: 1.3rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.5rem; }
+    .app-hero-card p { font-size: 0.875rem; color: var(--clr-silver); line-height: 1.6; }
+    .app-detail-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .app-detail-row:last-child { border-bottom: none; }
+    .app-detail-row.flip { direction: rtl; }
+    .app-detail-row.flip > * { direction: ltr; }
+    .app-detail-vis {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      position: relative;
+    }
+    .app-detail-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .app-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.25rem 0; }
+    .app-feat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.82rem; color: var(--clr-silver); display: flex; align-items: center; gap: 0.5rem; }
+    .app-feat::before { content: '✦'; color: var(--clr-accent); font-size: 0.65rem; flex-shrink: 0; }
+    @media (max-width: 900px) {
+      .app-hero-grid { grid-template-columns: 1fr 1fr; }
+      .app-hero-card:first-child { grid-row: span 1; aspect-ratio: 3/4; }
+      .app-detail-row, .app-detail-row.flip { grid-template-columns: 1fr; direction: ltr; }
+    }
+    @media (max-width: 540px) {
+      .app-hero-grid { grid-template-columns: 1fr; }
+      .app-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Applications</span></div>
+      <div class="badge" style="margin:0 auto 1rem;">Where We Excel</div>
+      <h1>Applications</h1>
+      <p>Metal ceiling systems trusted across every sector — from corporate towers to healing hospitals</p>
+    </div>
+  </section>
+
+  <!-- App Hero Grid -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="badge">Sectors We Serve</div>
+        <h2 class="section-title">Built for Every <span class="text-accent">Environment</span></h2>
+        <div class="divider-line"></div>
+        <p class="section-subtitle" style="margin:0 auto;">Our products are engineered to perform in all environments, from the largest public infrastructure to intimate residential spaces.</p>
+      </div>
+      <div class="app-hero-grid">
+        <div class="app-hero-card reveal">
+          <div class="app-hero-bg vis-office" style="position:absolute;inset:0;"></div>
+          <div class="app-hero-overlay">
+            <div class="app-hero-icon">🏢</div>
+            <h2>Corporate Offices</h2>
+            <p>Sleek metal baffles and linear ceilings that project professionalism and support open, collaborative workspaces.</p>
+          </div>
+        </div>
+        <div class="app-hero-card reveal reveal-delay-1">
+          <div class="app-hero-bg vis-retail" style="position:absolute;inset:0;"></div>
+          <div class="app-hero-overlay">
+            <div class="app-hero-icon">🛍️</div>
+            <h2>Retail Spaces</h2>
+            <p>Visually dynamic ceilings that enhance the shopping environment and reinforce brand identity.</p>
+          </div>
+        </div>
+        <div class="app-hero-card reveal reveal-delay-2">
+          <div class="app-hero-bg vis-hospital" style="position:absolute;inset:0;"></div>
+          <div class="app-hero-overlay">
+            <div class="app-hero-icon">🏥</div>
+            <h2>Hospitals</h2>
+            <p>Hygienic, non-porous metal surfaces that meet stringent healthcare facility standards.</p>
+          </div>
+        </div>
+        <div class="app-hero-card reveal">
+          <div class="app-hero-bg vis-hotel" style="position:absolute;inset:0;"></div>
+          <div class="app-hero-overlay">
+            <div class="app-hero-icon">🏨</div>
+            <h2>Hotels &amp; Hospitality</h2>
+            <p>Luxury ceiling finishes that define the upscale ambiance your guests expect.</p>
+          </div>
+        </div>
+        <div class="app-hero-card reveal reveal-delay-1">
+          <div class="app-hero-bg vis-airport" style="position:absolute;inset:0;"></div>
+          <div class="app-hero-overlay">
+            <div class="app-hero-icon">✈️</div>
+            <h2>Airports</h2>
+            <p>Large-span systems built for scale, durability, and minimal maintenance in high-traffic terminals.</p>
+          </div>
+        </div>
+        <div class="app-hero-card reveal reveal-delay-2">
+          <div class="app-hero-bg vis-school" style="position:absolute;inset:0;"></div>
+          <div class="app-hero-overlay">
+            <div class="app-hero-icon">🎓</div>
+            <h2>Schools &amp; Universities</h2>
+            <p>Acoustic-friendly, durable ceiling solutions that create inspiring learning environments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Applications -->
+  <section class="section-pad" style="background:var(--clr-dark2);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="badge">In Detail</div>
+        <h2 class="section-title">Application <span class="text-accent">Spotlight</span></h2>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- Corporate -->
+      <div class="app-detail-row reveal">
+        <div class="app-detail-vis">
+          <div class="app-detail-inner vis-office" style="border-radius:var(--radius-lg);">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:85%;opacity:0.8;">
+              <defs><linearGradient id="of1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8fa8c8" stop-opacity="0.8"/><stop offset="100%" stop-color="#c8a96e" stop-opacity="0.5"/></linearGradient></defs>
+              <!-- Building grid -->
+              <g stroke="rgba(143,168,200,0.15)" stroke-width="0.5">
+                <line x1="0"   y1="50"  x2="400" y2="50"/>
+                <line x1="0"   y1="100" x2="400" y2="100"/>
+                <line x1="0"   y1="150" x2="400" y2="150"/>
+                <line x1="0"   y1="200" x2="400" y2="200"/>
+                <line x1="100" y1="0"   x2="100" y2="250"/>
+                <line x1="200" y1="0"   x2="200" y2="250"/>
+                <line x1="300" y1="0"   x2="300" y2="250"/>
+              </g>
+              <!-- Linear ceiling suggestion -->
+              <g fill="rgba(143,168,200,0.05)" stroke="url(#of1)" stroke-width="2">
+                <rect x="30" y="20" width="340" height="20" rx="2"/>
+                <rect x="30" y="50" width="340" height="20" rx="2"/>
+                <rect x="30" y="80" width="340" height="20" rx="2"/>
+              </g>
+              <!-- Office furniture hints -->
+              <rect x="60"  y="120" width="120" height="60" rx="4" fill="rgba(143,168,200,0.06)" stroke="rgba(143,168,200,0.2)" stroke-width="1"/>
+              <rect x="220" y="120" width="120" height="60" rx="4" fill="rgba(143,168,200,0.06)" stroke="rgba(143,168,200,0.2)" stroke-width="1"/>
+              <text x="200" y="240" text-anchor="middle" fill="#8fa8c8" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">CORPORATE OFFICE</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="badge">Application 01</div>
+          <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Corporate <span class="text-accent">Offices</span></h2>
+          <div class="divider-line"></div>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Modern workplaces demand ceilings that support acoustics, aesthetics, and technical integration. Our U-shaped baffle and linear ceiling systems are preferred by leading architects for premium commercial office fit-outs.</p>
+          <div class="app-features">
+            <div class="app-feat">Acoustic performance</div>
+            <div class="app-feat">LED lighting integration</div>
+            <div class="app-feat">HVAC compatibility</div>
+            <div class="app-feat">Open plan support</div>
+            <div class="app-feat">Custom finishes</div>
+            <div class="app-feat">Low maintenance</div>
+          </div>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Linear Ceiling – C Series, U Shaped Baffle Ceiling, Tile Ceiling (Lay-in &amp; Clip-in)</p>
+        </div>
+      </div>
+
+      <!-- Retail -->
+      <div class="app-detail-row flip reveal">
+        <div class="app-detail-vis">
+          <div class="app-detail-inner vis-retail" style="border-radius:var(--radius-lg);">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:85%;opacity:0.8;">
+              <defs><linearGradient id="rt1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8a96e" stop-opacity="0.8"/><stop offset="100%" stop-color="#8fa8c8" stop-opacity="0.5"/></linearGradient></defs>
+              <!-- Multi-height baffle effect -->
+              <rect x="20" y="10" width="360" height="5" fill="rgba(200,169,110,0.4)" rx="1"/>
+              <g fill="rgba(200,169,110,0.07)" stroke="url(#rt1)" stroke-width="1.5">
+                <rect x="30"  y="20" width="60" height="50" rx="1"/>
+                <rect x="100" y="30" width="60" height="35" rx="1"/>
+                <rect x="170" y="15" width="60" height="65" rx="1"/>
+                <rect x="240" y="25" width="60" height="45" rx="1"/>
+                <rect x="310" y="20" width="60" height="55" rx="1"/>
+              </g>
+              <!-- Display shelves -->
+              <g fill="rgba(200,169,110,0.04)" stroke="rgba(200,169,110,0.15)" stroke-width="0.5">
+                <rect x="40"  y="130" width="80" height="80"/>
+                <rect x="160" y="140" width="80" height="70"/>
+                <rect x="280" y="135" width="80" height="75"/>
+              </g>
+              <text x="200" y="240" text-anchor="middle" fill="#c8a96e" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">RETAIL SPACE</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="badge">Application 02</div>
+          <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Retail <span class="text-accent">Spaces</span></h2>
+          <div class="divider-line"></div>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">In retail, the ceiling sets the tone of the entire brand experience. Sleekline's U-Shaped Baffle and Open Cell Ceiling systems create striking visual stories that guide customers through the space and reinforce brand identity.</p>
+          <div class="app-features">
+            <div class="app-feat">Brand-aligned finishes</div>
+            <div class="app-feat">Zone differentiation</div>
+            <div class="app-feat">Spotlight integration</div>
+            <div class="app-feat">Modular reconfiguration</div>
+            <div class="app-feat">High visual impact</div>
+            <div class="app-feat">Durable &amp; cleanable</div>
+          </div>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> U Shaped Baffle Ceiling, Open Cell Ceiling / Cell Cladding, Linear Ceiling – R Series</p>
+        </div>
+      </div>
+
+      <!-- Hospital -->
+      <div class="app-detail-row reveal">
+        <div class="app-detail-vis">
+          <div class="app-detail-inner vis-hospital" style="border-radius:var(--radius-lg);">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:85%;opacity:0.8;">
+              <defs><linearGradient id="hp1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6ec8a9" stop-opacity="0.8"/><stop offset="100%" stop-color="#c8a96e" stop-opacity="0.4"/></linearGradient></defs>
+              <!-- Clean grid ceiling -->
+              <g fill="rgba(110,200,169,0.04)" stroke="url(#hp1)" stroke-width="1">
+                <rect x="20" y="15" width="85"  height="85"/>
+                <rect x="115" y="15" width="85" height="85"/>
+                <rect x="210" y="15" width="85" height="85"/>
+                <rect x="305" y="15" width="75" height="85"/>
+                <rect x="20" y="110" width="85" height="85"/>
+                <rect x="115" y="110" width="85" height="85"/>
+                <rect x="210" y="110" width="85" height="85"/>
+                <rect x="305" y="110" width="75" height="85"/>
+              </g>
+              <!-- Cross symbol -->
+              <rect x="185" y="10" width="30" height="80" rx="2" fill="rgba(110,200,169,0.15)" stroke="url(#hp1)" stroke-width="1.5"/>
+              <rect x="165" y="30" width="70" height="30" rx="2" fill="rgba(110,200,169,0.15)" stroke="url(#hp1)" stroke-width="1.5"/>
+              <text x="200" y="240" text-anchor="middle" fill="#6ec8a9" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">HOSPITAL &amp; HEALTHCARE</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="badge">Application 03</div>
+          <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Hospitals &amp; <span class="text-accent">Healthcare</span></h2>
+          <div class="divider-line"></div>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Healthcare environments demand ceiling systems that are hygienic, durable, and easy to clean. Our metal grid and linear systems are non-porous, resistant to moisture, and compliant with healthcare building codes.</p>
+          <div class="app-features">
+            <div class="app-feat">Non-porous surfaces</div>
+            <div class="app-feat">Chemical resistance</div>
+            <div class="app-feat">Easy-clean design</div>
+            <div class="app-feat">Low VOC materials</div>
+            <div class="app-feat">Moisture resistant</div>
+            <div class="app-feat">Access panel compatible</div>
+          </div>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Tile Ceiling (Lay-in &amp; Clip-in), Linear 150 F, Open Cell Ceiling / Cell Cladding</p>
+        </div>
+      </div>
+
+      <!-- Hotels -->
+      <div class="app-detail-row flip reveal">
+        <div class="app-detail-vis">
+          <div class="app-detail-inner vis-hotel" style="border-radius:var(--radius-lg);">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:85%;opacity:0.8;">
+              <defs>
+                <linearGradient id="ht1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8a96e" stop-opacity="0.9"/><stop offset="100%" stop-color="#e8c98e" stop-opacity="0.5"/></linearGradient>
+                <radialGradient id="chandelier" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#c8a96e" stop-opacity="0.6"/><stop offset="100%" stop-color="#c8a96e" stop-opacity="0"/></radialGradient>
+              </defs>
+              <!-- Ornate ceiling pattern -->
+              <circle cx="200" cy="30" r="60" fill="url(#chandelier)" stroke="rgba(200,169,110,0.3)" stroke-width="1"/>
+              <circle cx="200" cy="30" r="40" fill="none" stroke="rgba(200,169,110,0.4)" stroke-width="0.5"/>
+              <circle cx="200" cy="30" r="20" fill="rgba(200,169,110,0.1)" stroke="url(#ht1)" stroke-width="1.5"/>
+              <!-- Multi-height baffles radiating -->
+              <g fill="rgba(200,169,110,0.06)" stroke="url(#ht1)" stroke-width="1.5">
+                <rect x="20"  y="80" width="80" height="60" rx="1"/>
+                <rect x="110" y="65" width="80" height="80" rx="1"/>
+                <rect x="200" y="75" width="80" height="65" rx="1"/>
+                <rect x="290" y="60" width="90" height="90" rx="1"/>
+              </g>
+              <text x="200" y="240" text-anchor="middle" fill="#c8a96e" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">HOTEL &amp; HOSPITALITY</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="badge">Application 04</div>
+          <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Hotels &amp; <span class="text-accent">Hospitality</span></h2>
+          <div class="divider-line"></div>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Luxury hospitality demands ceilings that make an impression. From grand lobbies to intimate restaurant spaces, our U Shaped Baffle Ceiling and Linear Ceiling – C Series create the drama and elegance that five-star properties require.</p>
+          <div class="app-features">
+            <div class="app-feat">Premium gold finishes</div>
+            <div class="app-feat">Statement lobby designs</div>
+            <div class="app-feat">Custom patterns</div>
+            <div class="app-feat">Chandelier integration</div>
+            <div class="app-feat">Acoustic comfort</div>
+            <div class="app-feat">Hospitality grade</div>
+          </div>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> U Shaped Baffle Ceiling, Linear Ceiling – C Series, Open Cell Ceiling / Cell Cladding</p>
+        </div>
+      </div>
+
+      <!-- Airport -->
+      <div class="app-detail-row reveal">
+        <div class="app-detail-vis">
+          <div class="app-detail-inner vis-airport" style="border-radius:var(--radius-lg);">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:85%;opacity:0.75;">
+              <defs><linearGradient id="ap1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8fa8c8" stop-opacity="0.8"/><stop offset="100%" stop-color="#6ec8a9" stop-opacity="0.5"/></linearGradient></defs>
+              <!-- Large span impression -->
+              <path d="M0 80 Q200 20 400 80" fill="none" stroke="rgba(143,168,200,0.3)" stroke-width="1"/>
+              <!-- Wide baffles -->
+              <g fill="rgba(143,168,200,0.04)" stroke="url(#ap1)" stroke-width="1.5">
+                <rect x="0"   y="30" width="400" height="18" rx="1"/>
+                <rect x="0"   y="58" width="400" height="18" rx="1"/>
+                <rect x="0"   y="86" width="400" height="18" rx="1"/>
+                <rect x="0"  y="114" width="400" height="18" rx="1"/>
+              </g>
+              <!-- Structural columns hint -->
+              <line x1="100" y1="132" x2="100" y2="250" stroke="rgba(143,168,200,0.2)" stroke-width="3"/>
+              <line x1="200" y1="132" x2="200" y2="250" stroke="rgba(143,168,200,0.2)" stroke-width="3"/>
+              <line x1="300" y1="132" x2="300" y2="250" stroke="rgba(143,168,200,0.2)" stroke-width="3"/>
+              <!-- People silhouettes -->
+              <g fill="rgba(255,255,255,0.1)">
+                <ellipse cx="80"  cy="200" rx="8" ry="20"/>
+                <ellipse cx="150" cy="205" rx="8" ry="18"/>
+                <ellipse cx="240" cy="198" rx="8" ry="22"/>
+                <ellipse cx="330" cy="202" rx="8" ry="19"/>
+              </g>
+              <text x="200" y="240" text-anchor="middle" fill="#8fa8c8" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">AIRPORTS &amp; INFRASTRUCTURE</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="badge">Application 05</div>
+          <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Airports &amp; Public <span class="text-accent">Infrastructure</span></h2>
+          <div class="divider-line"></div>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Large-span public infrastructure demands ceiling systems that perform at massive scale while remaining visually coherent. Our wide-format baffle and linear systems cover thousands of square feet with structural integrity.</p>
+          <div class="app-features">
+            <div class="app-feat">Large span capability</div>
+            <div class="app-feat">High foot traffic rated</div>
+            <div class="app-feat">Fire-rated options</div>
+            <div class="app-feat">Wayfinding integration</div>
+            <div class="app-feat">Seismic compliance</div>
+            <div class="app-feat">Minimal maintenance</div>
+          </div>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Linear 150 F, Exterior Louvers and Cladding, Sun Louvers</p>
+        </div>
+      </div>
+
+      <!-- Schools -->
+      <div class="app-detail-row flip reveal">
+        <div class="app-detail-vis">
+          <div class="app-detail-inner vis-school" style="border-radius:var(--radius-lg);">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:85%;opacity:0.8;">
+              <defs><linearGradient id="sc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6ec8a9" stop-opacity="0.7"/><stop offset="100%" stop-color="#8fa8c8" stop-opacity="0.5"/></linearGradient></defs>
+              <!-- Grid ceiling -->
+              <g fill="rgba(110,200,169,0.04)" stroke="url(#sc1)" stroke-width="1">
+                <rect x="20" y="15" width="80" height="80"/>
+                <rect x="110" y="15" width="80" height="80"/>
+                <rect x="200" y="15" width="80" height="80"/>
+                <rect x="290" y="15" width="90" height="80"/>
+                <rect x="20" y="105" width="80" height="60"/>
+                <rect x="110" y="105" width="80" height="60"/>
+                <rect x="200" y="105" width="80" height="60"/>
+                <rect x="290" y="105" width="90" height="60"/>
+              </g>
+              <!-- Desk silhouettes -->
+              <g fill="rgba(110,200,169,0.06)" stroke="rgba(110,200,169,0.15)" stroke-width="0.5">
+                <rect x="30"  y="180" width="100" height="40" rx="2"/>
+                <rect x="160" y="180" width="100" height="40" rx="2"/>
+                <rect x="290" y="180" width="90"  height="40" rx="2"/>
+              </g>
+              <text x="200" y="240" text-anchor="middle" fill="#6ec8a9" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">SCHOOLS &amp; UNIVERSITIES</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="badge">Application 06</div>
+          <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Schools &amp; <span class="text-accent">Universities</span></h2>
+          <div class="divider-line"></div>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Educational environments benefit enormously from well-designed ceiling systems. Our products improve acoustic comfort, reduce noise transfer between rooms, and create inspiring learning environments at cost-effective project budgets.</p>
+          <div class="app-features">
+            <div class="app-feat">Acoustic absorption</div>
+            <div class="app-feat">Sound transmission control</div>
+            <div class="app-feat">Budget-friendly options</div>
+            <div class="app-feat">Durable construction</div>
+            <div class="app-feat">Low lifecycle cost</div>
+            <div class="app-feat">Classroom acoustics</div>
+          </div>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Tile Ceiling (Lay-in &amp; Clip-in), Linear Ceiling – R Series, Open Cell Ceiling / Cell Cladding</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="cta-band-bg"></div>
+    <div class="container">
+      <div class="cta-band-content reveal">
+        <h2 class="section-title">Have a Specific <span class="text-accent">Application?</span></h2>
+        <p class="section-subtitle" style="margin:0 auto 2rem;">Tell us about your project and our specialists will recommend the perfect ceiling system for your unique requirements.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-primary" id="app-cta-btn">Discuss Your Project</a>
+          <a href="products.html" class="btn btn-outline" id="app-prod-btn">Browse Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="components.js"></script>
+  <script>initSleekline('applications');</script>
+</body>
+</html>

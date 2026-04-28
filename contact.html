@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Sleekline | Get a Quote or Inquiry</title>
+  <meta name="description" content="Contact Sleekline for architectural metal products, custom design, and installation. Located in Ahmedabad, Gujarat. Call, email, or fill our contact form." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .contact-hero-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .contact-stat-chip {
+      background: rgba(200,169,110,0.08);
+      border: 1px solid rgba(200,169,110,0.2);
+      border-radius: 100px;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--clr-silver);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .contact-stat-chip strong { color: var(--clr-accent); }
+    .map-placeholder {
+      width: 100%;
+      height: 400px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: linear-gradient(135deg, #1a1a22 0%, #22222e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+    }
+    .map-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,169,110,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .map-pin {
+      width: 48px; height: 48px;
+      background: var(--gradient-accent);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(200,169,110,0.4);
+      position: relative;
+      z-index: 1;
+      animation: pin-bounce 2s ease-in-out infinite;
+    }
+    .map-pin-inner {
+      width: 20px; height: 20px;
+      background: var(--clr-black);
+      border-radius: 50%;
+      transform: rotate(45deg);
+    }
+    @keyframes pin-bounce {
+      0%, 100% { transform: rotate(-45deg) translateY(0); }
+      50% { transform: rotate(-45deg) translateY(-6px); }
+    }
+    .map-address {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .map-address h4 { font-size: 1rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.25rem; }
+    .map-address p { font-size: 0.875rem; color: var(--clr-silver); }
+    .map-open-btn {
+      background: rgba(200,169,110,0.12);
+      border: 1px solid rgba(200,169,110,0.3);
+      border-radius: var(--radius-sm);
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--clr-accent);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+    .map-open-btn:hover { background: rgba(200,169,110,0.2); }
+    .success-banner {
+      display: none;
+      background: linear-gradient(135deg, rgba(110,200,169,0.12) 0%, rgba(110,200,169,0.06) 100%);
+      border: 1px solid rgba(110,200,169,0.3);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: none;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .success-banner.show { display: flex; }
+    .success-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .success-text h4 { font-size: 0.95rem; font-weight: 700; color: #6ec8a9; margin-bottom: 0.2rem; }
+    .success-text p { font-size: 0.875rem; color: var(--clr-silver); }
+  </style>
+</head>
+<body>
+
+  <!-- Page Hero -->
+  <section class="page-hero" style="padding-bottom:3rem;">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Contact</span></div>
+      <div class="badge" style="margin:0 auto 1rem;">Get in Touch</div>
+      <h1>Contact Sleekline</h1>
+      <p>Talk to our expert team about your architectural ceiling project — we respond within 24 hours</p>
+      <div class="contact-hero-strip">
+        <div class="contact-stat-chip">📍 <strong>South Bopal</strong>, Ahmedabad</div>
+        <div class="contact-stat-chip">📞 <strong>+91 92652 46156</strong></div>
+        <div class="contact-stat-chip">✉️ <strong>sleekline7@gmail.com</strong></div>
+        <div class="contact-stat-chip">⏱️ Response within <strong>24 hrs</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Main -->
+  <section class="section-pad contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left: Info Cards -->
+        <div class="contact-info">
+          <div>
+            <div class="badge">Our Location</div>
+            <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Reach <span class="text-accent">Us</span></h2>
+            <div class="divider-line"></div>
+            <p style="color:var(--clr-steel); font-size:0.9rem; line-height:1.8; margin-bottom:2rem;">
+              Whether you're an architect, contractor, builder, or homeowner — our team is ready to discuss your project requirements and help you find the perfect architectural ceiling solution.
+            </p>
+          </div>
+
+          <div class="contact-card reveal">
+            <div class="cc-icon">📍</div>
+            <div class="cc-content">
+              <h4>Office Address</h4>
+              <p>
+                A2-424, Celebration City Center,<br>
+                Gala Gymkhana Road,<br>
+                South Bopal, Ahmedabad,<br>
+                Gujarat — 380058
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-card reveal reveal-delay-1">
+            <div class="cc-icon">📞</div>
+            <div class="cc-content">
+              <h4>Phone</h4>
+              <p>
+                <a href="tel:+919265246156">+91 92652 46156</a><br>
+                <a href="tel:+918238814293">+91 82388 14293</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-card reveal reveal-delay-2">
+            <div class="cc-icon">✉️</div>
+            <div class="cc-content">
+              <h4>Email</h4>
+              <p>
+                <a href="mailto:sleekline7@gmail.com">sleekline7@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-card reveal reveal-delay-3">
+            <div class="cc-icon">🕐</div>
+            <div class="cc-content">
+              <h4>Business Hours</h4>
+              <p>
+                Monday – Sunday: 9:00 AM – 6:30 PM
+              </p>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div style="margin-top:0.5rem;">
+            <p style="font-size:0.82rem; color:var(--clr-steel); margin-bottom:0.875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">Follow Us</p>
+            <div class="footer-socials">
+              <a href="#" class="social-btn" id="contact-fb" title="Facebook">f</a>
+              <a href="#" class="social-btn" id="contact-ig" title="Instagram">📷</a>
+              <a href="#" class="social-btn" id="contact-li" title="LinkedIn">in</a>
+              <a href="#" class="social-btn" id="contact-yt" title="YouTube">▶</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-wrap reveal">
+          <h3 class="form-title">Request a Quote or Inquiry</h3>
+          <p class="form-subtitle">Fill in the form below and our team will get back to you within 24 hours.</p>
+
+          <form id="contact-form" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Full Name *</label>
+                <input type="text" id="contact-name" name="name" class="form-input" placeholder="Rajesh Sharma" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-email">Email Address *</label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@company.com" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-phone">Phone Number *</label>
+                <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+91 9XXXXXXXXX" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-city">City / Location</label>
+                <input type="text" id="contact-city" name="city" class="form-input" placeholder="Ahmedabad, Gujarat" />
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Your Message / Requirements *</label>
+              <textarea id="contact-message" name="message" class="form-textarea" rows="5" placeholder="Please describe your project: area in sq ft, location, timeline, specific requirements or questions..." required></textarea>
+            </div>
+
+            <div class="success-banner" id="success-banner">
+              <div class="success-icon">✅</div>
+              <div class="success-text">
+                <h4>Message Sent Successfully!</h4>
+                <p>Thank you for reaching out. Our team will contact you within 24 hours.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit" id="contact-submit-btn">
+              <span id="btn-text">Send Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+
+            <p style="font-size:0.78rem; color:var(--clr-gunmetal); margin-top:1rem; text-align:center;">
+              🔒 Your information is kept confidential and never shared with third parties.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="section-pad map-section">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="badge">Find Us</div>
+        <h2 class="section-title">Our <span class="text-accent">Location</span></h2>
+        <div class="divider-line"></div>
+        <p class="section-subtitle" style="margin:0 auto;">Visit our showroom and experience our product range in person at our Ahmedabad office.</p>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.3!2d72.4726!3d23.0168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b5c4b5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sCelebration%20City%20Center%2C%20South%20Bopal%2C%20Ahmedabad%2C%20Gujarat%20380058!5e0!3m2!1sen!2sin!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Sleekline Office Location — Celebration City Center, South Bopal, Ahmedabad"
+          style="width:100%;height:100%;border:0;filter:grayscale(20%) invert(0.85) hue-rotate(165deg) saturate(0.8);"
+        ></iframe>
+      </div>
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a href="https://maps.google.com/?q=Celebration+City+Center+A2-424+South+Bopal+Ahmedabad+Gujarat+380058" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="open-maps-btn">
+          📍 Open in Google Maps
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="cta-band-bg"></div>
+    <div class="container">
+      <div class="cta-band-content reveal">
+        <h2 class="section-title">Ready to Transform <span class="text-accent">Your Space?</span></h2>
+        <p class="section-subtitle" style="margin:0 auto 2rem;">From a single showroom ceiling to an entire airport terminal — Sleekline delivers precision metal ceiling solutions that define spaces.</p>
+        <div class="cta-actions">
+          <a href="tel:+919265246156" class="btn btn-primary" id="contact-call-btn">
+            📞 Call Now
+          </a>
+          <a href="mailto:sleekline7@gmail.com" class="btn btn-outline" id="contact-email-btn">
+            ✉️ Email Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="components.js"></script>
+  <script>
+    initSleekline('contact');
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const form = document.getElementById('contact-form');
+      const successBanner = document.getElementById('success-banner');
+
+      // Validate
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+
+      if (!name || !email || !phone || !message) {
+        // Highlight empty fields
+        [['contact-name', name], ['contact-email', email], ['contact-phone', phone], ['contact-message', message]].forEach(([id, val]) => {
+          const el = document.getElementById(id);
+          if (!val) {
+            el.style.borderColor = 'rgba(200,80,80,0.6)';
+            el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+          }
+        });
+        return;
+      }
+
+      // Simulate submit
+      btn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btn.style.opacity = '0.7';
+
+      setTimeout(() => {
+        btn.style.display = 'none';
+        successBanner.classList.add('show');
+        form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
