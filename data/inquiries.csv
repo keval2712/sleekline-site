@@ -1,5 +1,11 @@
 Date,Time,Name,Phone,Email,City,Message
-"2026-05-06","05:43:09","Keval Shah","9876543210","keval@gmail.com","Ahmedabad","Need quotation for office ceiling"
-"2026-05-06","05:44:28","Riya Patel","+91 9876000001","riya@example.com","Surat","Looking for U-shaped baffle ceiling for my showroom"
-"2026-05-06","05:52:38","Test User","9999999999","test@test.com","Mumbai","Testing cross-port form submission fix"
-"2026-05-06","05:54:03","KEVAL","9664996535","admin@antigravity.com","AMD","84C IN THE CELIONG"
+06-05-2026,05:43:09,Keval Shah,9876543210,keval@gmail.com,Ahmedabad,Need quotation for office ceiling
+06-05-2026,05:44:28,Riya Patel,+91 9876000001,riya@example.com,Surat,Looking for U-shaped baffle ceiling for my showroom
+06-05-2026,05:52:38,Test User,9999999999,test@test.com,Mumbai,Testing cross-port form submission fix
+06-05-2026,05:54:03,KEVAL,9664996535,admin@antigravity.com,AMD,84C IN THE CELIONG
+"2026-05-06","06:12:28","Lock Test","9222222222","lock@test.com","Vadodara","Testing pending.csv fallback while inquiries.csv is locked"
+"2026-05-06","06:13:14","KEVAL","9664996535","amit.kumar@antigravity.com","AMD","SKJ BHI DDK DOLDL"
+"2026-05-06","06:19:55","KEVAL","9664996535","admin@antigravity.com","JND","ASDFGHJKL SCVBNM"
+"2026-05-06","06:26:43","Clean Test","9333333333","clean@test.com","Rajkot","Final clean test after all fixes applied"
+"2026-05-06","06:35:30","KEVAL","9664996535","admin@antigravity.com","AMD","ASDFGHJ AQSDFGHJ"
+"2026-05-06","06:52:14","KEVAL","9664996535","admin@antigravity.com","AMD","asdfghjkl  asdfghj"

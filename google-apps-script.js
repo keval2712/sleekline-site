@@ -1,127 +1,137 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- *  SLEEKLINE — Google Apps Script Contact Form Handler
+ *  SLEEKLINE — Google Apps Script Contact Form Handler  (v2 — text/plain fix)
  * ═══════════════════════════════════════════════════════════════════════════
  *
  *  SETUP INSTRUCTIONS:
  *  1. Open your Google Sheet
  *  2. Click Extensions → Apps Script
- *  3. Delete all existing code in the editor
+ *  3. Delete all existing code  (Ctrl+A → Delete)
  *  4. Paste THIS entire file
- *  5. Click Save (Ctrl+S)  →  name the project "Sleekline Contact Form"
+ *  5. Click Save (Ctrl+S) → name: "Sleekline Contact Form"
  *  6. Click Deploy → New Deployment
  *       Type        : Web App
- *       Description : Sleekline Contact Form v1
+ *       Description : Sleekline v2
  *       Execute as  : Me
  *       Who has access: Anyone
  *  7. Click Deploy → Authorize → Allow
- *  8. Copy the "Web App URL" shown
- *  9. Paste it into contact.html as the SHEETS_WEBHOOK_URL value
+ *  8. Copy the Web App URL  (ends with /exec)
+ *  9. Paste it in contact.html as the SHEETS_WEBHOOK_URL value
+ *
+ *  HOW THE FETCH WORKS:
+ *  The browser sends: POST, Content-Type: text/plain, body = JSON string
+ *  Why text/plain? It's a "simple request" — no CORS preflight needed.
+ *  Apps Script reads e.postData.contents and JSON.parses it.
+ *  Apps Script returns JSON with { success: true } which the browser reads.
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-// ── Sheet config ─────────────────────────────────────────────────────────
-const SHEET_NAME   = 'Inquiries';   // Change if your sheet tab has a different name
-const HEADER_ROW   = ['Date', 'Time (IST)', 'Name', 'Phone', 'Email', 'City', 'Message'];
+var SHEET_NAME  = 'Inquiries';
+var HEADER_ROW  = ['Date', 'Time (IST)', 'Name', 'Phone', 'Email', 'City', 'Message'];
 
-// ── GET handler (health check) ────────────────────────────────────────────
+// ── Health check (GET) ────────────────────────────────────────────────────
 function doGet(e) {
-  return ContentService
-    .createTextOutput(JSON.stringify({ status: 'ok', app: 'Sleekline Contact API' }))
-    .setMimeType(ContentService.MimeType.JSON);
+  return buildResponse({ status: 'ok', app: 'Sleekline Contact API v2' });
 }
 
-// ── POST handler (form submission) ────────────────────────────────────────
+// ── Main handler (POST) ───────────────────────────────────────────────────
 function doPost(e) {
   try {
-    // ── Parse incoming data ──────────────────────────────────────────────
-    let name = '', phone = '', email = '', city = '', message = '';
+    // ── Parse body ────────────────────────────────────────────────────────
+    // Frontend sends: Content-Type: text/plain, body = JSON string
+    var raw = (e.postData && e.postData.contents) ? e.postData.contents : '';
+    var data = {};
 
-    if (e.postData && e.postData.type === 'application/json') {
-      // JSON body
-      const payload = JSON.parse(e.postData.contents);
-      name    = payload.name    || '';
-      phone   = payload.phone   || '';
-      email   = payload.email   || '';
-      city    = payload.city    || '';
-      message = payload.message || '';
-
-    } else if (e.parameter) {
-      // URL-encoded form body (fallback)
-      name    = e.parameter.name    || '';
-      phone   = e.parameter.phone   || '';
-      email   = e.parameter.email   || '';
-      city    = e.parameter.city    || '';
-      message = e.parameter.message || '';
+    try {
+      data = JSON.parse(raw);
+    } catch (parseErr) {
+      // Fallback: try URL-encoded params
+      data = {
+        name:    e.parameter.name    || '',
+        phone:   e.parameter.phone   || '',
+        email:   e.parameter.email   || '',
+        city:    e.parameter.city    || '',
+        message: e.parameter.message || '',
+      };
     }
 
-    // ── Basic server-side validation ─────────────────────────────────────
-    const errors = [];
-    if (!name || name.trim().length < 2)   errors.push('Name is required.');
-    if (!email || !isValidEmail(email))    errors.push('Valid email is required.');
-    if (!phone || !isValidPhone(phone))    errors.push('Valid phone number is required.');
-    if (!message || message.trim().length < 5) errors.push('Message is required.');
+    var name    = (data.name    || '').toString().trim();
+    var phone   = (data.phone   || '').toString().trim();
+    var email   = (data.email   || '').toString().trim().toLowerCase();
+    var city    = (data.city    || '').toString().trim();
+    var message = (data.message || '').toString().trim();
+
+    // ── Validate ──────────────────────────────────────────────────────────
+    var errors = [];
+    if (name.length   < 2)  errors.push('Name is required.');
+    if (!isValidEmail(email)) errors.push('Valid email is required.');
+    if (!isValidPhone(phone)) errors.push('Valid phone is required.');
+    if (message.length < 5)  errors.push('Message is required.');
 
     if (errors.length > 0) {
-      return jsonResponse({ success: false, errors: errors }, 400);
+      return buildResponse({ success: false, errors: errors });
     }
 
-    // ── Get / create sheet ───────────────────────────────────────────────
-    const ss    = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet   = ss.getSheetByName(SHEET_NAME);
+    // ── Get / create sheet ────────────────────────────────────────────────
+    var ss    = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName(SHEET_NAME);
 
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
-      sheet.appendRow(HEADER_ROW);
-      sheet.getRange(1, 1, 1, HEADER_ROW.length)
-        .setFontWeight('bold')
-        .setBackground('#1a1a2e')
-        .setFontColor('#c8a96e');
+      var headerRange = sheet.getRange(1, 1, 1, HEADER_ROW.length);
+      headerRange.setValues([HEADER_ROW]);
+      headerRange.setFontWeight('bold')
+                 .setBackground('#1a1a2e')
+                 .setFontColor('#c8a96e');
       sheet.setFrozenRows(1);
     }
 
-    // ── IST timestamp ────────────────────────────────────────────────────
-    const now  = new Date();
-    const opts = { timeZone: 'Asia/Kolkata', hour12: false };
-    const date = now.toLocaleDateString('en-IN', { ...opts, year: 'numeric', month: '2-digit', day: '2-digit' });
-    const time = now.toLocaleTimeString('en-IN', { ...opts, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    // ── IST timestamp ─────────────────────────────────────────────────────
+    var now  = new Date();
+    var ist  = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
+    var pad  = function(n) { return n < 10 ? '0' + n : '' + n; };
 
-    // ── Append row ───────────────────────────────────────────────────────
-    sheet.appendRow([
-      date,
-      time,
-      name.trim(),
-      phone.trim(),
-      email.trim().toLowerCase(),
-      city.trim(),
-      message.trim(),
-    ]);
+    var date = ist.getUTCFullYear() + '-' +
+               pad(ist.getUTCMonth() + 1) + '-' +
+               pad(ist.getUTCDate());
 
-    // Auto-resize columns for readability
-    sheet.autoResizeColumns(1, HEADER_ROW.length);
+    var time = pad(ist.getUTCHours()) + ':' +
+               pad(ist.getUTCMinutes()) + ':' +
+               pad(ist.getUTCSeconds());
 
-    return jsonResponse({ success: true, message: 'Inquiry saved successfully.' });
+    // ── Append row ────────────────────────────────────────────────────────
+    sheet.appendRow([date, time, name, phone, email, city, message]);
+
+    // Auto-size columns (optional — skip if performance matters)
+    try { sheet.autoResizeColumns(1, HEADER_ROW.length); } catch(e) {}
+
+    Logger.log('Saved: ' + name + ' <' + email + '>');
+
+    return buildResponse({ success: true, message: 'Inquiry saved.' });
 
   } catch (err) {
     Logger.log('doPost error: ' + err.toString());
-    return jsonResponse({ success: false, errors: ['Server error: ' + err.message] }, 500);
+    return buildResponse({ success: false, errors: [err.message] });
   }
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────
 
 function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function isValidPhone(phone) {
-  return /^[\+]?[\d\s\-]{7,15}$/.test(phone.trim());
+  return /^[\+]?[\d\s\-]{7,15}$/.test(phone);
 }
 
-function jsonResponse(data, statusCode) {
-  // Note: Apps Script ContentService doesn't support HTTP status codes,
-  // but we embed success/failure in the response body.
+/**
+ * Build a JSON response.
+ * Apps Script's ContentService automatically adds the correct CORS headers
+ * (Access-Control-Allow-Origin: *) for simple requests (text/plain POST).
+ */
+function buildResponse(obj) {
   return ContentService
-    .createTextOutput(JSON.stringify(data))
+    .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
 }
