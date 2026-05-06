@@ -34,6 +34,12 @@ function doGet(e) {
   return buildResponse({ status: 'ok', app: 'Sleekline Contact API v2' });
 }
 
+// ── CORS Preflight (OPTIONS) ──────────────────────────────────────────────
+function doOptions(e) {
+  return ContentService.createTextOutput("")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
 // ── Main handler (POST) ───────────────────────────────────────────────────
 function doPost(e) {
   try {
@@ -127,8 +133,8 @@ function isValidPhone(phone) {
 
 /**
  * Build a JSON response.
- * Apps Script's ContentService automatically adds the correct CORS headers
- * (Access-Control-Allow-Origin: *) for simple requests (text/plain POST).
+ * We rely on Apps Script's built-in simple CORS, but since the frontend 
+ * now uses application/json, doOptions handles the preflight.
  */
 function buildResponse(obj) {
   return ContentService
