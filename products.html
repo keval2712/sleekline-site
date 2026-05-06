@@ -193,7 +193,7 @@
         <div class="product-detail-grid">
           <!-- Linear Ceiling C Series -->
           <div class="product-card-lg reveal">
-            <div class="product-vis-lg vis-linear-c">
+            <div class="product-vis-lg vis-linear-c" id="pvis-linear-c">
               <svg
                 viewBox="0 0 280 220"
                 xmlns="http://www.w3.org/2000/svg"
@@ -281,7 +281,7 @@
 
           <!-- U Shaped Baffle Ceiling -->
           <div class="product-card-lg reveal reveal-delay-1">
-            <div class="product-vis-lg vis-baffle">
+            <div class="product-vis-lg vis-baffle" id="pvis-baffle">
               <svg
                 viewBox="0 0 280 220"
                 xmlns="http://www.w3.org/2000/svg"
@@ -371,7 +371,7 @@
 
           <!-- Exterior Louvers -->
           <div class="product-card-lg reveal reveal-delay-2">
-            <div class="product-vis-lg vis-louver-ext">
+            <div class="product-vis-lg vis-louver-ext" id="pvis-louver-ext">
               <svg
                 viewBox="0 0 280 220"
                 xmlns="http://www.w3.org/2000/svg"
@@ -459,7 +459,7 @@
         <div class="products-add-grid">
           <!-- Linear Ceiling - R Series -->
           <div class="product-add-card reveal">
-            <div class="product-add-vis vis-linear">
+            <div class="product-add-vis vis-linear" id="pvis-linear-r">
               <svg
                 viewBox="0 0 280 160"
                 xmlns="http://www.w3.org/2000/svg"
@@ -525,7 +525,7 @@
 
           <!-- Sun Louvers -->
           <div class="product-add-card reveal reveal-delay-1">
-            <div class="product-add-vis vis-louver">
+            <div class="product-add-vis vis-louver" id="pvis-sun-louvers">
               <svg
                 viewBox="0 0 280 160"
                 xmlns="http://www.w3.org/2000/svg"
@@ -590,7 +590,7 @@
 
           <!-- Linear 150 F -->
           <div class="product-add-card reveal reveal-delay-2">
-            <div class="product-add-vis vis-linear-150">
+            <div class="product-add-vis vis-linear-150" id="pvis-linear-150">
               <svg
                 viewBox="0 0 280 160"
                 xmlns="http://www.w3.org/2000/svg"
@@ -654,7 +654,7 @@
 
           <!-- Open Cell Ceiling -->
           <div class="product-add-card reveal">
-            <div class="product-add-vis vis-grid-ceil">
+            <div class="product-add-vis vis-grid-ceil" id="pvis-open-cell">
               <svg
                 viewBox="0 0 280 160"
                 xmlns="http://www.w3.org/2000/svg"
@@ -722,7 +722,7 @@
 
           <!-- Tile Ceiling -->
           <div class="product-add-card reveal reveal-delay-1">
-            <div class="product-add-vis vis-tile">
+            <div class="product-add-vis vis-tile" id="pvis-tile">
               <svg
                 viewBox="0 0 280 160"
                 xmlns="http://www.w3.org/2000/svg"
@@ -811,8 +811,22 @@
     </section>
 
     <script src="components.js"></script>
+    <script src="slideshow.js"></script>
     <script>
       initSleekline("products");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Featured product sliders (220px tall)
+        SleekImages.buildProductSlider('pvis-linear-c',   'linear-c-series',  { interval: 4000 });
+        SleekImages.buildProductSlider('pvis-baffle',      'u-shaped-baffle',  { interval: 4500 });
+        SleekImages.buildProductSlider('pvis-louver-ext',  'exterior-louvers', { interval: 4200 });
+        // Additional product sliders (160px tall)
+        SleekImages.buildProductSlider('pvis-linear-r',   'linear-r-series',  { interval: 5000 });
+        SleekImages.buildProductSlider('pvis-sun-louvers', 'sun-louvers',      { interval: 5000 });
+        SleekImages.buildProductSlider('pvis-linear-150',  'linear-150f',      { interval: 5000 });
+        SleekImages.buildProductSlider('pvis-open-cell',   'open-cell',        { interval: 4800 });
+        SleekImages.buildProductSlider('pvis-tile',        'tile-ceiling',     { interval: 5000 });
+      });
     </script>
   </body>
 </html>

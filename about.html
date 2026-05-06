@@ -102,50 +102,7 @@
           </div>
         </div>
         <div class="about-visual">
-          <div class="about-img-wrap" style="background: linear-gradient(145deg, #1a1a22 0%, #2a2a38 100%); display:flex; align-items:center; justify-content: center;">
-            <!-- Animated SVG Louver Pattern -->
-            <svg viewBox="0 0 380 460" xmlns="http://www.w3.org/2000/svg" style="width:85%;height:85%;opacity:0.9;">
-              <defs>
-                <linearGradient id="louverGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.9"/>
-                  <stop offset="50%" stop-color="#e8c98e" stop-opacity="1"/>
-                  <stop offset="100%" stop-color="#c8a96e" stop-opacity="0.7"/>
-                </linearGradient>
-                <linearGradient id="louverFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.2"/>
-                  <stop offset="100%" stop-color="#c8a96e" stop-opacity="0.05"/>
-                </linearGradient>
-              </defs>
-              <!-- Frame -->
-              <rect x="30" y="30" width="320" height="400" rx="4" fill="none" stroke="rgba(200,169,110,0.2)" stroke-width="1"/>
-              <!-- Sun Louvers -->
-              <g fill="url(#louverFill)" stroke="url(#louverGrad)" stroke-width="1.5">
-                <rect x="50" y="60"  width="280" height="22" rx="2"/>
-                <rect x="50" y="94"  width="280" height="22" rx="2"/>
-                <rect x="50" y="128" width="280" height="22" rx="2"/>
-                <rect x="50" y="162" width="280" height="22" rx="2"/>
-                <rect x="50" y="196" width="280" height="22" rx="2"/>
-                <rect x="50" y="230" width="280" height="22" rx="2"/>
-                <rect x="50" y="264" width="280" height="22" rx="2"/>
-                <rect x="50" y="298" width="280" height="22" rx="2"/>
-                <rect x="50" y="332" width="280" height="22" rx="2"/>
-                <rect x="50" y="366" width="280" height="22" rx="2"/>
-              </g>
-              <!-- Sunlight rays -->
-              <g stroke="rgba(200,169,110,0.15)" stroke-width="1">
-                <line x1="50" y1="82"  x2="330" y2="82"/>
-                <line x1="50" y1="116" x2="330" y2="116"/>
-                <line x1="50" y1="150" x2="330" y2="150"/>
-                <line x1="50" y1="184" x2="330" y2="184"/>
-                <line x1="50" y1="218" x2="330" y2="218"/>
-                <line x1="50" y1="252" x2="330" y2="252"/>
-                <line x1="50" y1="286" x2="330" y2="286"/>
-                <line x1="50" y1="320" x2="330" y2="320"/>
-                <line x1="50" y1="354" x2="330" y2="354"/>
-                <line x1="50" y1="388" x2="330" y2="388"/>
-              </g>
-              <text x="190" y="445" text-anchor="middle" fill="#c8a96e" font-size="10" font-family="Inter,sans-serif" letter-spacing="4" opacity="0.6">ARCHITECTURAL SUN LOUVERS</text>
-            </svg>
+          <div class="about-img-wrap" id="about-page-slider">
             <div class="about-img-overlay"></div>
           </div>
           <div class="about-badge-float">
@@ -291,8 +248,20 @@
   </section>
 
   <script src="components.js"></script>
+  <script src="slideshow.js"></script>
   <script>
     initSleekline('about');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Right-side visual slider — mixed product images
+      SleekImages.buildHeroSlider('about-page-slider', {
+        interval: 5000,
+        showLabel: true,
+        showDots: true,
+        showArrows: true
+      });
+    });
+
     // Fix values grid responsive
     const vg = document.querySelector('.values-grid');
     if (window.innerWidth < 768 && vg) {

@@ -2007,3 +2007,253 @@ select {
     align-items: center;
   }
 }
+
+/* =========================================
+   SLEEKLINE — SleekSlider System
+   ========================================= */
+
+/* ── Slider Container ── */
+.slk-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--clr-dark3);
+}
+
+/* ── Track & Slides ── */
+.slk-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slk-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.slk-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slk-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 6s ease;
+}
+
+.slk-slide.active img {
+  transform: scale(1.04);
+}
+
+/* ── Slide Label ── */
+.slk-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem 1rem;
+  background: linear-gradient(0deg, rgba(10,10,11,0.85) 0%, transparent 100%);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  z-index: 2;
+}
+
+/* ── Arrow Buttons ── */
+.slk-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(200, 169, 110, 0.45);
+  background: rgba(10, 10, 11, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--clr-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.slk-slider:hover .slk-arrow {
+  opacity: 1;
+}
+
+.slk-prev { left: 12px; }
+.slk-next { right: 12px; }
+
+.slk-arrow:hover {
+  background: rgba(200, 169, 110, 0.18);
+  border-color: var(--clr-accent);
+}
+
+/* ── Dot Indicators ── */
+.slk-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.slk-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.slk-dot.active {
+  background: var(--clr-accent);
+  width: 20px;
+  border-radius: 4px;
+}
+
+.slk-dot:hover {
+  background: rgba(200, 169, 110, 0.7);
+}
+
+/* ── Hero Slider Enhancements ── */
+.hero-slideshow .slk-slider {
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg), 0 0 60px rgba(200, 169, 110, 0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Product Card Sliders (products.html) ── */
+.product-vis-lg .slk-slider,
+.product-add-vis .slk-slider {
+  border-radius: 0;
+}
+
+.product-vis-lg .slk-arrow,
+.product-add-vis .slk-arrow {
+  width: 32px;
+  height: 32px;
+}
+
+.product-vis-lg .slk-dots { bottom: 10px; }
+.product-add-vis .slk-dots { bottom: 8px; }
+
+/* ── Index Product Preview Sliders ── */
+.product-visual .slk-slider {
+  border-radius: 0;
+  height: 100%;
+}
+
+.product-visual .slk-arrow { width: 32px; height: 32px; }
+.product-visual .slk-dots { bottom: 10px; }
+
+@media (max-width: 600px) {
+  .slk-arrow { width: 32px; height: 32px; }
+  .slk-label { font-size: 0.72rem; padding: 1.5rem 1rem 0.75rem; }
+}
+
+/* ── About Section Left Box Slider ── */
+#about-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+#about-slider .slk-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+}
+
+#about-slider .about-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 11, 0.7) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+#about-slider .slk-arrow {
+  z-index: 5;
+}
+
+#about-slider .slk-dots {
+  z-index: 5;
+  bottom: 20px;
+}
+
+#about-slider .slk-label {
+  z-index: 4;
+}
+
+/* ── About Page Right Box Slider ── */
+#about-page-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#about-page-slider .slk-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+}
+
+#about-page-slider .about-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,10,11,0.7) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+#about-page-slider .slk-arrow { z-index: 5; }
+#about-page-slider .slk-dots  { z-index: 5; bottom: 20px; }
+#about-page-slider .slk-label { z-index: 4; }
+
+/* ── Applications Detail Row Sliders ── */
+[id^="app-vis-"] {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+[id^="app-vis-"] .slk-slider {
+  border-radius: var(--radius-lg);
+}
+
+/* ── Services Detail Row Sliders ── */
+[id^="srv-vis-"] {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+[id^="srv-vis-"] .slk-slider {
+  border-radius: var(--radius-lg);
+}

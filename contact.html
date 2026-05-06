@@ -309,41 +309,201 @@
   <script>
     initSleekline('contact');
 
-    function handleSubmit(e) {
+    // ══════════════════════════════════════════════════════════════════════
+    //  🔗 GOOGLE SHEETS WEBHOOK URL
+    //  1. Open your Google Sheet → Extensions → Apps Script
+    //  2. Paste the code from google-apps-script.js
+    //  3. Deploy → New Deployment → Web App → Anyone → Deploy
+    //  4. Copy the Web App URL and paste it below (replace the placeholder)
+    // ══════════════════════════════════════════════════════════════════════
+    const SHEETS_WEBHOOK_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    // ── Duplicate-submit guard ────────────────────────────────────────────
+    let _isSubmitting = false;
+
+    async function handleSubmit(e) {
       e.preventDefault();
-      const btn = document.getElementById('contact-submit-btn');
-      const btnText = document.getElementById('btn-text');
-      const form = document.getElementById('contact-form');
+      if (_isSubmitting) return;
+
+      const btn           = document.getElementById('contact-submit-btn');
+      const btnText       = document.getElementById('btn-text');
+      const form          = document.getElementById('contact-form');
       const successBanner = document.getElementById('success-banner');
 
-      // Validate
-      const name = document.getElementById('contact-name').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
-      const phone = document.getElementById('contact-phone').value.trim();
+      // ── Read fields ──────────────────────────────────────────────────
+      const name    = document.getElementById('contact-name').value.trim();
+      const email   = document.getElementById('contact-email').value.trim();
+      const phone   = document.getElementById('contact-phone').value.trim();
+      const city    = document.getElementById('contact-city').value.trim();
       const message = document.getElementById('contact-message').value.trim();
 
-      if (!name || !email || !phone || !message) {
-        // Highlight empty fields
-        [['contact-name', name], ['contact-email', email], ['contact-phone', phone], ['contact-message', message]].forEach(([id, val]) => {
-          const el = document.getElementById(id);
-          if (!val) {
-            el.style.borderColor = 'rgba(200,80,80,0.6)';
-            el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
-          }
-        });
-        return;
+      // ── Client-side validation ───────────────────────────────────────
+      const fieldChecks = [
+        ['contact-name',    name],
+        ['contact-email',   email],
+        ['contact-phone',   phone],
+        ['contact-message', message],
+      ];
+      let hasError = false;
+      fieldChecks.forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (!val) {
+          el.style.borderColor = 'rgba(200,80,80,0.6)';
+          el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+          hasError = true;
+        }
+      });
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        const el = document.getElementById('contact-email');
+        el.style.borderColor = 'rgba(200,80,80,0.6)';
+        el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+        hasError = true;
       }
+      if (hasError) return;
 
-      // Simulate submit
-      btn.disabled = true;
-      btnText.textContent = 'Sending...';
-      btn.style.opacity = '0.7';
+      // ── Loading state ────────────────────────────────────────────────
+      _isSubmitting       = true;
+      btn.disabled        = true;
+      btn.style.opacity   = '0.7';
+      btnText.textContent = 'Sending…';
+      const prevErr = document.getElementById('error-banner');
+      if (prevErr) prevErr.remove();
 
-      setTimeout(() => {
+      const payload = { name, email, phone, city, message };
+
+      // ── Submit to both destinations in parallel ───────────────────────
+      const sheetsConfigured = SHEETS_WEBHOOK_URL &&
+                               !SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE');
+
+      const tasks = [submitToCSV(payload)];
+      if (sheetsConfigured) tasks.push(submitToSheets(payload));
+
+      const results = await Promise.allSettled(tasks);
+
+      const csvOk    = results[0].status === 'fulfilled' && results[0].value === true;
+      const sheetsOk = sheetsConfigured
+        ? (results[1]?.status === 'fulfilled' && results[1].value === true)
+        : true; // not configured → don't count as failure
+
+      console.info(
+        `[Sleekline] Submission — CSV: ${csvOk}` +
+        (sheetsConfigured ? `, Sheets: ${sheetsOk}` : ' (Sheets not configured)')
+      );
+
+      if (csvOk || (sheetsConfigured && sheetsOk)) {
+        // ── At least one configured destination succeeded ─────────────
         btn.style.display = 'none';
         successBanner.classList.add('show');
         form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
-      }, 1500);
+
+      } else {
+        // ── All configured destinations failed ────────────────────────
+        _isSubmitting       = false;
+        btn.disabled        = false;
+        btn.style.opacity   = '1';
+        btnText.textContent = 'Send Message';
+        showErrorBanner([
+          'Unable to submit your inquiry. Please check your connection or call us at <strong>+91 92652 46156</strong>.'
+        ]);
+      }
+    }
+
+    // ── Google Sheets submission (no-cors fire-and-forget) ────────────────
+    async function submitToSheets(payload) {
+      // Skip if URL not configured yet
+      if (!SHEETS_WEBHOOK_URL || SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE')) {
+        console.warn('[Sleekline] Google Sheets webhook URL not configured.');
+        return false;
+      }
+
+      try {
+        // Send as URL-encoded (avoids CORS preflight, works with Apps Script)
+        const body = new URLSearchParams({
+          name:    payload.name,
+          email:   payload.email,
+          phone:   payload.phone,
+          city:    payload.city    || '',
+          message: payload.message,
+        });
+
+        // no-cors: opaque response — we trust Apps Script saved it
+        await fetch(SHEETS_WEBHOOK_URL, {
+          method:  'POST',
+          mode:    'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body:    body.toString(),
+        });
+
+        // With no-cors we can't read the response — optimistically treat as success
+        return true;
+
+      } catch (err) {
+        console.error('[Sleekline] Sheets submission error:', err);
+        return false;
+      }
+    }
+
+    // ── Local CSV backend (port-aware) ────────────────────────────────────
+    async function submitToCSV(payload) {
+      const API_URL = (window.location.port === '3000')
+        ? '/api/contact'
+        : 'http://localhost:3000/api/contact';
+
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 8000); // 8s timeout
+
+        const resp = await fetch(API_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload),
+          signal:  controller.signal,
+        });
+        clearTimeout(timer);
+
+        const data = await resp.json();
+        return !!(resp.ok && data.success);
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          console.warn('[Sleekline] CSV backend timed out after 8s.');
+        } else {
+          console.warn('[Sleekline] CSV backend not reachable:', err.message);
+        }
+        return false;
+      }
+    }
+
+    // ── Error banner ──────────────────────────────────────────────────────
+    function showErrorBanner(errors) {
+      const existing = document.getElementById('error-banner');
+      if (existing) existing.remove();
+
+      const banner = document.createElement('div');
+      banner.id = 'error-banner';
+      banner.style.cssText = `
+        background: linear-gradient(135deg, rgba(200,80,80,0.12) 0%, rgba(200,80,80,0.06) 100%);
+        border: 1px solid rgba(200,80,80,0.35);
+        border-radius: var(--radius-md, 10px);
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      `;
+      banner.innerHTML = `
+        <span style="font-size:1.2rem;flex-shrink:0;">⚠️</span>
+        <div>
+          <p style="font-size:0.875rem;font-weight:700;color:#e07070;margin:0 0 0.25rem;">
+            Submission Failed
+          </p>
+          <ul style="margin:0;padding-left:1.1rem;font-size:0.83rem;color:var(--clr-silver,#a0a0a8);line-height:1.7;">
+            ${errors.map(err => `<li>${err}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+      const submitBtn = document.getElementById('contact-submit-btn');
+      submitBtn.parentNode.insertBefore(banner, submitBtn);
+      banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   </script>
 </body>
