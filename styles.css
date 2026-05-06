@@ -2257,3 +2257,43 @@ select {
 [id^="srv-vis-"] .slk-slider {
   border-radius: var(--radius-lg);
 }
+
+/* ════════════════════════════════════════════════════════════
+   ── IMAGE CLEARNESS & VISIBILITY FIXES ──
+   ════════════════════════════════════════════════════════════ */
+
+/* 1. Completely remove all legacy pattern overlays from product cards */
+[class*="vis-"]::after { 
+  display: none !important; 
+}
+
+/* 2. Remove the dark linear-gradient backgrounds underneath images */
+[class*="vis-"] { 
+  background: transparent !important; 
+}
+
+/* 3. Ensure slk-slide images are perfectly clear with no dimming */
+.slk-slide img {
+  filter: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+/* 4. Make slide labels legible but reduce the heavy dark background */
+.slk-label {
+  background: linear-gradient(0deg, rgba(10,10,11,0.5) 0%, transparent 100%) !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* 5. Brighten the Application card overlays */
+.app-card-overlay {
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 11, 0.4) 100%) !important;
+}
+.app-card:hover .app-card-overlay {
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 11, 0.6) 100%) !important;
+}
+
+/* 6. Brighten About image overlay */
+.about-img-overlay {
+  background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 11, 0.2) 100%) !important;
+}
