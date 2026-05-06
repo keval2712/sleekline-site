@@ -383,7 +383,7 @@
     //  3. Deploy → New Deployment → Web App → Anyone → Deploy
     //  4. Copy the Web App URL and paste it below (replace the placeholder)
     // ══════════════════════════════════════════════════════════════════════
-    const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxR7onXhPrNmpiFrgOqbrFHYTQ3o2OJS_gsBHfnA_LVyciwFUv6Z_pk7LmJN6tIRvcJfA/exec';
+    const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzfPpRKGCCC1hd-3QvsZZyUViCLRDWYxRJVLNisFJM5R5E3cZL6YbhvtPYEaqre1JPP-w/exec';
 
     // ── Duplicate-submit guard ────────────────────────────────────────────
     let _isSubmitting = false;
@@ -457,7 +457,7 @@
       } else {
         tasks.push(Promise.resolve({ status: 'skipped', value: false })); // Skip CSV on Vercel
       }
-      
+
       if (sheetsConfigured) {
         tasks.push(submitToSheets(payload));
       }
