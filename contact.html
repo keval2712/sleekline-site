@@ -383,7 +383,7 @@
     //  3. Deploy → New Deployment → Web App → Anyone → Deploy
     //  4. Copy the Web App URL and paste it below (replace the placeholder)
     // ══════════════════════════════════════════════════════════════════════
-    const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxyVXdu90bsFL4zn9-n2aevvIj7i-AM8O9AzBJiyO0WAxShDmsPIrvPAfGyU5OxunS2Ow/exec';
+    const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxR7onXhPrNmpiFrgOqbrFHYTQ3o2OJS_gsBHfnA_LVyciwFUv6Z_pk7LmJN6tIRvcJfA/exec';
 
     // ── Duplicate-submit guard ────────────────────────────────────────────
     let _isSubmitting = false;
@@ -409,6 +409,7 @@
         ['contact-name', name],
         ['contact-email', email],
         ['contact-phone', phone],
+        ['contact-city', city],
         ['contact-message', message],
       ];
       let hasError = false;
@@ -422,6 +423,12 @@
       });
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         const el = document.getElementById('contact-email');
+        el.style.borderColor = 'rgba(200,80,80,0.6)';
+        el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+        hasError = true;
+      }
+      if (phone && !/^\+?[\d\s-]{10,}$/.test(phone)) {
+        const el = document.getElementById('contact-phone');
         el.style.borderColor = 'rgba(200,80,80,0.6)';
         el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
         hasError = true;
@@ -476,6 +483,7 @@
       if (anySuccess) {
         btn.style.display = 'none';
         successBanner.classList.add('show');
+        successBanner.querySelector('h4').textContent = 'Thank you! Your inquiry has been submitted.';
         form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
 
       } else {
@@ -484,20 +492,12 @@
         btn.style.opacity = '1';
         btnText.textContent = 'Send Message';
         showErrorBanner([
-          'Unable to submit your inquiry. Please try again or call us at <strong>+91 92652 46156</strong>.'
+          'Unable to submit your inquiry. Please try again.'
         ]);
       }
     }
 
     // ── Google Sheets submission ───────────────────────────────────────────
-    //
-    //  WHY text/plain ?
-    //  Sending Content-Type: application/json triggers a CORS preflight
-    //  (OPTIONS request) that Google Apps Script does not respond to.
-    //  Sending Content-Type: text/plain is a "simple request" — no preflight,
-    //  no mode:no-cors needed, and we CAN read the JSON response back.
-    //  The Apps Script reads e.postData.contents and JSON.parse()s it.
-    //
     async function submitToSheets(payload) {
       if (!SHEETS_WEBHOOK_URL || SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE')) {
         console.warn('[Sleekline] Google Sheets URL not set — skipping.');
@@ -510,9 +510,9 @@
 
         const resp = await fetch(SHEETS_WEBHOOK_URL, {
           method: 'POST',
-          // ↓ text/plain = simple request → no CORS preflight → readable response
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(payload),          // JSON string in body
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+
           signal: controller.signal,
         });
         clearTimeout(timer);
