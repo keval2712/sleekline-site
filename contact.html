@@ -442,23 +442,36 @@
       const sheetsConfigured = SHEETS_WEBHOOK_URL &&
         !SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE');
 
-      const tasks = [submitToCSV(payload)];
-      if (sheetsConfigured) tasks.push(submitToSheets(payload));
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+      const tasks = [];
+      if (isLocal) {
+        tasks.push(submitToCSV(payload)); // Only try CSV backend if testing locally
+      } else {
+        tasks.push(Promise.resolve({ status: 'skipped', value: false })); // Skip CSV on Vercel
+      }
+      
+      if (sheetsConfigured) {
+        tasks.push(submitToSheets(payload));
+      }
 
       const results = await Promise.allSettled(tasks);
 
-      const csvOk = results[0].status === 'fulfilled' && results[0].value === true;
+      const csvResult = results[0];
+      const sheetsResult = sheetsConfigured ? results[1] : null;
+
+      const csvOk = isLocal && csvResult?.status === 'fulfilled' && csvResult.value === true;
       const sheetsOk = sheetsConfigured
-        ? (results[1]?.status === 'fulfilled' && results[1].value === true)
+        ? (sheetsResult?.status === 'fulfilled' && sheetsResult.value === true)
         : null; // null = not applicable
 
       console.info(
-        `[Sleekline] CSV: ${csvOk}` +
+        `[Sleekline] CSV: ${isLocal ? csvOk : 'Skipped (Live)'}` +
         (sheetsConfigured ? ` | Sheets: ${sheetsOk}` : ' | Sheets: not configured')
       );
 
-      // ── Success if CSV saved OR Sheets saved (whichever is configured) ─
-      const anySuccess = csvOk || sheetsOk === true;
+      // ── Success if CSV saved (local) OR Sheets saved (live) ────────
+      const anySuccess = (isLocal && csvOk) || sheetsOk === true;
 
       if (anySuccess) {
         btn.style.display = 'none';
@@ -519,7 +532,7 @@
       }
     }
 
-    // ── Local CSV backend (port-aware) ────────────────────────────────────
+    // ── Local CSV backend ─────────────────────────────────────────────────
     async function submitToCSV(payload) {
       const API_URL = (window.location.port === '3000')
         ? '/api/contact'
