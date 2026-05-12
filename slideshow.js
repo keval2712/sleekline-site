@@ -110,11 +110,16 @@ class SleekSlider {
       showArrows: true,
       showDots: true,
       fade: true,
-      showLabel: false
+      showLabel: false,
+      touchThreshold: 50  // minimum px drag to trigger slide change
     }, options);
     this.current = 0;
     this.timer = null;
     this.isHovered = false;
+    this._touchStartX = 0;
+    this._touchStartY = 0;
+    this._touchDeltaX = 0;
+    this._isDragging = false;
     if (images.length > 0) this.init();
   }
 
@@ -126,6 +131,7 @@ class SleekSlider {
     this.showSlide(0);
     if (this.options.autoplay && this.images.length > 1) this.startAutoplay();
     if (this.options.pauseOnHover) this.bindHover();
+    if (this.images.length > 1) this.bindTouch();
   }
 
   buildSlides() {
@@ -140,6 +146,7 @@ class SleekSlider {
       img.src = src;
       img.alt = label || 'Sleekline Product';
       img.loading = i === 0 ? 'eager' : 'lazy';
+      img.draggable = false;
       img.onerror = () => { slide.style.display = 'none'; };
       slide.appendChild(img);
       if (label && this.options.showLabel) {
@@ -157,10 +164,12 @@ class SleekSlider {
   buildArrows() {
     const prev = document.createElement('button');
     prev.className = 'slk-arrow slk-prev';
+    prev.setAttribute('aria-label', 'Previous slide');
     prev.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>`;
     prev.addEventListener('click', (e) => { e.stopPropagation(); this.prev(); });
     const next = document.createElement('button');
     next.className = 'slk-arrow slk-next';
+    next.setAttribute('aria-label', 'Next slide');
     next.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>`;
     next.addEventListener('click', (e) => { e.stopPropagation(); this.next(); });
     this.container.appendChild(prev);
@@ -173,6 +182,7 @@ class SleekSlider {
     this.dotEls = this.images.map((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'slk-dot';
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
       dot.addEventListener('click', () => this.goTo(i));
       dots.appendChild(dot);
       return dot;
@@ -217,6 +227,50 @@ class SleekSlider {
       this.isHovered = false;
       if (this.options.autoplay) this.startAutoplay();
     });
+  }
+
+  // ── Touch / Swipe Support ──
+  bindTouch() {
+    const el = this.container;
+
+    el.addEventListener('touchstart', (e) => {
+      this._touchStartX = e.touches[0].clientX;
+      this._touchStartY = e.touches[0].clientY;
+      this._touchDeltaX = 0;
+      this._isDragging = true;
+      // Pause autoplay during touch
+      clearInterval(this.timer);
+    }, { passive: true });
+
+    el.addEventListener('touchmove', (e) => {
+      if (!this._isDragging) return;
+      const dx = e.touches[0].clientX - this._touchStartX;
+      const dy = e.touches[0].clientY - this._touchStartY;
+      this._touchDeltaX = dx;
+      // If horizontal movement dominates, prevent page scroll
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    el.addEventListener('touchend', () => {
+      if (!this._isDragging) return;
+      this._isDragging = false;
+      const dx = this._touchDeltaX;
+      const threshold = this.options.touchThreshold;
+      if (dx < -threshold) {
+        this.next();
+      } else if (dx > threshold) {
+        this.prev();
+      }
+      // Resume autoplay
+      if (this.options.autoplay) this.startAutoplay();
+    }, { passive: true });
+
+    el.addEventListener('touchcancel', () => {
+      this._isDragging = false;
+      if (this.options.autoplay) this.startAutoplay();
+    }, { passive: true });
   }
 
   destroy() {

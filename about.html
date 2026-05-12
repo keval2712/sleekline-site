@@ -33,12 +33,20 @@
     .team-role { font-size: 0.82rem; color: var(--clr-accent); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
     .team-bio { font-size: 0.85rem; color: var(--clr-steel); line-height: 1.6; }
     .cert-strip { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
-    .cert-item { display: flex; align-items: center; gap: 0.875rem; background: var(--gradient-card); border: 1px solid rgba(200,169,110,0.2); border-radius: var(--radius-md); padding: 1rem 1.5rem; }
+    .cert-item { display: flex; align-items: center; gap: 0.875rem; background: var(--gradient-card); border: 1px solid rgba(200,169,110,0.2); border-radius: var(--radius-md); padding: 1rem 1.5rem; flex: 1; min-width: 200px; }
     .cert-icon { font-size: 1.75rem; }
     .cert-text h4 { font-size: 0.9rem; font-weight: 700; color: var(--clr-white); }
     .cert-text p { font-size: 0.8rem; color: var(--clr-steel); }
     @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .team-grid { grid-template-columns: 1fr; } }
+    /* Values grid */
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    @media (max-width: 900px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .values-grid { grid-template-columns: 1fr; } }
+    /* Stats grid */
+    .about-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+    @media (max-width: 768px) { .about-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+    @media (max-width: 380px) { .about-stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; } }
   </style>
 </head>
 <body>
@@ -130,7 +138,7 @@
         <div class="divider-line"></div>
         <p class="section-subtitle" style="margin:0 auto;">Every decision, every product, every installation—guided by values that define who we are.</p>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem;" class="values-grid">
+      <div class="values-grid">
         <div class="service-card reveal" style="text-align:center;">
           <div class="service-icon-wrap" style="margin:0 auto 1.5rem;">💎</div>
           <h3>Uncompromising Quality</h3>
@@ -211,7 +219,7 @@
   <!-- Stats -->
   <section class="section-pad" style="background: linear-gradient(135deg, var(--clr-dark2) 0%, var(--clr-dark3) 100%); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05);">
     <div class="container">
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; text-align:center;">
+      <div class="about-stats-grid">
         <div class="reveal">
           <div style="font-size:3rem; font-weight:900; color:var(--clr-accent); line-height:1;"><span class="counter" data-target="15" data-suffix="+">0</span></div>
           <div style="font-size:0.85rem; color:var(--clr-steel); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.5rem;">Cities Across India</div>
@@ -261,20 +269,6 @@
         showArrows: true
       });
     });
-
-    // Fix values grid responsive
-    const vg = document.querySelector('.values-grid');
-    if (window.innerWidth < 768 && vg) {
-      vg.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    }
-    if (window.innerWidth < 480 && vg) {
-      vg.style.gridTemplateColumns = '1fr';
-    }
-    // Stats grid responsive
-    const statGrid = document.querySelector('.section-pad:nth-of-type(5) > .container > div');
-    if (window.innerWidth < 480 && statGrid) {
-      statGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    }
   </script>
 </body>
 </html>
