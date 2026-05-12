@@ -2859,3 +2859,594 @@ svg {
 .about-img-overlay {
   background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 11, 0.2) 100%) !important;
 }
+
+/* ════════════════════════════════════════════════════════════
+   ── DEEP MOBILE OPTIMIZATION v2 ──
+   Granular fixes for all pages & components
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Universal overflow guard ── */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+.container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ── Service detail rows — mobile stack ── */
+.services-detailed {
+  gap: clamp(3rem, 7vw, 5rem);
+}
+.service-row {
+  align-items: center;
+}
+.service-vis {
+  width: 100%;
+  min-height: 220px;
+}
+
+/* ── Application detail vis — needs explicit height ── */
+.app-detail-vis {
+  width: 100%;
+  min-height: 220px;
+}
+.app-detail-inner,
+[id^="app-vis-"],
+[id^="srv-vis-"] {
+  min-height: 220px;
+}
+
+/* ── Product body & footer: prevent overflow ── */
+.product-body p,
+.product-body-lg p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ── Contact stat chips — prevent overflow ── */
+.contact-stat-chip {
+  word-break: break-all;
+  min-width: 0;
+}
+
+/* ── FAQ cat buttons — better mobile wrap ── */
+.faq-cat-btn {
+  min-width: 0;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* ── Footer contact text — prevent long email overflow ── */
+.fc-text {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.fc-text a {
+  word-break: break-all;
+}
+
+/* ── App hero card overlay text ── */
+.app-hero-overlay {
+  padding: 1.5rem;
+}
+.app-hero-card h2 {
+  word-break: break-word;
+}
+
+/* ── Sliders inside service/app vis containers ── */
+[id^="srv-vis-"] .slk-slider,
+[id^="app-vis-"] .slk-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+[id^="srv-vis-"],
+[id^="app-vis-"] {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ════════════════════════════════
+   768px TARGETED PATCHES
+   ════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Hero: prevent content clipping ── */
+  .hero {
+    min-height: auto;
+    padding-top: 0;
+  }
+  .hero > .container {
+    padding-top: calc(var(--nav-height) + 1.5rem);
+    padding-bottom: 2.5rem;
+  }
+  .hero-content {
+    padding-top: 0;
+  }
+  .hero-title br {
+    display: none; /* no forced breaks on mobile — let text flow */
+  }
+
+  /* ── Services: row becomes column ── */
+  .service-row,
+  .service-row.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 1.75rem;
+  }
+  .service-row.reverse > * {
+    direction: ltr;
+  }
+  .service-vis {
+    aspect-ratio: 16/9;
+    min-height: 200px;
+  }
+  .services-detailed {
+    gap: 3rem;
+  }
+  .service-feature-list {
+    margin: 1rem 0;
+  }
+
+  /* ── Applications: detail rows stack ── */
+  .app-detail-row,
+  .app-detail-row.flip {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    padding: 2rem 0;
+    gap: 1.5rem;
+  }
+  .app-detail-row.flip > * {
+    direction: ltr;
+  }
+  .app-detail-vis {
+    aspect-ratio: 16/9;
+    min-height: 200px;
+  }
+  .app-features {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.625rem;
+  }
+  .app-feat {
+    font-size: 0.78rem;
+    padding: 0.625rem 0.75rem;
+  }
+
+  /* ── App hero grid: 2 col ── */
+  .app-hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .app-hero-card:first-child {
+    grid-row: span 1;
+    aspect-ratio: 3/4;
+  }
+  .app-hero-overlay {
+    padding: 1rem;
+  }
+  .app-hero-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .app-hero-card h2 {
+    font-size: 1.05rem;
+  }
+  .app-hero-card p {
+    font-size: 0.78rem;
+    display: none; /* hide subtitle on mobile to reduce clutter */
+  }
+
+  /* ── FAQ sidebar horizontal scroll ── */
+  .faq-page-layout {
+    grid-template-columns: 1fr;
+  }
+  .faq-sidebar {
+    position: static;
+  }
+  .faq-categories {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .faq-cat-btn {
+    width: auto;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.82rem;
+  }
+  .faq-contact-panel {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* ── Contact hero strip ── */
+  .contact-hero-strip {
+    gap: 0.625rem;
+  }
+  .contact-stat-chip {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.875rem;
+    word-break: normal;
+  }
+
+  /* ── Contact info cards ── */
+  .contact-card {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  .cc-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Map height ── */
+  .map-wrap {
+    height: 260px;
+  }
+
+  /* ── Process grid ── */
+  .process-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .process-card {
+    padding: 1.5rem 1.25rem;
+  }
+  .process-card::after {
+    display: none;
+  }
+
+  /* ── Products page vis lg ── */
+  .product-vis-lg {
+    height: 200px;
+  }
+
+  /* ── Section titles on inner pages ── */
+  .page-hero p {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  /* ── Spec tags wrap properly ── */
+  .product-specs {
+    flex-wrap: wrap;
+  }
+  .spec-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.625rem;
+  }
+}
+
+/* ════════════════════════════════
+   600px TARGETED PATCHES
+   ════════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* ── App hero: single col ── */
+  .app-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+  .app-hero-card,
+  .app-hero-card:first-child {
+    aspect-ratio: 3/2;
+    grid-row: span 1;
+  }
+  .app-hero-card p {
+    display: block;
+    font-size: 0.78rem;
+  }
+
+  /* ── App features single col ── */
+  .app-features {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Service feature list ── */
+  .feature-item {
+    gap: 0.625rem;
+  }
+  .feature-check {
+    width: 18px;
+    height: 18px;
+    font-size: 0.6rem;
+  }
+
+  /* ── Process single col ── */
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* ── FAQ cat buttons ── */
+  .faq-categories {
+    gap: 0.4rem;
+  }
+  .faq-cat-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  /* ── Contact form ── */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  .contact-info {
+    gap: 1.25rem;
+  }
+  .contact-card {
+    padding: 1rem;
+  }
+
+  /* ── Map ── */
+  .map-wrap {
+    height: 220px;
+  }
+
+  /* ── Products page bodies ── */
+  .product-body {
+    padding: 1.25rem;
+  }
+  .product-body-lg {
+    padding: 1.25rem;
+  }
+  .product-footer {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  /* ── Footer socials ── */
+  .footer-socials {
+    gap: 0.5rem;
+  }
+  .social-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.875rem;
+  }
+
+  /* ── Section pad tighter ── */
+  .section-pad {
+    padding: 2.5rem 0;
+  }
+}
+
+/* ════════════════════════════════
+   480px TARGETED PATCHES
+   ════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* ── Nav height ── */
+  :root {
+    --nav-height: 60px;
+  }
+
+  /* ── Hero: reduce slideshow height ── */
+  .hero-slideshow {
+    aspect-ratio: 4/3;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── App features: single col ── */
+  .app-features {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Service vis height ── */
+  .service-vis {
+    aspect-ratio: 4/3;
+    min-height: 180px;
+  }
+  .app-detail-vis {
+    aspect-ratio: 4/3;
+    min-height: 180px;
+  }
+
+  /* ── Products page: reduce vis height ── */
+  .product-add-vis {
+    height: 130px;
+  }
+
+  /* ── Contact hero strip: column ── */
+  .contact-hero-strip {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-stat-chip {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  /* ── FAQ contact panel ── */
+  .faq-contact-panel {
+    padding: 1.25rem 1rem;
+  }
+  .faq-contact-panel h4 {
+    font-size: 0.9rem;
+  }
+  .faq-contact-panel p {
+    font-size: 0.8rem;
+  }
+
+  /* ── Process cards ── */
+  .process-card {
+    padding: 1.25rem 1rem;
+  }
+  .process-num {
+    font-size: 2rem;
+  }
+
+  /* ── Section pad ── */
+  .section-pad {
+    padding: 2.25rem 0;
+  }
+
+  /* ── Page hero ── */
+  .page-hero {
+    padding: calc(var(--nav-height) + 2rem) 0 2rem;
+  }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  /* ── CTA band ── */
+  .cta-band {
+    padding: 2.5rem 0;
+  }
+  .cta-band .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* ── Pillar cards ── */
+  .pillar-card {
+    padding: 1rem;
+  }
+
+  /* ── Highlight icon ── */
+  .highlight-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  /* ── Footer grid ── */
+  .footer {
+    padding: 2.5rem 0 0;
+  }
+  .footer-grid {
+    gap: 1.5rem;
+  }
+  .footer-col h4 {
+    margin-bottom: 0.875rem;
+  }
+}
+
+/* ════════════════════════════════
+   380px TARGETED PATCHES
+   ════════════════════════════════ */
+@media (max-width: 380px) {
+
+  /* ── Smallest nav logo ── */
+  .nav-logo-img {
+    height: 30px;
+    max-width: 110px;
+  }
+
+  /* ── Hero ── */
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+  .hero-title {
+    font-size: 1.45rem;
+    line-height: 1.25;
+  }
+  .hero-subtitle {
+    font-size: 0.83rem;
+    line-height: 1.6;
+  }
+  .hero-slideshow {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Section ── */
+  .section-pad {
+    padding: 2rem 0;
+  }
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  /* ── Product cards ── */
+  .product-visual {
+    height: 150px;
+  }
+  .product-body {
+    padding: 1rem;
+  }
+  .product-body h3 {
+    font-size: 0.95rem;
+  }
+  .product-body p {
+    font-size: 0.8rem;
+  }
+  .product-footer {
+    padding: 0 1rem 1rem;
+  }
+  .product-material {
+    font-size: 0.72rem;
+  }
+
+  /* ── Service cards ── */
+  .service-card {
+    padding: 1.25rem 1rem;
+  }
+  .service-card h3 {
+    font-size: 0.95rem;
+  }
+
+  /* ── App grid ── */
+  .app-card {
+    aspect-ratio: 3/2;
+  }
+  .app-card-overlay {
+    padding: 0.75rem;
+  }
+  .app-card h3 {
+    font-size: 0.875rem;
+  }
+  .app-card p {
+    display: none;
+  }
+
+  /* ── About corner card ── */
+  .about-corner-card {
+    display: none;
+  }
+  .about-badge-float {
+    padding: 0.75rem 1rem;
+  }
+
+  /* ── Stat items ── */
+  .stat-num {
+    font-size: 1.15rem;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+  }
+
+  /* ── Process cards ── */
+  .process-num {
+    font-size: 1.75rem;
+  }
+  .process-title {
+    font-size: 0.875rem;
+  }
+  .process-desc {
+    font-size: 0.75rem;
+  }
+
+  /* ── Footer ── */
+  .footer-links {
+    gap: 0.5rem;
+  }
+  .footer-link {
+    font-size: 0.8rem;
+  }
+  .fc-text {
+    font-size: 0.8rem;
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+  }
+}

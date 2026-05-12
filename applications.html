@@ -65,11 +65,19 @@
     @media (max-width: 900px) {
       .app-hero-grid { grid-template-columns: 1fr 1fr; }
       .app-hero-card:first-child { grid-row: span 1; aspect-ratio: 3/4; }
-      .app-detail-row, .app-detail-row.flip { grid-template-columns: 1fr; direction: ltr; }
+      .app-detail-row, .app-detail-row.flip { grid-template-columns: 1fr; direction: ltr; gap: 1.5rem; padding: 2rem 0; }
+      .app-detail-row.flip > * { direction: ltr; }
     }
-    @media (max-width: 540px) {
-      .app-hero-grid { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .app-hero-grid { grid-template-columns: 1fr; gap: 0.875rem; }
+      .app-hero-card, .app-hero-card:first-child { aspect-ratio: 3/2; grid-row: span 1; }
+      .app-hero-card p { display: block; }
       .app-features { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .app-hero-overlay { padding: 1rem 0.875rem; }
+      .app-detail-vis { min-height: 180px; aspect-ratio: 4/3; }
+      .app-feat { font-size: 0.75rem; padding: 0.5rem 0.625rem; }
     }
   </style>
 </head>
