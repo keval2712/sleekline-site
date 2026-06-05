@@ -33,7 +33,7 @@ const PRODUCT_IMAGES = {
   'linear-r-series': {
     name: 'Linear Ceiling – R Series',
     folder: 'images/linear-r-series',
-    count: 0,
+    count: 4,
     ext: 'jpeg',
     tag: 'Premium',
     material: 'Aluminum / GI Steel'
@@ -41,7 +41,7 @@ const PRODUCT_IMAGES = {
   'sun-louvers': {
     name: 'Sun Louvers',
     folder: 'images/sun-louvers',
-    count: 0,
+    count: 1,
     ext: 'jpeg',
     tag: 'Energy',
     material: 'Aluminum'
@@ -49,7 +49,7 @@ const PRODUCT_IMAGES = {
   'linear-150f': {
     name: 'Linear 150 F',
     folder: 'images/linear-150f',
-    count: 0,
+    count: 3,
     ext: 'jpeg',
     tag: 'Wide Panel',
     material: 'Galvanized Steel / Aluminum'
@@ -65,10 +65,18 @@ const PRODUCT_IMAGES = {
   'tile-ceiling': {
     name: 'Tile Ceiling (Lay-in & Clip-in)',
     folder: 'images/tile-ceiling',
-    count: 0,
+    count: 3,
     ext: 'jpeg',
     tag: 'Versatile',
     material: 'Galvanized Steel / Aluminum'
+  },
+  'cladding': {
+    name: 'Cladding & More…',
+    folder: 'images/Cladding & More…',
+    count: 8,
+    ext: 'jpeg',
+    tag: 'New',
+    material: 'Aluminum / Composite'
   }
 };
 
@@ -343,4 +351,206 @@ window.SleekImages = {
   buildHeroSlider,
   buildProductSlider,
   buildIndexProductSliders
+};
+
+// =========================================
+//   SLEEKLINE — Lightbox System
+//   Opens any product image full-screen
+//   Close button top-right, ESC key, swipe
+// =========================================
+
+class SleekLightbox {
+  constructor() {
+    this._images = [];   // flat array of { src, label } for the active product
+    this._index  = 0;
+    this._built  = false;
+    this._touchStartX = 0;
+    this._build();
+  }
+
+  _build() {
+    if (this._built) return;
+    this._built = true;
+
+    // Overlay
+    this.overlay = document.createElement('div');
+    this.overlay.className = 'slk-lightbox';
+    this.overlay.setAttribute('role', 'dialog');
+    this.overlay.setAttribute('aria-modal', 'true');
+    this.overlay.setAttribute('aria-label', 'Image viewer');
+
+    // Close button — top right
+    this.closeBtn = document.createElement('button');
+    this.closeBtn.className = 'slk-lb-close';
+    this.closeBtn.setAttribute('aria-label', 'Close image');
+    this.closeBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    this.closeBtn.addEventListener('click', () => this.close());
+
+    // Prev arrow
+    this.prevBtn = document.createElement('button');
+    this.prevBtn.className = 'slk-lb-nav slk-lb-prev';
+    this.prevBtn.setAttribute('aria-label', 'Previous image');
+    this.prevBtn.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>`;
+    this.prevBtn.addEventListener('click', () => this._step(-1));
+
+    // Next arrow
+    this.nextBtn = document.createElement('button');
+    this.nextBtn.className = 'slk-lb-nav slk-lb-next';
+    this.nextBtn.setAttribute('aria-label', 'Next image');
+    this.nextBtn.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>`;
+    this.nextBtn.addEventListener('click', () => this._step(1));
+
+    // Image frame
+    this.frame = document.createElement('div');
+    this.frame.className = 'slk-lb-frame';
+
+    this.imgWrap = document.createElement('div');
+    this.imgWrap.className = 'slk-lb-img-wrap';
+
+    this.img = document.createElement('img');
+    this.img.className = 'slk-lb-img';
+    this.img.alt = 'Product image';
+
+    this.caption = document.createElement('div');
+    this.caption.className = 'slk-lb-caption';
+
+    this.counter = document.createElement('div');
+    this.counter.className = 'slk-lb-counter';
+
+    this.imgWrap.appendChild(this.img);
+    this.frame.appendChild(this.imgWrap);
+    this.frame.appendChild(this.caption);
+    this.frame.appendChild(this.counter);
+
+    this.overlay.appendChild(this.closeBtn);
+    this.overlay.appendChild(this.prevBtn);
+    this.overlay.appendChild(this.nextBtn);
+    this.overlay.appendChild(this.frame);
+    document.body.appendChild(this.overlay);
+
+    // Click outside frame to close
+    this.overlay.addEventListener('click', (e) => {
+      if (e.target === this.overlay) this.close();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!this.overlay.classList.contains('open')) return;
+      if (e.key === 'Escape')     this.close();
+      if (e.key === 'ArrowLeft')  this._step(-1);
+      if (e.key === 'ArrowRight') this._step(1);
+    });
+
+    // Touch swipe
+    this.overlay.addEventListener('touchstart', (e) => {
+      this._touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    this.overlay.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - this._touchStartX;
+      if (Math.abs(dx) > 50) this._step(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  }
+
+  // Open lightbox with a set of images at a specific index
+  open(images, index = 0, label = '') {
+    this._images = images;
+    this._label  = label;
+    this._showAt(index);
+    // Show/hide nav arrows based on image count
+    const multi = images.length > 1;
+    this.prevBtn.style.display = multi ? '' : 'none';
+    this.nextBtn.style.display = multi ? '' : 'none';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      this.overlay.classList.add('open');
+    });
+  }
+
+  close() {
+    this.overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  _step(dir) {
+    if (this._images.length < 2) return;
+    const next = (this._index + dir + this._images.length) % this._images.length;
+    this._showAt(next);
+  }
+
+  _showAt(index) {
+    this._index = index;
+    const entry = this._images[index];
+    const src   = typeof entry === 'string' ? entry : entry.src;
+    const lbl   = (typeof entry === 'object' && entry.label) ? entry.label : (this._label || 'Sleekline Product');
+    this.img.style.opacity = '0';
+    this.img.src = src;
+    this.img.onload = () => { this.img.style.opacity = '1'; };
+    this.caption.textContent = lbl;
+    if (this._images.length > 1) {
+      this.counter.textContent = `${index + 1} / ${this._images.length}`;
+    } else {
+      this.counter.textContent = '';
+    }
+  }
+}
+
+// ── Singleton instance ──
+let _lightbox = null;
+function getLightbox() {
+  if (!_lightbox) _lightbox = new SleekLightbox();
+  return _lightbox;
+}
+
+// ── Attach lightbox to all slides inside a slider ──
+// Called automatically after buildProductSlider / buildHeroSlider
+function attachLightbox(slider, images, label) {
+  if (!slider || !slider.slideEls) return;
+  const lb = getLightbox();
+  slider.slideEls.forEach((slide, i) => {
+    const img = slide.querySelector('img');
+    if (!img) return;
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lb.open(images, i, label);
+    });
+  });
+}
+
+// ── Override buildProductSlider to also wire lightbox ──
+const _origBuildProductSlider = buildProductSlider;
+function buildProductSliderWithLightbox(containerId, productKey, options = {}) {
+  const slider = _origBuildProductSlider(containerId, productKey, options);
+  if (slider) {
+    const product = PRODUCT_IMAGES[productKey];
+    const images  = getProductImages(productKey);
+    const label   = product ? product.name : '';
+    attachLightbox(slider, images, label);
+  }
+  return slider;
+}
+
+// ── Override buildHeroSlider to wire lightbox on hero images ──
+const _origBuildHeroSlider = buildHeroSlider;
+function buildHeroSliderWithLightbox(containerId, options = {}) {
+  const slider = _origBuildHeroSlider(containerId, options);
+  if (slider) {
+    const images = getHeroImages();
+    attachLightbox(slider, images, 'Sleekline Products');
+  }
+  return slider;
+}
+
+// Re-export with lightbox-enabled versions
+window.SleekSlider = SleekSlider;
+window.SleekLightbox = SleekLightbox;
+window.SleekImages = {
+  PRODUCT_IMAGES,
+  getProductImages,
+  getHeroImages,
+  buildHeroSlider:           buildHeroSliderWithLightbox,
+  buildProductSlider:        buildProductSliderWithLightbox,
+  buildIndexProductSliders,
+  getLightbox,
+  attachLightbox
 };

@@ -7,39 +7,177 @@
   <meta name="description" content="Sleekline offers comprehensive architectural metal ceiling services: residential and commercial ceiling systems, custom design, engineering, and professional installation support across India." />
   <link rel="stylesheet" href="styles.css" />
   <style>
+    /* ── Service Detail Rows ── */
     .services-detailed { display: flex; flex-direction: column; gap: 5rem; }
-    .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 5rem); align-items: center; }
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 5rem);
+      align-items: center;
+    }
     .service-row.reverse { direction: rtl; }
     .service-row.reverse > * { direction: ltr; }
-    .service-vis { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3; position: relative; width: 100%; }
-    .service-vis-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+    /* ── Service Visual (image slider or icon) ── */
+    .service-vis {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+      width: 100%;
+      background: var(--clr-dark3);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .service-vis > div {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    /* Icon-based visual for services without images */
+    .srv-icon-vis {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--gradient-card);
+      position: relative;
+    }
+    .srv-icon-vis .vis-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,169,110,0.8) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .srv-icon-vis .big-icon {
+      font-size: 5rem;
+      line-height: 1;
+      filter: drop-shadow(0 4px 24px rgba(200,169,110,0.35));
+      position: relative;
+      z-index: 1;
+    }
+    .srv-icon-vis .vis-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Feature List ── */
     .service-feature-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0; }
     .feature-item { display: flex; align-items: flex-start; gap: 0.875rem; }
-    .feature-check { width: 22px; height: 22px; border-radius: 50%; background: rgba(200,169,110,0.15); border: 1px solid rgba(200,169,110,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--clr-accent); flex-shrink: 0; margin-top: 2px; }
+    .feature-check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(200,169,110,0.15);
+      border: 1px solid rgba(200,169,110,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; color: var(--clr-accent);
+      flex-shrink: 0; margin-top: 2px;
+    }
     .feature-text { font-size: 0.9rem; color: var(--clr-silver); line-height: 1.6; }
+
+    /* ── Process Grid ── */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .process-card { background: var(--gradient-card); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center; position: relative; transition: var(--transition); }
-    .process-card::after { content: '→'; position: absolute; right: -1.2rem; top: 50%; transform: translateY(-50%); color: var(--clr-accent); font-size: 1.2rem; opacity: 0.5; z-index: 1; }
+    .process-card {
+      background: var(--gradient-card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      transition: var(--transition);
+    }
+    .process-card:hover {
+      border-color: rgba(200,169,110,0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .process-card::after {
+      content: '→';
+      position: absolute; right: -1.2rem; top: 50%; transform: translateY(-50%);
+      color: var(--clr-accent); font-size: 1.2rem; opacity: 0.5; z-index: 1;
+    }
     .process-card:last-child::after { display: none; }
     .process-num { font-size: 2.5rem; font-weight: 900; color: rgba(200,169,110,0.15); line-height: 1; margin-bottom: 0.75rem; font-family: var(--font-display); }
     .process-icon-wrap { width: 52px; height: 52px; border-radius: var(--radius-md); background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem; }
     .process-title { font-size: 0.95rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.5rem; }
     .process-desc { font-size: 0.82rem; color: var(--clr-steel); line-height: 1.6; }
+
+    /* ── Why Choose Us Stats ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      background: var(--gradient-card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .why-card:hover {
+      border-color: rgba(200,169,110,0.3);
+      transform: translateY(-4px);
+    }
+    .why-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--clr-accent);
+      font-family: var(--font-display);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .why-label {
+      font-size: 0.82rem;
+      color: var(--clr-silver);
+      font-weight: 500;
+    }
+
+    /* ── Slider fill for service vis ── */
+    [id^="srv-vis-"] {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .why-grid    { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 900px) {
-      .service-row, .service-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 1.75rem; }
+      .service-row,
+      .service-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 1.75rem; }
       .service-row.reverse > * { direction: ltr; }
       .services-detailed { gap: 3rem; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-card::after { display: none; }
     }
-    @media (max-width: 768px) { .process-grid { grid-template-columns: repeat(2, 1fr); } .process-card::after { display: none; } }
     @media (max-width: 600px) {
       .process-grid { grid-template-columns: 1fr; }
-      .service-vis { aspect-ratio: 16/9; }
+      .service-vis  { aspect-ratio: 16/9; }
+      .why-grid     { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
       .services-detailed { gap: 2.5rem; }
-      .service-vis { aspect-ratio: 4/3; }
+      .service-vis  { aspect-ratio: 4/3; }
       .service-feature-list { margin: 0.875rem 0; gap: 0.625rem; }
       .feature-text { font-size: 0.85rem; }
+      .srv-icon-vis .big-icon { font-size: 3.5rem; }
     }
   </style>
 </head>
@@ -59,14 +197,14 @@
     </div>
   </section>
 
-  <!-- Services Grid Overview -->
+  <!-- Services Overview Cards -->
   <section class="section-pad" style="background:var(--clr-dark2);">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="badge">Services Overview</div>
         <h2 class="section-title">Everything You Need for a <span class="text-accent">Perfect Ceiling</span></h2>
         <div class="divider-line"></div>
-        <p class="section-subtitle" style="margin:0 auto;">From residential homes to massive airport terminals—we have the expertise, products, and team to deliver.</p>
+        <p class="section-subtitle" style="margin:0 auto;">From residential homes to massive airport terminals — we have the expertise, products, and team to deliver.</p>
       </div>
       <div class="services-grid">
         <div class="service-card reveal">
@@ -93,8 +231,37 @@
     </div>
   </section>
 
-  <!-- Detailed Services -->
+  <!-- Why Choose Us -->
   <section class="section-pad">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="badge">Our Numbers</div>
+        <h2 class="section-title">Trusted by the <span class="text-accent">Best</span></h2>
+        <div class="divider-line"></div>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-num">500+</div>
+          <div class="why-label">Projects Delivered</div>
+        </div>
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-num">15+</div>
+          <div class="why-label">Cities Pan India</div>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-num">8</div>
+          <div class="why-label">Product Lines</div>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-num">ISO</div>
+          <div class="why-label">9001:2013 Certified</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Services -->
+  <section class="section-pad" style="background:var(--clr-dark2);">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="badge">Deep Dive</div>
@@ -103,10 +270,10 @@
       </div>
       <div class="services-detailed">
 
-        <!-- Residential -->
+        <!-- 01 Residential -->
         <div class="service-row reveal">
           <div class="service-vis">
-            <div id="srv-vis-residential" style="width:100%;height:100%;"></div>
+            <div id="srv-vis-residential"></div>
           </div>
           <div>
             <div class="badge">Service 01</div>
@@ -126,10 +293,10 @@
           </div>
         </div>
 
-        <!-- Commercial -->
+        <!-- 02 Commercial -->
         <div class="service-row reverse reveal">
           <div class="service-vis">
-            <div id="srv-vis-commercial" style="width:100%;height:100%;"></div>
+            <div id="srv-vis-commercial"></div>
           </div>
           <div>
             <div class="badge">Service 02</div>
@@ -143,40 +310,39 @@
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Fire-rated and acoustic options available for compliance</div></div>
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Structural load calculations and engineering documentation</div></div>
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Fast-track installation with minimal business disruption</div></div>
+              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">HVAC, sprinkler and lighting integration support</div></div>
             </div>
             <a href="contact.html" class="btn btn-primary" id="srv-com-btn">Get a Quote</a>
           </div>
         </div>
 
-        <!-- Custom Design -->
+        <!-- 03 Custom Design -->
         <div class="service-row reveal">
           <div class="service-vis">
-            <div id="srv-vis-design" style="width:100%;height:100%;"></div>
+            <div id="srv-vis-design"></div>
           </div>
           <div>
             <div class="badge">Service 03</div>
             <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Custom Design &amp; <span class="text-accent">Engineering</span></h2>
             <div class="divider-line"></div>
             <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1rem;">
-              When standard solutions don't meet your vision, our engineering team creates fully customized ceiling systems. We collaborate with architects and designers to bring unique concepts to life.
+              When standard solutions don't meet your vision, our engineering team creates fully customized ceiling systems. We collaborate with architects and designers to bring unique concepts to life with precision.
             </p>
             <div class="service-feature-list">
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">2D &amp; 3D CAD drawings and modelling</div></div>
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Material and finish customization across thousands of options</div></div>
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Structural FEA analysis for complex geometries</div></div>
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Prototype fabrication and approval before full production</div></div>
+              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Architect and contractor collaboration support</div></div>
             </div>
             <a href="contact.html" class="btn btn-primary" id="srv-des-btn">Start a Project</a>
           </div>
         </div>
 
-        <!-- Installation -->
+        <!-- 04 Supply & Installation -->
         <div class="service-row reverse reveal">
           <div class="service-vis">
-                </g>
-                <text x="180" y="270" text-anchor="middle" fill="#c8a96e" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">SUPPLY &amp; INSTALLATION</text>
-              </svg>
-            </div>
+            <div id="srv-vis-install"></div>
           </div>
           <div>
             <div class="badge">Service 04</div>
@@ -190,16 +356,18 @@
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Trained and certified installation crews pan-India</div></div>
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">On-site quality inspections at each milestone</div></div>
               <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Post-installation service and maintenance support</div></div>
+              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Complete site cleanup and handover documentation</div></div>
             </div>
             <a href="contact.html" class="btn btn-primary" id="srv-inst-btn">Book Installation</a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <!-- Our Process -->
-  <section class="section-pad" style="background:var(--clr-dark2);">
+  <section class="section-pad">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="badge">How We Work</div>
@@ -212,7 +380,7 @@
           <div class="process-num">01</div>
           <div class="process-icon-wrap">💬</div>
           <div class="process-title">Consultation</div>
-          <p class="process-desc">Share your vision. We understand your requirements, budget, and timeline.</p>
+          <p class="process-desc">Share your vision. We understand your requirements, budget, and timeline in detail.</p>
         </div>
         <div class="process-card reveal reveal-delay-1">
           <div class="process-num">02</div>
@@ -229,8 +397,8 @@
         <div class="process-card reveal reveal-delay-3">
           <div class="process-num">04</div>
           <div class="process-icon-wrap">🔧</div>
-          <div class="process-title">Supply &amp; Installation</div>
-          <p class="process-desc">Expert teams install on-site with project management and quality inspection.</p>
+          <div class="process-title">Supply &amp; Install</div>
+          <p class="process-desc">Expert teams install on-site with project management and final quality inspection.</p>
         </div>
       </div>
     </div>
@@ -258,13 +426,13 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       // Residential — Linear C Series (elegant home ceiling)
-      SleekImages.buildProductSlider('srv-vis-residential', 'linear-c-series', { interval: 5000, showLabel: false });
+      SleekImages.buildProductSlider('srv-vis-residential', 'linear-c-series',  { interval: 5000, showLabel: false });
       // Commercial — U-Shaped Baffle (large commercial look)
-      SleekImages.buildProductSlider('srv-vis-commercial', 'u-shaped-baffle', { interval: 4800, showLabel: false });
-      // Custom Design — Exterior Louvers (custom/exterior)
-      SleekImages.buildProductSlider('srv-vis-design', 'exterior-louvers', { interval: 5200, showLabel: false });
-      // Supply & Install — Open Cell (shows installation variety)
-      SleekImages.buildProductSlider('srv-vis-install', 'open-cell', { interval: 4600, showLabel: false });
+      SleekImages.buildProductSlider('srv-vis-commercial',  'u-shaped-baffle',  { interval: 4800, showLabel: false });
+      // Custom Design — Exterior Louvers
+      SleekImages.buildProductSlider('srv-vis-design',      'exterior-louvers', { interval: 5200, showLabel: false });
+      // Supply & Install — Open Cell
+      SleekImages.buildProductSlider('srv-vis-install',     'open-cell',        { interval: 4600, showLabel: false });
     });
   </script>
 </body>

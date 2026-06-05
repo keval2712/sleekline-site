@@ -1,50 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Applications — Sleekline | Metal Ceilings for Every Sector</title>
-  <meta name="description" content="Sleekline's premium Linear Ceiling, Baffle, Open Cell, Tile, and Sun Louver systems installed across corporate offices, retail, hospitals, hotels, airports, and schools across India." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Sleekline metal ceiling systems for corporate offices, retail, hospitals, hotels, airports, schools and more."/>
+  <link rel="stylesheet" href="styles.css"/>
   <style>
-    .app-hero-grid {
+    /* ── Sector Icon Grid ── */
+    .sector-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
       margin-bottom: 4rem;
     }
-    .app-hero-card {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      position: relative;
-      aspect-ratio: 3/4;
+    .sector-card {
+      background: var(--gradient-card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
       transition: var(--transition);
       cursor: default;
     }
-    .app-hero-card:first-child {
-      grid-row: span 2;
-      aspect-ratio: unset;
+    .sector-card:hover {
+      border-color: rgba(200,169,110,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      background: linear-gradient(145deg, #222230, #1a1a22);
     }
-    .app-hero-card:hover { transform: scale(1.015); }
-    .app-hero-card:hover .app-hero-overlay { background: linear-gradient(180deg, rgba(10,10,11,0.1) 0%, rgba(10,10,11,0.9) 100%); }
-    .app-hero-bg { position: absolute; inset: 0; transition: transform 0.5s ease; }
-    .app-hero-card:hover .app-hero-bg { transform: scale(1.06); }
-    .app-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,10,11,0.05) 0%, rgba(10,10,11,0.8) 100%);
+    .sector-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(200,169,110,0.08);
+      border: 1.5px solid rgba(200,169,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
       transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .sector-card:hover .sector-icon {
+      background: rgba(200,169,110,0.15);
+      border-color: rgba(200,169,110,0.5);
+      transform: scale(1.1);
+    }
+    .sector-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-white);
+      margin: 0;
+    }
+    .sector-card p {
+      font-size: 0.82rem;
+      color: var(--clr-steel);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .sector-card .sector-products {
+      font-size: 0.72rem;
+      color: var(--clr-accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 0.75rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ── Features Grid ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+    .feature-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem;
+      align-items: center;
+      text-align: center;
+      gap: 0.75rem;
+      transition: var(--transition);
     }
-    .app-hero-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .app-hero-card h2 { font-size: 1.3rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.5rem; }
-    .app-hero-card p { font-size: 0.875rem; color: var(--clr-silver); line-height: 1.6; }
+    .feature-item:hover {
+      border-color: rgba(200,169,110,0.2);
+      background: rgba(200,169,110,0.04);
+    }
+    .feature-icon {
+      font-size: 1.75rem;
+    }
+    .feature-item h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--clr-white);
+      margin: 0;
+    }
+    .feature-item p {
+      font-size: 0.75rem;
+      color: var(--clr-steel);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── Application Detail Row ── */
     .app-detail-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(2.5rem, 5vw, 5rem);
+      gap: clamp(2.5rem,5vw,5rem);
       align-items: center;
       padding: 3rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -52,32 +125,82 @@
     .app-detail-row:last-child { border-bottom: none; }
     .app-detail-row.flip { direction: rtl; }
     .app-detail-row.flip > * { direction: ltr; }
-    .app-detail-vis {
+    .app-icon-vis {
       border-radius: var(--radius-lg);
       overflow: hidden;
       aspect-ratio: 16/10;
+      background: var(--gradient-card);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
       position: relative;
     }
-    .app-detail-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-    .app-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.25rem 0; }
-    .app-feat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.82rem; color: var(--clr-silver); display: flex; align-items: center; gap: 0.5rem; }
-    .app-feat::before { content: '✦'; color: var(--clr-accent); font-size: 0.65rem; flex-shrink: 0; }
-    @media (max-width: 900px) {
-      .app-hero-grid { grid-template-columns: 1fr 1fr; }
-      .app-hero-card:first-child { grid-row: span 1; aspect-ratio: 3/4; }
-      .app-detail-row, .app-detail-row.flip { grid-template-columns: 1fr; direction: ltr; gap: 1.5rem; padding: 2rem 0; }
+    .app-icon-vis .big-icon {
+      font-size: 5rem;
+      line-height: 1;
+      filter: drop-shadow(0 4px 24px rgba(200,169,110,0.3));
+    }
+    .app-icon-vis .vis-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      opacity: 0.8;
+    }
+    .app-icon-vis .vis-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,169,110,0.8) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .app-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.875rem;
+      margin: 1.25rem 0;
+    }
+    .app-feat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--clr-silver);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .app-feat::before { content:'✦'; color:var(--clr-accent); font-size:0.65rem; flex-shrink:0; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sector-grid    { grid-template-columns: repeat(3, 1fr); }
+      .features-grid  { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .sector-grid    { grid-template-columns: repeat(2, 1fr); }
+      .features-grid  { grid-template-columns: repeat(2, 1fr); }
+      .app-detail-row, .app-detail-row.flip {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 1.5rem;
+        padding: 2rem 0;
+      }
       .app-detail-row.flip > * { direction: ltr; }
     }
-    @media (max-width: 600px) {
-      .app-hero-grid { grid-template-columns: 1fr; gap: 0.875rem; }
-      .app-hero-card, .app-hero-card:first-child { aspect-ratio: 3/2; grid-row: span 1; }
-      .app-hero-card p { display: block; }
-      .app-features { grid-template-columns: 1fr; }
-    }
     @media (max-width: 480px) {
-      .app-hero-overlay { padding: 1rem 0.875rem; }
-      .app-detail-vis { min-height: 180px; aspect-ratio: 4/3; }
-      .app-feat { font-size: 0.75rem; padding: 0.5rem 0.625rem; }
+      .sector-grid    { grid-template-columns: repeat(2, 1fr); }
+      .features-grid  { grid-template-columns: repeat(2, 1fr); }
+      .sector-card    { padding: 1.25rem 1rem; }
+      .sector-icon    { width: 56px; height: 56px; font-size: 1.5rem; }
+      .app-features   { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -95,69 +218,146 @@
     </div>
   </section>
 
-  <!-- App Hero Grid -->
+  <!-- Features Strip -->
+  <section class="section-pad" style="padding-bottom:0;">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="badge">Why Sleekline</div>
+        <h2 class="section-title">Built-In <span class="text-accent">Advantages</span></h2>
+        <div class="divider-line"></div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item reveal">
+          <div class="feature-icon">🔊</div>
+          <h4>Acoustic Performance</h4>
+          <p>Engineered for superior sound absorption and noise control</p>
+        </div>
+        <div class="feature-item reveal reveal-delay-1">
+          <div class="feature-icon">🔥</div>
+          <h4>Fire Retardant</h4>
+          <p>Meets stringent fire safety codes for all building types</p>
+        </div>
+        <div class="feature-item reveal reveal-delay-2">
+          <div class="feature-icon">♻️</div>
+          <h4>Eco Friendly</h4>
+          <p>Recyclable materials with minimal waste during installation</p>
+        </div>
+        <div class="feature-item reveal reveal-delay-3">
+          <div class="feature-icon">💧</div>
+          <h4>Water Resistant</h4>
+          <p>Non-porous surfaces resist moisture in any environment</p>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon">🪶</div>
+          <h4>Light Weight</h4>
+          <p>Aluminum construction reduces structural load significantly</p>
+        </div>
+        <div class="feature-item reveal reveal-delay-1">
+          <div class="feature-icon">🔩</div>
+          <h4>Easy Installation</h4>
+          <p>Clip-in and lay-in systems for fast, clean project delivery</p>
+        </div>
+        <div class="feature-item reveal reveal-delay-2">
+          <div class="feature-icon">🌈</div>
+          <h4>Colour Options</h4>
+          <p>Wide range of anodized and powder-coated finish choices</p>
+        </div>
+        <div class="feature-item reveal reveal-delay-3">
+          <div class="feature-icon">🛡️</div>
+          <h4>Corrosion Resistant</h4>
+          <p>Long-lasting protection against rust and weathering</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sector Icon Grid -->
   <section class="section-pad">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="badge">Sectors We Serve</div>
         <h2 class="section-title">Built for Every <span class="text-accent">Environment</span></h2>
         <div class="divider-line"></div>
-        <p class="section-subtitle" style="margin:0 auto;">Our products are engineered to perform in all environments, from the largest public infrastructure to intimate residential spaces.</p>
+        <p class="section-subtitle" style="margin:0 auto;">Our products perform across all building types — commercial, institutional, industrial, and residential.</p>
       </div>
-      <div class="app-hero-grid">
-        <div class="app-hero-card reveal">
-          <div class="app-hero-bg vis-office" style="position:absolute;inset:0;"></div>
-          <div class="app-hero-overlay">
-            <div class="app-hero-icon">🏢</div>
-            <h2>Corporate Offices</h2>
-            <p>Sleek metal baffles and linear ceilings that project professionalism and support open, collaborative workspaces.</p>
-          </div>
+      <div class="sector-grid">
+        <div class="sector-card reveal">
+          <div class="sector-icon">🏢</div>
+          <h3>Corporate Offices</h3>
+          <p>Sleek linear and baffle ceilings that project professionalism in open workspaces</p>
+          <div class="sector-products">Linear C &amp; R Series · U Baffle · Tile</div>
         </div>
-        <div class="app-hero-card reveal reveal-delay-1">
-          <div class="app-hero-bg vis-retail" style="position:absolute;inset:0;"></div>
-          <div class="app-hero-overlay">
-            <div class="app-hero-icon">🛍️</div>
-            <h2>Retail Spaces</h2>
-            <p>Visually dynamic ceilings that enhance the shopping environment and reinforce brand identity.</p>
-          </div>
+        <div class="sector-card reveal reveal-delay-1">
+          <div class="sector-icon">🛍️</div>
+          <h3>Retail &amp; Malls</h3>
+          <p>Dynamic ceilings that enhance brand identity and shopping experience</p>
+          <div class="sector-products">U Baffle · Open Cell · Linear R Series</div>
         </div>
-        <div class="app-hero-card reveal reveal-delay-2">
-          <div class="app-hero-bg vis-hospital" style="position:absolute;inset:0;"></div>
-          <div class="app-hero-overlay">
-            <div class="app-hero-icon">🏥</div>
-            <h2>Hospitals</h2>
-            <p>Hygienic, non-porous metal surfaces that meet stringent healthcare facility standards.</p>
-          </div>
+        <div class="sector-card reveal reveal-delay-2">
+          <div class="sector-icon">🏥</div>
+          <h3>Hospitals</h3>
+          <p>Hygienic, non-porous surfaces meeting strict healthcare standards</p>
+          <div class="sector-products">Tile Ceiling · Linear 150 F · Open Cell</div>
         </div>
-        <div class="app-hero-card reveal">
-          <div class="app-hero-bg vis-hotel" style="position:absolute;inset:0;"></div>
-          <div class="app-hero-overlay">
-            <div class="app-hero-icon">🏨</div>
-            <h2>Hotels &amp; Hospitality</h2>
-            <p>Luxury ceiling finishes that define the upscale ambiance your guests expect.</p>
-          </div>
+        <div class="sector-card reveal reveal-delay-3">
+          <div class="sector-icon">🏨</div>
+          <h3>Hotels &amp; Hospitality</h3>
+          <p>Luxury finishes for grand lobbies and intimate dining spaces</p>
+          <div class="sector-products">U Baffle · Linear C Series · Open Cell</div>
         </div>
-        <div class="app-hero-card reveal reveal-delay-1">
-          <div class="app-hero-bg vis-airport" style="position:absolute;inset:0;"></div>
-          <div class="app-hero-overlay">
-            <div class="app-hero-icon">✈️</div>
-            <h2>Airports</h2>
-            <p>Large-span systems built for scale, durability, and minimal maintenance in high-traffic terminals.</p>
-          </div>
+        <div class="sector-card reveal">
+          <div class="sector-icon">✈️</div>
+          <h3>Airports</h3>
+          <p>Large-span systems for high-traffic terminals with minimal maintenance</p>
+          <div class="sector-products">Linear 150 F · Exterior Louvers · Sun Louvers</div>
         </div>
-        <div class="app-hero-card reveal reveal-delay-2">
-          <div class="app-hero-bg vis-school" style="position:absolute;inset:0;"></div>
-          <div class="app-hero-overlay">
-            <div class="app-hero-icon">🎓</div>
-            <h2>Schools &amp; Universities</h2>
-            <p>Acoustic-friendly, durable ceiling solutions that create inspiring learning environments.</p>
-          </div>
+        <div class="sector-card reveal reveal-delay-1">
+          <div class="sector-icon">🎓</div>
+          <h3>Schools &amp; Universities</h3>
+          <p>Acoustic-friendly solutions for inspiring learning environments</p>
+          <div class="sector-products">Tile Ceiling · Linear R Series · Open Cell</div>
+        </div>
+        <div class="sector-card reveal reveal-delay-2">
+          <div class="sector-icon">🏭</div>
+          <h3>Industries &amp; Factories</h3>
+          <p>Durable, low-maintenance ceiling systems for industrial facilities</p>
+          <div class="sector-products">Linear 150 F · Open Cell · Exterior Louvers</div>
+        </div>
+        <div class="sector-card reveal reveal-delay-3">
+          <div class="sector-icon">🏦</div>
+          <h3>Banks &amp; Finance</h3>
+          <p>Premium aesthetics that convey trust and professionalism</p>
+          <div class="sector-products">Linear C Series · Tile Ceiling · U Baffle</div>
+        </div>
+        <div class="sector-card reveal">
+          <div class="sector-icon">🏠</div>
+          <h3>Residential</h3>
+          <p>Elegant metal ceilings for homes and luxury villas</p>
+          <div class="sector-products">Tile Ceiling · Linear C &amp; R Series</div>
+        </div>
+        <div class="sector-card reveal reveal-delay-1">
+          <div class="sector-icon">🍽️</div>
+          <h3>Restaurants &amp; Cafes</h3>
+          <p>Atmospheric ceiling designs that enhance dining ambiance</p>
+          <div class="sector-products">U Baffle · Open Cell · Linear R Series</div>
+        </div>
+        <div class="sector-card reveal reveal-delay-2">
+          <div class="sector-icon">🏗️</div>
+          <h3>Facade &amp; Cladding</h3>
+          <p>Exterior systems for modern building facades and sun shading</p>
+          <div class="sector-products">Exterior Louvers · Sun Louvers</div>
+        </div>
+        <div class="sector-card reveal reveal-delay-3">
+          <div class="sector-icon">🧪</div>
+          <h3>Labs &amp; Clean Rooms</h3>
+          <p>Sterile, sealed ceiling systems for sensitive controlled environments</p>
+          <div class="sector-products">Tile Ceiling · Linear 150 F</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Detailed Applications -->
+  <!-- Application Spotlight (Icon Visual) -->
   <section class="section-pad" style="background:var(--clr-dark2);">
     <div class="container">
       <div class="section-header text-center reveal">
@@ -168,8 +368,10 @@
 
       <!-- Corporate -->
       <div class="app-detail-row reveal">
-        <div class="app-detail-vis">
-          <div id="app-vis-corporate" style="width:100%;height:100%;"></div>
+        <div class="app-icon-vis">
+          <div class="vis-pattern"></div>
+          <div class="big-icon">🏢</div>
+          <div class="vis-label">Corporate Offices</div>
         </div>
         <div>
           <div class="badge">Application 01</div>
@@ -184,20 +386,22 @@
             <div class="app-feat">Custom finishes</div>
             <div class="app-feat">Low maintenance</div>
           </div>
-          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Linear Ceiling – C Series, U Shaped Baffle Ceiling, Tile Ceiling (Lay-in &amp; Clip-in)</p>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended:</strong> Linear C Series, U Shaped Baffle, Tile Ceiling</p>
         </div>
       </div>
 
       <!-- Retail -->
       <div class="app-detail-row flip reveal">
-        <div class="app-detail-vis">
-          <div id="app-vis-retail" style="width:100%;height:100%;"></div>
+        <div class="app-icon-vis">
+          <div class="vis-pattern"></div>
+          <div class="big-icon">🛍️</div>
+          <div class="vis-label">Retail Spaces</div>
         </div>
         <div>
           <div class="badge">Application 02</div>
           <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Retail <span class="text-accent">Spaces</span></h2>
           <div class="divider-line"></div>
-          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">In retail, the ceiling sets the tone of the entire brand experience. Sleekline's U-Shaped Baffle and Open Cell Ceiling systems create striking visual stories that guide customers through the space and reinforce brand identity.</p>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">In retail, the ceiling sets the tone of the entire brand experience. Our U-Shaped Baffle and Open Cell Ceiling systems create striking visual stories that guide customers and reinforce brand identity.</p>
           <div class="app-features">
             <div class="app-feat">Brand-aligned finishes</div>
             <div class="app-feat">Zone differentiation</div>
@@ -206,20 +410,22 @@
             <div class="app-feat">High visual impact</div>
             <div class="app-feat">Durable &amp; cleanable</div>
           </div>
-          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> U Shaped Baffle Ceiling, Open Cell Ceiling / Cell Cladding, Linear Ceiling – R Series</p>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended:</strong> U Baffle, Open Cell, Linear R Series</p>
         </div>
       </div>
 
-      <!-- Hospital -->
+      <!-- Hospitals -->
       <div class="app-detail-row reveal">
-        <div class="app-detail-vis">
-          <div id="app-vis-hospital" style="width:100%;height:100%;"></div>
+        <div class="app-icon-vis">
+          <div class="vis-pattern"></div>
+          <div class="big-icon">🏥</div>
+          <div class="vis-label">Healthcare</div>
         </div>
         <div>
           <div class="badge">Application 03</div>
           <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Hospitals &amp; <span class="text-accent">Healthcare</span></h2>
           <div class="divider-line"></div>
-          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Healthcare environments demand ceiling systems that are hygienic, durable, and easy to clean. Our metal grid and linear systems are non-porous, resistant to moisture, and compliant with healthcare building codes.</p>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Healthcare environments demand ceiling systems that are hygienic, durable, and easy to clean. Our metal grid and linear systems are non-porous, moisture-resistant, and compliant with healthcare building codes.</p>
           <div class="app-features">
             <div class="app-feat">Non-porous surfaces</div>
             <div class="app-feat">Chemical resistance</div>
@@ -228,20 +434,22 @@
             <div class="app-feat">Moisture resistant</div>
             <div class="app-feat">Access panel compatible</div>
           </div>
-          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Tile Ceiling (Lay-in &amp; Clip-in), Linear 150 F, Open Cell Ceiling / Cell Cladding</p>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended:</strong> Tile Ceiling, Linear 150 F, Open Cell</p>
         </div>
       </div>
 
       <!-- Hotels -->
       <div class="app-detail-row flip reveal">
-        <div class="app-detail-vis">
-          <div id="app-vis-hotel" style="width:100%;height:100%;"></div>
+        <div class="app-icon-vis">
+          <div class="vis-pattern"></div>
+          <div class="big-icon">🏨</div>
+          <div class="vis-label">Hotels &amp; Hospitality</div>
         </div>
         <div>
           <div class="badge">Application 04</div>
           <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Hotels &amp; <span class="text-accent">Hospitality</span></h2>
           <div class="divider-line"></div>
-          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Luxury hospitality demands ceilings that make an impression. From grand lobbies to intimate restaurant spaces, our U Shaped Baffle Ceiling and Linear Ceiling – C Series create the drama and elegance that five-star properties require.</p>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Luxury hospitality demands ceilings that make an impression. From grand lobbies to intimate restaurant spaces, our U Shaped Baffle and Linear C Series create the drama and elegance that five-star properties require.</p>
           <div class="app-features">
             <div class="app-feat">Premium gold finishes</div>
             <div class="app-feat">Statement lobby designs</div>
@@ -250,17 +458,16 @@
             <div class="app-feat">Acoustic comfort</div>
             <div class="app-feat">Hospitality grade</div>
           </div>
-          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> U Shaped Baffle Ceiling, Linear Ceiling – C Series, Open Cell Ceiling / Cell Cladding</p>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended:</strong> U Baffle, Linear C Series, Open Cell</p>
         </div>
       </div>
 
-      <!-- Airport -->
+      <!-- Airports -->
       <div class="app-detail-row reveal">
-        <div class="app-detail-vis">
-              </g>
-              <text x="200" y="240" text-anchor="middle" fill="#8fa8c8" font-size="9" font-family="Inter,sans-serif" letter-spacing="3" opacity="0.6">AIRPORTS &amp; INFRASTRUCTURE</text>
-            </svg>
-          </div>
+        <div class="app-icon-vis">
+          <div class="vis-pattern"></div>
+          <div class="big-icon">✈️</div>
+          <div class="vis-label">Airports &amp; Infrastructure</div>
         </div>
         <div>
           <div class="badge">Application 05</div>
@@ -275,20 +482,22 @@
             <div class="app-feat">Seismic compliance</div>
             <div class="app-feat">Minimal maintenance</div>
           </div>
-          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Linear 150 F, Exterior Louvers and Cladding, Sun Louvers</p>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended:</strong> Linear 150 F, Exterior Louvers, Sun Louvers</p>
         </div>
       </div>
 
       <!-- Schools -->
       <div class="app-detail-row flip reveal">
-        <div class="app-detail-vis">
-          <div id="app-vis-school" style="width:100%;height:100%;"></div>
+        <div class="app-icon-vis">
+          <div class="vis-pattern"></div>
+          <div class="big-icon">🎓</div>
+          <div class="vis-label">Schools &amp; Universities</div>
         </div>
         <div>
           <div class="badge">Application 06</div>
           <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Schools &amp; <span class="text-accent">Universities</span></h2>
           <div class="divider-line"></div>
-          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Educational environments benefit enormously from well-designed ceiling systems. Our products improve acoustic comfort, reduce noise transfer between rooms, and create inspiring learning environments at cost-effective project budgets.</p>
+          <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1.25rem;">Educational environments benefit enormously from well-designed ceiling systems. Our products improve acoustic comfort, reduce noise transfer, and create inspiring learning environments at cost-effective budgets.</p>
           <div class="app-features">
             <div class="app-feat">Acoustic absorption</div>
             <div class="app-feat">Sound transmission control</div>
@@ -297,9 +506,10 @@
             <div class="app-feat">Low lifecycle cost</div>
             <div class="app-feat">Classroom acoustics</div>
           </div>
-          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended Products:</strong> Tile Ceiling (Lay-in &amp; Clip-in), Linear Ceiling – R Series, Open Cell Ceiling / Cell Cladding</p>
+          <p style="color:var(--clr-steel);font-size:0.875rem;"><strong style="color:var(--clr-accent);">Recommended:</strong> Tile Ceiling, Linear R Series, Open Cell</p>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -320,23 +530,6 @@
 
   <script src="components.js"></script>
   <script src="slideshow.js"></script>
-  <script>
-    initSleekline('applications');
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Corporate — U-shaped baffle (fits office aesthetic)
-      SleekImages.buildProductSlider('app-vis-corporate', 'u-shaped-baffle', { interval: 5000, showLabel: false });
-      // Retail — Linear C series
-      SleekImages.buildProductSlider('app-vis-retail', 'linear-c-series', { interval: 4800, showLabel: false });
-      // Hospital — Open cell (clean grid)
-      SleekImages.buildProductSlider('app-vis-hospital', 'open-cell', { interval: 5200, showLabel: false });
-      // Hotel — U-shaped baffle (luxury)
-      SleekImages.buildProductSlider('app-vis-hotel', 'u-shaped-baffle', { interval: 4600, showLabel: false });
-      // Airport — Exterior louvers (large span)
-      SleekImages.buildProductSlider('app-vis-airport', 'exterior-louvers', { interval: 5000, showLabel: false });
-      // School — Open cell (grid)
-      SleekImages.buildProductSlider('app-vis-school', 'open-cell', { interval: 4800, showLabel: false });
-    });
-  </script>
+  <script>initSleekline('applications');</script>
 </body>
 </html>
