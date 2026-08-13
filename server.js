@@ -19,16 +19,11 @@ const PORT = process.env.PORT || 3000;
 // ── Paths ──────────────────────────────────────────────────────────────────
 const DATA_DIR  = path.join(__dirname, 'data');
 const CSV_FILE  = path.join(DATA_DIR, 'inquiries.csv');
-const CSV_HEADER = 'Date,Time,Name,Phone,Email,City,Message\n';
+const CSV_HEADER = 'Date,Time,Name,Phone,Email,City,Product,Message\n';
 
 // ── Middleware ─────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:5500',
-    'http://127.0.0.1:5500',
-    'http://127.0.0.1:3000',
-  ],
+  origin: '*',
   methods: ['GET', 'POST'],
 }));
 app.use(express.json());
@@ -138,7 +133,7 @@ setInterval(mergePending, 30_000);
 // ── API Endpoint ───────────────────────────────────────────────────────────
 
 app.post('/api/contact', async (req, res) => {
-  const { name, phone, email, city = '', message } = req.body;
+  const { name, phone, email, city = '', product = '', message } = req.body;
 
   // ── Validation ──────────────────────────────────────────────────────────
   const errors = [];
@@ -170,6 +165,7 @@ app.post('/api/contact', async (req, res) => {
     csvEscape(phone.trim()),
     csvEscape(email.trim().toLowerCase()),
     csvEscape(city.trim()),
+    csvEscape(product.trim()),
     csvEscape(message.trim()),
   ].join(',') + '\n';
 

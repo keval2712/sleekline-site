@@ -25,8 +25,8 @@
       aspect-ratio: 4/3;
       position: relative;
       width: 100%;
-      background: var(--clr-dark3);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--clr-bg3);
+      border: 1px solid var(--clr-border);
     }
     .service-vis > div {
       width: 100%;
@@ -78,19 +78,19 @@
     .feature-item { display: flex; align-items: flex-start; gap: 0.875rem; }
     .feature-check {
       width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(200,169,110,0.15);
-      border: 1px solid rgba(200,169,110,0.3);
+      background: var(--clr-accent-light);
+      border: 1px solid var(--clr-accent-border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; color: var(--clr-accent);
-      flex-shrink: 0; margin-top: 2px;
+      flex-shrink: 0; margin-top: 2px; color: var(--clr-accent);
     }
-    .feature-text { font-size: 0.9rem; color: var(--clr-silver); line-height: 1.6; }
+    .feature-check svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 3; stroke-linecap: round; }
+    .feature-text { font-size: 0.9rem; color: var(--clr-text3); line-height: 1.6; }
 
     /* ── Process Grid ── */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
     .process-card {
-      background: var(--gradient-card);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--clr-bg2);
+      border: 1px solid var(--clr-border);
       border-radius: var(--radius-lg);
       padding: 2rem 1.5rem;
       text-align: center;
@@ -98,9 +98,9 @@
       transition: var(--transition);
     }
     .process-card:hover {
-      border-color: rgba(200,169,110,0.3);
+      border-color: var(--clr-accent-border);
       transform: translateY(-5px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+      box-shadow: var(--shadow-md);
     }
     .process-card::after {
       content: '→';
@@ -108,10 +108,11 @@
       color: var(--clr-accent); font-size: 1.2rem; opacity: 0.5; z-index: 1;
     }
     .process-card:last-child::after { display: none; }
-    .process-num { font-size: 2.5rem; font-weight: 900; color: rgba(200,169,110,0.15); line-height: 1; margin-bottom: 0.75rem; font-family: var(--font-display); }
-    .process-icon-wrap { width: 52px; height: 52px; border-radius: var(--radius-md); background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem; }
-    .process-title { font-size: 0.95rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.5rem; }
-    .process-desc { font-size: 0.82rem; color: var(--clr-steel); line-height: 1.6; }
+    .process-num { font-size: 2.5rem; font-weight: 900; color: rgba(200,160,96,0.15); line-height: 1; margin-bottom: 0.75rem; font-family: var(--font-display); }
+    .process-icon-wrap { width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--clr-accent-light); border: 1px solid var(--clr-accent-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--clr-accent); }
+    .process-icon-wrap svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; }
+    .process-title { font-size: 0.95rem; font-weight: 700; color: var(--clr-text); margin-bottom: 0.5rem; }
+    .process-desc { font-size: 0.82rem; color: var(--clr-text3); line-height: 1.6; }
 
     /* ── Why Choose Us Stats ── */
     .why-grid {
@@ -121,16 +122,17 @@
       margin-top: 3rem;
     }
     .why-card {
-      background: var(--gradient-card);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--clr-bg2);
+      border: 1px solid var(--clr-border);
       border-radius: var(--radius-lg);
       padding: 2rem 1.25rem;
       text-align: center;
       transition: var(--transition);
     }
     .why-card:hover {
-      border-color: rgba(200,169,110,0.3);
+      border-color: var(--clr-accent-border);
       transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
     }
     .why-num {
       font-size: 2.2rem;
@@ -142,7 +144,7 @@
     }
     .why-label {
       font-size: 0.82rem;
-      color: var(--clr-silver);
+      color: var(--clr-text3);
       font-weight: 500;
     }
 
@@ -198,32 +200,40 @@
   </section>
 
   <!-- Services Overview Cards -->
-  <section class="section-pad" style="background:var(--clr-dark2);">
+  <section class="section-pad services-section-dark">
     <div class="container">
       <div class="section-header text-center reveal">
-        <div class="badge">Services Overview</div>
-        <h2 class="section-title">Everything You Need for a <span class="text-accent">Perfect Ceiling</span></h2>
+        <div class="badge" style="border-color:rgba(200,160,96,0.4); color:var(--clr-accent); background:rgba(200,160,96,0.1);">Services Overview</div>
+        <h2 class="section-title" style="color:#fff;">Everything You Need for a <span class="text-accent">Perfect Ceiling</span></h2>
         <div class="divider-line"></div>
-        <p class="section-subtitle" style="margin:0 auto;">From residential homes to massive airport terminals — we have the expertise, products, and team to deliver.</p>
+        <p class="section-subtitle" style="margin:0 auto; color:rgba(255,255,255,0.5);">From residential homes to massive airport terminals — we have the expertise, products, and team to deliver.</p>
       </div>
       <div class="services-grid">
         <div class="service-card reveal">
-          <div class="service-icon-wrap">🏠</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
           <h3>Residential Ceiling Solutions</h3>
           <p>Bespoke metal ceiling systems for homes, villas, and residential complexes that transform living spaces into architectural statements.</p>
         </div>
         <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon-wrap">🏢</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><rect x="1" y="3" width="15" height="18"/><path d="M16 8h4l3 3v10h-7V8z"/></svg>
+          </div>
           <h3>Commercial Ceiling Systems</h3>
           <p>Scalable, high-performance metal ceiling solutions for offices, malls, hotels, hospitals, and large public infrastructure projects.</p>
         </div>
         <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon-wrap">✏️</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
           <h3>Custom Design &amp; Engineering</h3>
           <p>Full-service design support including CAD drawings, material specifications, and structural engineering for completely unique solutions.</p>
         </div>
         <div class="service-card reveal reveal-delay-3">
-          <div class="service-icon-wrap">🔩</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
           <h3>Supply &amp; Installation</h3>
           <p>Complete material supply with experienced installation crews, dedicated project managers, and on-site quality control for seamless delivery.</p>
         </div>
@@ -232,7 +242,7 @@
   </section>
 
   <!-- Why Choose Us -->
-  <section class="section-pad">
+  <section class="section-pad" style="background:var(--clr-bg2); border-top:1px solid var(--clr-border);">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="badge">Our Numbers</div>
@@ -261,7 +271,7 @@
   </section>
 
   <!-- Detailed Services -->
-  <section class="section-pad" style="background:var(--clr-dark2);">
+  <section class="section-pad" style="background:var(--clr-bg); border-top:1px solid var(--clr-border);">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="badge">Deep Dive</div>
@@ -279,15 +289,15 @@
             <div class="badge">Service 01</div>
             <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Residential Ceiling <span class="text-accent">Solutions</span></h2>
             <div class="divider-line"></div>
-            <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1rem;">
+            <p style="color:var(--clr-text3);line-height:1.9;margin-bottom:1rem;">
               Elevate your home with precision-engineered metal ceiling systems that marry elegance with durability. Our residential range is designed for homes, villas, duplexes, and housing complexes seeking a premium finish.
             </p>
             <div class="service-feature-list">
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Custom sizes and configurations for any room dimension</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Wide range of metallic, matte, and powder-coated finishes</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Compatible with LED lighting integration and HVAC systems</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Corrosion-resistant galvanized steel and aluminum options</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Low maintenance, long lifecycle — built to last decades</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Custom sizes and configurations for any room dimension</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Wide range of metallic, matte, and powder-coated finishes</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Compatible with LED lighting integration and HVAC systems</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Corrosion-resistant galvanized steel and aluminum options</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Low maintenance, long lifecycle — built to last decades</div></div>
             </div>
             <a href="contact.html" class="btn btn-primary" id="srv-res-btn">Get a Quote</a>
           </div>
@@ -302,15 +312,15 @@
             <div class="badge">Service 02</div>
             <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Commercial Ceiling <span class="text-accent">Systems</span></h2>
             <div class="divider-line"></div>
-            <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1rem;">
+            <p style="color:var(--clr-text3);line-height:1.9;margin-bottom:1rem;">
               Large-scale architectural ceiling solutions for commercial buildings, offices, retail spaces, hospitals, hotels, airports, and public infrastructure. Built for performance, engineered for scale.
             </p>
             <div class="service-feature-list">
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Scalable systems for large-span spaces from 100 to 100,000 sq ft</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Fire-rated and acoustic options available for compliance</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Structural load calculations and engineering documentation</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Fast-track installation with minimal business disruption</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">HVAC, sprinkler and lighting integration support</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Scalable systems for large-span spaces from 100 to 100,000 sq ft</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Fire-rated and acoustic options available for compliance</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Structural load calculations and engineering documentation</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Fast-track installation with minimal business disruption</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">HVAC, sprinkler and lighting integration support</div></div>
             </div>
             <a href="contact.html" class="btn btn-primary" id="srv-com-btn">Get a Quote</a>
           </div>
@@ -325,15 +335,15 @@
             <div class="badge">Service 03</div>
             <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Custom Design &amp; <span class="text-accent">Engineering</span></h2>
             <div class="divider-line"></div>
-            <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1rem;">
+            <p style="color:var(--clr-text3);line-height:1.9;margin-bottom:1rem;">
               When standard solutions don't meet your vision, our engineering team creates fully customized ceiling systems. We collaborate with architects and designers to bring unique concepts to life with precision.
             </p>
             <div class="service-feature-list">
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">2D &amp; 3D CAD drawings and modelling</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Material and finish customization across thousands of options</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Structural FEA analysis for complex geometries</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Prototype fabrication and approval before full production</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Architect and contractor collaboration support</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">2D &amp; 3D CAD drawings and modelling</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Material and finish customization across thousands of options</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Structural FEA analysis for complex geometries</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Prototype fabrication and approval before full production</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Architect and contractor collaboration support</div></div>
             </div>
             <a href="contact.html" class="btn btn-primary" id="srv-des-btn">Start a Project</a>
           </div>
@@ -348,15 +358,15 @@
             <div class="badge">Service 04</div>
             <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Supply &amp; <span class="text-accent">Installation</span></h2>
             <div class="divider-line"></div>
-            <p style="color:var(--clr-silver);line-height:1.9;margin-bottom:1rem;">
+            <p style="color:var(--clr-text3);line-height:1.9;margin-bottom:1rem;">
               From site survey to final handover, our installation teams ensure your project is completed to specification, on time, and to the highest quality standards. We manage the entire process so you don't have to.
             </p>
             <div class="service-feature-list">
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Dedicated project manager for every project</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Trained and certified installation crews pan-India</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">On-site quality inspections at each milestone</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Post-installation service and maintenance support</div></div>
-              <div class="feature-item"><div class="feature-check">✓</div><div class="feature-text">Complete site cleanup and handover documentation</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Dedicated project manager for every project</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Trained and certified installation crews pan-India</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">On-site quality inspections at each milestone</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Post-installation service and maintenance support</div></div>
+              <div class="feature-item"><div class="feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text">Complete site cleanup and handover documentation</div></div>
             </div>
             <a href="contact.html" class="btn btn-primary" id="srv-inst-btn">Book Installation</a>
           </div>
@@ -367,7 +377,7 @@
   </section>
 
   <!-- Our Process -->
-  <section class="section-pad">
+  <section class="section-pad" style="background:var(--clr-bg2); border-top:1px solid var(--clr-border);">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="badge">How We Work</div>
@@ -378,25 +388,33 @@
       <div class="process-grid">
         <div class="process-card reveal">
           <div class="process-num">01</div>
-          <div class="process-icon-wrap">💬</div>
+          <div class="process-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="22" height="22"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
           <div class="process-title">Consultation</div>
           <p class="process-desc">Share your vision. We understand your requirements, budget, and timeline in detail.</p>
         </div>
         <div class="process-card reveal reveal-delay-1">
           <div class="process-num">02</div>
-          <div class="process-icon-wrap">📐</div>
+          <div class="process-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="22" height="22"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
           <div class="process-title">Design &amp; Quote</div>
           <p class="process-desc">Our engineers create detailed drawings and a transparent, itemized quotation.</p>
         </div>
         <div class="process-card reveal reveal-delay-2">
           <div class="process-num">03</div>
-          <div class="process-icon-wrap">🏭</div>
+          <div class="process-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="22" height="22"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
           <div class="process-title">Fabrication</div>
           <p class="process-desc">Precision manufacturing in our ISO-certified facility with strict QC at every step.</p>
         </div>
         <div class="process-card reveal reveal-delay-3">
           <div class="process-num">04</div>
-          <div class="process-icon-wrap">🔧</div>
+          <div class="process-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="22" height="22"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
           <div class="process-title">Supply &amp; Install</div>
           <p class="process-desc">Expert teams install on-site with project management and final quality inspection.</p>
         </div>
@@ -413,7 +431,7 @@
         <p class="section-subtitle" style="margin:0 auto 2rem;">Talk to our expert team today and get a customized service plan for your architectural ceiling needs.</p>
         <div class="cta-actions">
           <a href="contact.html" class="btn btn-primary" id="srv-cta-btn">Request a Quote</a>
-          <a href="products.html" class="btn btn-outline" id="srv-prod-btn">View Products</a>
+          <a href="products.html" class="btn btn-outline-light" id="srv-prod-btn">View Products</a>
         </div>
       </div>
     </div>

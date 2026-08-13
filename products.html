@@ -12,10 +12,10 @@
         font-family: var(--font-display);
         font-size: clamp(1.4rem, 3vw, 2rem);
         font-weight: 600;
-        color: var(--clr-white);
+        color: var(--clr-text);
         margin-bottom: 2rem;
         padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(255,255,255,0.07);
+        border-bottom: 1px solid var(--clr-border);
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -38,8 +38,8 @@
         margin-bottom: 4rem;
       }
       .product-card-lg {
-        background: var(--gradient-card);
-        border: 1px solid rgba(255,255,255,0.07);
+        background: var(--clr-bg2);
+        border: 1px solid var(--clr-border);
         border-radius: var(--radius-xl);
         overflow: hidden;
         transition: var(--transition);
@@ -47,9 +47,9 @@
         flex-direction: column;
       }
       .product-card-lg:hover {
-        border-color: rgba(200,169,110,0.35);
+        border-color: var(--clr-accent-border);
         transform: translateY(-8px);
-        box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+        box-shadow: var(--shadow-lg);
       }
 
       /* Image slider area — Featured cards */
@@ -57,7 +57,7 @@
         height: 260px;
         position: relative;
         overflow: hidden;
-        background: var(--clr-dark3);
+        background: var(--clr-bg3);
         flex-shrink: 0;
       }
 
@@ -71,11 +71,11 @@
       .product-body-lg h3 {
         font-size: 1.15rem;
         font-weight: 700;
-        color: var(--clr-white);
+        color: var(--clr-text);
       }
       .product-body-lg p {
         font-size: 0.9rem;
-        color: var(--clr-steel);
+        color: var(--clr-text3);
         line-height: 1.75;
         flex: 1;
       }
@@ -90,12 +90,14 @@
         font-weight: 600;
         padding: 0.25rem 0.75rem;
         border-radius: 100px;
-        background: rgba(200,169,110,0.1);
-        border: 1px solid rgba(200,169,110,0.2);
+        background: var(--clr-accent-light);
+        border: 1px solid var(--clr-accent-border);
         color: var(--clr-accent);
       }
       .product-card-lg .product-footer {
         padding: 0 1.75rem 1.75rem;
+        border-top: 1px solid var(--clr-border);
+        padding-top: 1rem;
       }
 
       /* ── Additional Products Grid (3 col) ── */
@@ -106,8 +108,8 @@
         margin-bottom: 3rem;
       }
       .product-add-card {
-        background: var(--gradient-card);
-        border: 1px solid rgba(255,255,255,0.07);
+        background: var(--clr-bg2);
+        border: 1px solid var(--clr-border);
         border-radius: var(--radius-lg);
         overflow: hidden;
         transition: var(--transition);
@@ -115,16 +117,16 @@
         flex-direction: column;
       }
       .product-add-card:hover {
-        border-color: rgba(200,169,110,0.3);
+        border-color: var(--clr-accent-border);
         transform: translateY(-6px);
-        box-shadow: 0 16px 56px rgba(0,0,0,0.35);
+        box-shadow: var(--shadow-md);
       }
       /* Image slider area — Additional cards */
       .product-add-vis {
         height: 200px;
         position: relative;
         overflow: hidden;
-        background: var(--clr-dark3);
+        background: var(--clr-bg3);
         flex-shrink: 0;
       }
       .product-add-card .product-body {
@@ -149,16 +151,16 @@
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        border: 2px solid rgba(255,255,255,0.1);
+        border: 2px solid var(--clr-border);
         transition: var(--transition);
       }
       .finish-item:hover .finish-swatch {
         transform: scale(1.15);
-        border-color: rgba(200,169,110,0.4);
+        border-color: var(--clr-accent-border);
       }
       .finish-label {
         font-size: 0.72rem;
-        color: var(--clr-steel);
+        color: var(--clr-text3);
         text-align: center;
       }
 
@@ -407,7 +409,7 @@
           </p>
           <div class="cta-actions">
             <a href="contact.html" class="btn btn-primary" id="prod-cta-btn">Request Samples / Quote</a>
-            <a href="applications.html" class="btn btn-outline" id="prod-app-btn">View Applications</a>
+          <a href="applications.html" class="btn btn-outline-light" id="prod-app-btn">View Applications</a>
           </div>
         </div>
       </div>

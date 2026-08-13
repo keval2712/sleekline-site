@@ -22,12 +22,12 @@
       width: 100%;
       text-align: left;
       padding: 0.875rem 1.25rem;
-      background: var(--gradient-card);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--clr-bg2);
+      border: 1px solid var(--clr-border);
       border-radius: var(--radius-md);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
-      color: var(--clr-silver);
+      color: var(--clr-text2);
       cursor: pointer;
       transition: var(--transition);
       display: flex;
@@ -35,36 +35,38 @@
       gap: 0.75rem;
     }
     .faq-cat-btn:hover, .faq-cat-btn.active {
-      border-color: rgba(200,169,110,0.3);
+      border-color: var(--clr-accent-border);
       color: var(--clr-accent);
-      background: rgba(200,169,110,0.07);
+      background: var(--clr-accent-light);
     }
-    .faq-cat-icon { font-size: 1rem; }
+    .faq-cat-icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; flex-shrink: 0; }
     .faq-section-block { margin-bottom: 3rem; }
     .faq-section-block h3 {
-      font-size: 1rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--clr-accent);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 1.25rem;
       padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(200,169,110,0.15);
+      border-bottom: 1px solid var(--clr-accent-border);
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-    .faq-section-block h3 span { font-size: 1.1rem; }
+    .faq-section-icon { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; }
     .faq-contact-panel {
-      background: linear-gradient(135deg, rgba(200,169,110,0.08) 0%, rgba(200,169,110,0.04) 100%);
-      border: 1px solid rgba(200,169,110,0.2);
+      background: var(--clr-accent-light);
+      border: 1px solid var(--clr-accent-border);
       border-radius: var(--radius-lg);
       padding: 2rem;
       text-align: center;
       margin-top: 1.5rem;
     }
-    .faq-contact-panel h4 { font-size: 1rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.5rem; }
-    .faq-contact-panel p { font-size: 0.875rem; color: var(--clr-steel); margin-bottom: 1.25rem; }
+    .faq-contact-panel h4 { font-size: 1rem; font-weight: 700; color: var(--clr-text); margin-bottom: 0.5rem; }
+    .faq-contact-panel p { font-size: 0.875rem; color: var(--clr-text3); margin-bottom: 1.25rem; }
+    .faq-contact-icon { width: 44px; height: 44px; background: var(--clr-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.875rem; color: #fff; }
+    .faq-contact-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
     @media (max-width: 900px) {
       .faq-page-layout { grid-template-columns: 1fr; }
       .faq-sidebar { position: static; }
@@ -103,15 +105,35 @@
         <div class="faq-sidebar reveal">
           <h4 style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--clr-steel); margin-bottom:1rem;">Categories</h4>
           <div class="faq-categories">
-            <button class="faq-cat-btn active" onclick="jumpTo('materials')"><span class="faq-cat-icon">🧱</span> Materials</button>
-            <button class="faq-cat-btn" onclick="jumpTo('certification')"><span class="faq-cat-icon">🏆</span> Certification</button>
-            <button class="faq-cat-btn" onclick="jumpTo('customization')"><span class="faq-cat-icon">🎨</span> Customization</button>
-            <button class="faq-cat-btn" onclick="jumpTo('installation')"><span class="faq-cat-icon">🔧</span> Supply &amp; Installation</button>
-            <button class="faq-cat-btn" onclick="jumpTo('purchase')"><span class="faq-cat-icon">🛒</span> Purchase</button>
-            <button class="faq-cat-btn" onclick="jumpTo('quote')"><span class="faq-cat-icon">📋</span> Quotes &amp; Brochures</button>
+            <button class="faq-cat-btn active" onclick="jumpTo('materials')">
+              <svg viewBox="0 0 24 24" class="faq-cat-icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Materials
+            </button>
+            <button class="faq-cat-btn" onclick="jumpTo('certification')">
+              <svg viewBox="0 0 24 24" class="faq-cat-icon"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              Certification
+            </button>
+            <button class="faq-cat-btn" onclick="jumpTo('customization')">
+              <svg viewBox="0 0 24 24" class="faq-cat-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              Customization
+            </button>
+            <button class="faq-cat-btn" onclick="jumpTo('installation')">
+              <svg viewBox="0 0 24 24" class="faq-cat-icon"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              Supply &amp; Installation
+            </button>
+            <button class="faq-cat-btn" onclick="jumpTo('purchase')">
+              <svg viewBox="0 0 24 24" class="faq-cat-icon"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+              Purchase
+            </button>
+            <button class="faq-cat-btn" onclick="jumpTo('quote')">
+              <svg viewBox="0 0 24 24" class="faq-cat-icon"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Quotes &amp; Brochures
+            </button>
           </div>
           <div class="faq-contact-panel">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">💬</div>
+            <div class="faq-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
             <h4>Still have questions?</h4>
             <p>Our expert team is ready to help with any specific queries about our products or your project.</p>
             <a href="contact.html" class="btn btn-primary" style="width:100%; justify-content:center;" id="faq-contact-btn">Contact Us</a>
@@ -123,13 +145,16 @@
 
           <!-- Materials -->
           <div class="faq-section-block" id="materials">
-            <h3><span>🧱</span> Materials &amp; Products</h3>
+            <h3>
+              <svg viewBox="0 0 24 24" class="faq-section-icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Materials &amp; Products
+            </h3>
             <div class="faq-list">
               <div class="faq-item">
-                <div class="faq-question">
-                  What materials are used in Sleekline ceiling systems?
-                  <div class="faq-icon">+</div>
-                </div>
+                  <button class="faq-question" id="fq-materials-1">
+                    What materials are used in Sleekline ceiling systems?
+                    <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                  </button>
                 <div class="faq-answer">
                   <div class="faq-answer-inner">
                     Sleekline uses two primary base materials for its ceiling systems: <strong style="color:var(--clr-white);">hot-dip galvanized steel</strong> and <strong style="color:var(--clr-white);">high-grade aluminum alloy</strong>. Galvanized steel offers exceptional strength-to-weight ratio and corrosion resistance, making it ideal for humid and industrial environments. Aluminum is lightweight, naturally corrosion-resistant, and is preferred for its aesthetic versatility—it accepts a wide range of powder coating and anodizing finishes. All raw materials comply with relevant Indian and international standards.
@@ -137,10 +162,10 @@
                 </div>
               </div>
               <div class="faq-item">
-                <div class="faq-question">
-                  What is the difference between galvanized steel and aluminum ceiling panels?
-                  <div class="faq-icon">+</div>
-                </div>
+                  <button class="faq-question">
+                    What is the difference between galvanized steel and aluminum ceiling panels?
+                    <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                  </button>
                 <div class="faq-answer">
                   <div class="faq-answer-inner">
                     <strong style="color:var(--clr-white);">Galvanized Steel</strong> is stronger and heavier, suitable for industrial or structurally demanding applications. Its zinc coating provides excellent corrosion resistance. <strong style="color:var(--clr-white);">Aluminum</strong> is lighter (often preferred for large-span suspended systems), naturally corrosion-resistant without coating, and offers more design flexibility—it can be extruded into complex profiles and accepts anodizing for premium finishes. Our team can recommend the right material based on your specific load requirements, environment, and aesthetic goals.
@@ -174,7 +199,10 @@
 
           <!-- Certification -->
           <div class="faq-section-block" id="certification">
-            <h3><span>🏆</span> Certification &amp; Quality</h3>
+            <h3>
+              <svg viewBox="0 0 24 24" class="faq-section-icon"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              Certification &amp; Quality
+            </h3>
             <div class="faq-list">
               <div class="faq-item">
                 <div class="faq-question">
@@ -203,7 +231,10 @@
 
           <!-- Customization -->
           <div class="faq-section-block" id="customization">
-            <h3><span>🎨</span> Customization &amp; Design</h3>
+            <h3>
+              <svg viewBox="0 0 24 24" class="faq-section-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              Customization &amp; Design
+            </h3>
             <div class="faq-list">
               <div class="faq-item">
                 <div class="faq-question">
@@ -247,7 +278,10 @@
 
           <!-- Installation -->
           <div class="faq-section-block" id="installation">
-            <h3><span>🔧</span> Supply &amp; Installation</h3>
+            <h3>
+              <svg viewBox="0 0 24 24" class="faq-section-icon"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              Supply &amp; Installation
+            </h3>
             <div class="faq-list">
               <div class="faq-item">
                 <div class="faq-question">
@@ -293,7 +327,10 @@
 
           <!-- Purchase -->
           <div class="faq-section-block" id="purchase">
-            <h3><span>🛒</span> Purchase &amp; Availability</h3>
+            <h3>
+              <svg viewBox="0 0 24 24" class="faq-section-icon"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+              Purchase &amp; Availability
+            </h3>
             <div class="faq-list">
               <div class="faq-item">
                 <div class="faq-question">
@@ -330,7 +367,10 @@
 
           <!-- Quote & Brochure -->
           <div class="faq-section-block" id="quote">
-            <h3><span>📋</span> Quotes &amp; Brochures</h3>
+            <h3>
+              <svg viewBox="0 0 24 24" class="faq-section-icon"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Quotes &amp; Brochures
+            </h3>
             <div class="faq-list">
               <div class="faq-item">
                 <div class="faq-question">
@@ -374,7 +414,7 @@
         <p class="section-subtitle" style="margin:0 auto 2rem;">Our expert team is happy to answer any specific questions about your project, product selection, or technical requirements.</p>
         <div class="cta-actions">
           <a href="contact.html" class="btn btn-primary" id="faq-cta-btn">Contact Our Team</a>
-          <a href="products.html" class="btn btn-outline" id="faq-prod-btn">Browse Products</a>
+          <a href="products.html" class="btn btn-outline-light" id="faq-prod-btn">Browse Products</a>
         </div>
       </div>
     </div>

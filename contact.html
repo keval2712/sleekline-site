@@ -1,169 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us — Sleekline | Get a Quote or Inquiry</title>
-  <meta name="description"
-    content="Contact Sleekline for architectural metal products, custom design, and installation. Located in Ahmedabad, Gujarat. Call, email, or fill our contact form." />
+  <meta name="description" content="Contact Sleekline for architectural metal ceiling products, custom design, and installation. Located in Ahmedabad, Gujarat. Call, email, or fill our contact form." />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .contact-hero-strip {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
       margin-top: 2rem;
       justify-content: center;
     }
-
     .contact-stat-chip {
-      background: rgba(200, 169, 110, 0.08);
-      border: 1px solid rgba(200, 169, 110, 0.2);
+      background: rgba(200,160,96,0.1);
+      border: 1px solid rgba(200,160,96,0.25);
       border-radius: 100px;
-      padding: 0.5rem 1.25rem;
-      font-size: 0.85rem;
-      color: var(--clr-silver);
+      padding: 0.45rem 1.1rem;
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.75);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-
-    .contact-stat-chip strong {
-      color: var(--clr-accent);
+    .contact-stat-chip svg {
+      width: 14px; height: 14px;
+      stroke: var(--clr-accent); fill: none;
+      stroke-width: 2; stroke-linecap: round;
+      flex-shrink: 0;
     }
-
-    .map-placeholder {
-      width: 100%;
-      height: 400px;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      background: linear-gradient(135deg, #1a1a22 0%, #22222e 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      position: relative;
-    }
-
-    .map-grid-overlay {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(200, 169, 110, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200, 169, 110, 0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-
-    .map-pin {
-      width: 48px;
-      height: 48px;
-      background: var(--gradient-accent);
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(200, 169, 110, 0.4);
-      position: relative;
-      z-index: 1;
-      animation: pin-bounce 2s ease-in-out infinite;
-    }
-
-    .map-pin-inner {
-      width: 20px;
-      height: 20px;
-      background: var(--clr-black);
-      border-radius: 50%;
-      transform: rotate(45deg);
-    }
-
-    @keyframes pin-bounce {
-
-      0%,
-      100% {
-        transform: rotate(-45deg) translateY(0);
-      }
-
-      50% {
-        transform: rotate(-45deg) translateY(-6px);
-      }
-    }
-
-    .map-address {
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .map-address h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--clr-white);
-      margin-bottom: 0.25rem;
-    }
-
-    .map-address p {
-      font-size: 0.875rem;
-      color: var(--clr-silver);
-    }
-
-    .map-open-btn {
-      background: rgba(200, 169, 110, 0.12);
-      border: 1px solid rgba(200, 169, 110, 0.3);
-      border-radius: var(--radius-sm);
-      padding: 0.625rem 1.25rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--clr-accent);
-      cursor: pointer;
-      transition: var(--transition);
-      text-decoration: none;
-      position: relative;
-      z-index: 1;
-    }
-
-    .map-open-btn:hover {
-      background: rgba(200, 169, 110, 0.2);
-    }
+    .contact-stat-chip strong { color: var(--clr-accent); }
 
     .success-banner {
       display: none;
-      background: linear-gradient(135deg, rgba(110, 200, 169, 0.12) 0%, rgba(110, 200, 169, 0.06) 100%);
-      border: 1px solid rgba(110, 200, 169, 0.3);
+      background: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(34,197,94,0.04) 100%);
+      border: 1px solid rgba(34,197,94,0.3);
       border-radius: var(--radius-md);
       padding: 1.25rem 1.5rem;
-      display: none;
       align-items: center;
       gap: 1rem;
       margin-top: 1rem;
     }
-
-    .success-banner.show {
-      display: flex;
-    }
-
+    .success-banner.show { display: flex; }
     .success-icon {
-      font-size: 1.5rem;
+      width: 40px; height: 40px;
+      background: rgba(34,197,94,0.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      color: #22c55e;
     }
+    .success-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .success-text h4 { font-size: 0.95rem; font-weight: 700; color: #22c55e; margin-bottom: 0.2rem; }
+    .success-text p { font-size: 0.875rem; color: var(--clr-text3); }
 
-    .success-text h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #6ec8a9;
-      margin-bottom: 0.2rem;
-    }
-
-    .success-text p {
-      font-size: 0.875rem;
-      color: var(--clr-silver);
-    }
+    .map-section { background: var(--clr-bg2); border-top: 1px solid var(--clr-border); }
+    .map-wrap { height: 420px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--clr-border); }
+    .map-wrap iframe { width: 100%; height: 100%; border: 0; }
   </style>
 </head>
-
 <body>
 
   <!-- Page Hero -->
@@ -171,15 +68,31 @@
     <div class="page-hero-grid"></div>
     <div class="page-hero-glow"></div>
     <div class="container">
-      <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Contact</span></div>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">›</span>
+        <span>Contact</span>
+      </div>
       <div class="badge" style="margin:0 auto 1rem;">Get in Touch</div>
       <h1>Contact Sleekline</h1>
       <p>Talk to our expert team about your architectural ceiling project — we respond within 24 hours</p>
       <div class="contact-hero-strip">
-        <div class="contact-stat-chip">📍 <strong>South Bopal</strong>, Ahmedabad</div>
-        <div class="contact-stat-chip">📞 <strong>+91 92652 46156</strong></div>
-        <div class="contact-stat-chip">✉️ <strong>sleekline7@gmail.com</strong></div>
-        <div class="contact-stat-chip">⏱️ Response within <strong>24 hrs</strong></div>
+        <div class="contact-stat-chip">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <strong>South Bopal</strong>, Ahmedabad
+        </div>
+        <div class="contact-stat-chip">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <strong>+91 92652 46156</strong>
+        </div>
+        <div class="contact-stat-chip">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <strong>sleekline7@gmail.com</strong>
+        </div>
+        <div class="contact-stat-chip">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Response within <strong>24 hrs</strong>
+        </div>
       </div>
     </div>
   </section>
@@ -193,30 +106,27 @@
         <div class="contact-info">
           <div>
             <div class="badge">Our Location</div>
-            <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Reach <span
-                class="text-accent">Us</span></h2>
+            <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem);">Reach <span class="text-accent">Us</span></h2>
             <div class="divider-line"></div>
-            <p style="color:var(--clr-steel); font-size:0.9rem; line-height:1.8; margin-bottom:2rem;">
-              Whether you're an architect, contractor, builder, or homeowner — our team is ready to discuss your project
-              requirements and help you find the perfect architectural ceiling solution.
+            <p style="color:var(--clr-text3); font-size:0.9rem; line-height:1.8; margin-bottom:2rem;">
+              Whether you're an architect, contractor, builder, or homeowner — our team is ready to discuss your project requirements and help you find the perfect architectural ceiling solution.
             </p>
           </div>
 
           <div class="contact-card reveal">
-            <div class="cc-icon">📍</div>
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
             <div class="cc-content">
               <h4>Office Address</h4>
-              <p>
-                A2-424, Celebration City Center,<br>
-                Gala Gymkhana Road,<br>
-                South Bopal, Ahmedabad,<br>
-                Gujarat — 380058
-              </p>
+              <p>A2-424, Celebration City Center,<br>Gala Gymkhana Road,<br>South Bopal, Ahmedabad,<br>Gujarat — 380058</p>
             </div>
           </div>
 
           <div class="contact-card reveal reveal-delay-1">
-            <div class="cc-icon">📞</div>
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
             <div class="cc-content">
               <h4>Phone</h4>
               <p>
@@ -227,35 +137,41 @@
           </div>
 
           <div class="contact-card reveal reveal-delay-2">
-            <div class="cc-icon">✉️</div>
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
             <div class="cc-content">
               <h4>Email</h4>
-              <p>
-                <a href="mailto:sleekline7@gmail.com">sleekline7@gmail.com</a>
-              </p>
+              <p><a href="mailto:sleekline7@gmail.com">sleekline7@gmail.com</a></p>
             </div>
           </div>
 
           <div class="contact-card reveal reveal-delay-3">
-            <div class="cc-icon">🕐</div>
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
             <div class="cc-content">
               <h4>Business Hours</h4>
-              <p>
-                Monday – Sunday: 9:00 AM – 6:30 PM
-              </p>
+              <p>Monday – Sunday: 9:00 AM – 6:30 PM</p>
             </div>
           </div>
 
           <!-- Social Links -->
-          <div style="margin-top:0.5rem;">
-            <p
-              style="font-size:0.82rem; color:var(--clr-steel); margin-bottom:0.875rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">
-              Follow Us</p>
+          <div style="margin-top:1rem;">
+            <p style="font-size:0.78rem; color:var(--clr-text3); margin-bottom:0.875rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Follow Us</p>
             <div class="footer-socials">
-              <a href="#" class="social-btn" id="contact-fb" title="Facebook">f</a>
-              <a href="#" class="social-btn" id="contact-ig" title="Instagram">📷</a>
-              <a href="#" class="social-btn" id="contact-li" title="LinkedIn">in</a>
-              <a href="#" class="social-btn" id="contact-yt" title="YouTube">▶</a>
+              <a href="#" class="social-btn" id="contact-fb" title="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <a href="#" class="social-btn" id="contact-ig" title="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="#" class="social-btn" id="contact-li" title="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="#" class="social-btn" id="contact-yt" title="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#191816"/></svg>
+              </a>
             </div>
           </div>
         </div>
@@ -269,21 +185,18 @@
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="contact-name">Full Name *</label>
-                <input type="text" id="contact-name" name="name" class="form-input" placeholder="Rajesh Sharma"
-                  required />
+                <input type="text" id="contact-name" name="name" class="form-input" placeholder="Rajesh Sharma" required />
               </div>
               <div class="form-group">
                 <label class="form-label" for="contact-email">Email Address *</label>
-                <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@company.com"
-                  required />
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@company.com" required />
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="contact-phone">Phone Number *</label>
-                <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+91 9XXXXXXXXX"
-                  required />
+                <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+91 9XXXXXXXXX" required />
               </div>
               <div class="form-group">
                 <label class="form-label" for="contact-city">City / Location</label>
@@ -291,6 +204,21 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label class="form-label" for="contact-product">Product Interest</label>
+              <select id="contact-product" name="product" class="form-input form-select">
+                <option value="">Select a product (optional)</option>
+                <option value="linear-c-series">Linear Ceiling – C Series</option>
+                <option value="linear-r-series">Linear Ceiling – R Series</option>
+                <option value="u-shaped-baffle">U Shaped Baffle Ceiling</option>
+                <option value="exterior-louvers">Exterior Louvers &amp; Cladding</option>
+                <option value="sun-louvers">Sun Louvers</option>
+                <option value="linear-150f">Linear 150 F</option>
+                <option value="open-cell">Open Cell Ceiling</option>
+                <option value="tile-ceiling">Tile Ceiling (Lay-in &amp; Clip-in)</option>
+                <option value="other">Other / Multiple Products</option>
+              </select>
+            </div>
 
             <div class="form-group">
               <label class="form-label" for="contact-message">Your Message / Requirements *</label>
@@ -300,7 +228,9 @@
             </div>
 
             <div class="success-banner" id="success-banner">
-              <div class="success-icon">✅</div>
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
               <div class="success-text">
                 <h4>Message Sent Successfully!</h4>
                 <p>Thank you for reaching out. Our team will contact you within 24 hours.</p>
@@ -309,13 +239,12 @@
 
             <button type="submit" class="btn btn-primary form-submit" id="contact-submit-btn">
               <span id="btn-text">Send Message</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
             </button>
 
-            <p style="font-size:0.78rem; color:var(--clr-gunmetal); margin-top:1rem; text-align:center;">
-              🔒 Your information is kept confidential and never shared with third parties.
+            <p style="font-size:0.78rem; color:var(--clr-text-muted); margin-top:1rem; text-align:center; display:flex; align-items:center; justify-content:center; gap:0.4rem;">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Your information is kept confidential and never shared with third parties.
             </p>
           </form>
         </div>
@@ -330,23 +259,20 @@
         <div class="badge">Find Us</div>
         <h2 class="section-title">Our <span class="text-accent">Location</span></h2>
         <div class="divider-line"></div>
-        <p class="section-subtitle" style="margin:0 auto;">Visit our showroom and experience our product range in person
-          at our Ahmedabad office.</p>
+        <p class="section-subtitle" style="margin:0 auto;">Visit our showroom and experience our product range in person at our Ahmedabad office.</p>
       </div>
       <div class="map-wrap reveal">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.3!2d72.4726!3d23.0168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b5c4b5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sCelebration%20City%20Center%2C%20South%20Bopal%2C%20Ahmedabad%2C%20Gujarat%20380058!5e0!3m2!1sen!2sin!4v1234567890"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.3408256068256!2d72.47066177599247!3d23.016786579179927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9bde6d4f90e5%3A0x73a6ca6f2d8ab4c!2sCelebration%20City%20Center%2C%20South%20Bopal%2C%20Ahmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1723000000000"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          title="Sleekline Office Location — Celebration City Center, South Bopal, Ahmedabad"
-          style="width:100%;height:100%;border:0;filter:grayscale(20%) invert(0.85) hue-rotate(165deg) saturate(0.8);"></iframe>
+          title="Sleekline Office Location — Celebration City Center, South Bopal, Ahmedabad">
+        </iframe>
       </div>
       <div style="text-align:center; margin-top:1.5rem;">
         <a href="https://maps.google.com/?q=Celebration+City+Center+A2-424+South+Bopal+Ahmedabad+Gujarat+380058"
-          target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="open-maps-btn">
-          📍 Open in Google Maps
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-          </svg>
+           target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="open-maps-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Google Maps
         </a>
       </div>
     </div>
@@ -358,14 +284,17 @@
     <div class="container">
       <div class="cta-band-content reveal">
         <h2 class="section-title">Ready to Transform <span class="text-accent">Your Space?</span></h2>
-        <p class="section-subtitle" style="margin:0 auto 2rem;">From a single showroom ceiling to an entire airport
-          terminal — Sleekline delivers precision metal ceiling solutions that define spaces.</p>
+        <p class="section-subtitle" style="margin:0 auto 2rem; color:rgba(255,255,255,0.55);">
+          From a single showroom ceiling to an entire airport terminal — Sleekline delivers precision metal ceiling solutions that define spaces.
+        </p>
         <div class="cta-actions">
           <a href="tel:+919265246156" class="btn btn-primary" id="contact-call-btn">
-            📞 Call Now
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            Call Now
           </a>
-          <a href="mailto:sleekline7@gmail.com" class="btn btn-outline" id="contact-email-btn">
-            ✉️ Email Us
+          <a href="mailto:sleekline7@gmail.com" class="btn btn-outline-light" id="contact-email-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Us
           </a>
         </div>
       </div>
@@ -376,16 +305,8 @@
   <script>
     initSleekline('contact');
 
-    // ══════════════════════════════════════════════════════════════════════
-    //  🔗 GOOGLE SHEETS WEBHOOK URL
-    //  1. Open your Google Sheet → Extensions → Apps Script
-    //  2. Paste the code from google-apps-script.js
-    //  3. Deploy → New Deployment → Web App → Anyone → Deploy
-    //  4. Copy the Web App URL and paste it below (replace the placeholder)
-    // ══════════════════════════════════════════════════════════════════════
     const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzfPpRKGCCC1hd-3QvsZZyUViCLRDWYxRJVLNisFJM5R5E3cZL6YbhvtPYEaqre1JPP-w/exec';
 
-    // ── Duplicate-submit guard ────────────────────────────────────────────
     let _isSubmitting = false;
 
     async function handleSubmit(e) {
@@ -397,45 +318,50 @@
       const form = document.getElementById('contact-form');
       const successBanner = document.getElementById('success-banner');
 
-      // ── Read fields ──────────────────────────────────────────────────
-      const name = document.getElementById('contact-name').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
-      const phone = document.getElementById('contact-phone').value.trim();
-      const city = document.getElementById('contact-city').value.trim();
+      const name    = document.getElementById('contact-name').value.trim();
+      const email   = document.getElementById('contact-email').value.trim();
+      const phone   = document.getElementById('contact-phone').value.trim();
+      const city    = document.getElementById('contact-city').value.trim();
+      const product = document.getElementById('contact-product').value.trim();
       const message = document.getElementById('contact-message').value.trim();
 
-      // ── Client-side validation ───────────────────────────────────────
+      // Validation
       const fieldChecks = [
         ['contact-name', name],
         ['contact-email', email],
         ['contact-phone', phone],
-        ['contact-city', city],
         ['contact-message', message],
       ];
       let hasError = false;
       fieldChecks.forEach(([id, val]) => {
         const el = document.getElementById(id);
         if (!val) {
-          el.style.borderColor = 'rgba(200,80,80,0.6)';
-          el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+          el.style.borderColor = 'rgba(220,38,38,0.6)';
+          el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.1)';
+          el.addEventListener('input', () => {
+            el.style.borderColor = '';
+            el.style.boxShadow = '';
+          }, { once: true });
           hasError = true;
         }
       });
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         const el = document.getElementById('contact-email');
-        el.style.borderColor = 'rgba(200,80,80,0.6)';
-        el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+        el.style.borderColor = 'rgba(220,38,38,0.6)';
+        el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.1)';
+        el.addEventListener('input', () => { el.style.borderColor = ''; el.style.boxShadow = ''; }, { once: true });
         hasError = true;
       }
       if (phone && !/^\+?[\d\s-]{10,}$/.test(phone)) {
         const el = document.getElementById('contact-phone');
-        el.style.borderColor = 'rgba(200,80,80,0.6)';
-        el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+        el.style.borderColor = 'rgba(220,38,38,0.6)';
+        el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.1)';
+        el.addEventListener('input', () => { el.style.borderColor = ''; el.style.boxShadow = ''; }, { once: true });
         hasError = true;
       }
       if (hasError) return;
 
-      // ── Loading state ────────────────────────────────────────────────
+      // Loading state
       _isSubmitting = true;
       btn.disabled = true;
       btn.style.opacity = '0.7';
@@ -443,105 +369,65 @@
       const prevErr = document.getElementById('error-banner');
       if (prevErr) prevErr.remove();
 
-      const payload = { name, email, phone, city, message };
+      const payload = { name, email, phone, city, product, message };
 
-      // ── Submit to both destinations in parallel ───────────────────────
-      const sheetsConfigured = SHEETS_WEBHOOK_URL &&
-        !SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE');
-
+      const sheetsConfigured = SHEETS_WEBHOOK_URL && !SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE');
       const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
       const tasks = [];
-      if (isLocal) {
-        tasks.push(submitToCSV(payload)); // Only try CSV backend if testing locally
-      } else {
-        tasks.push(Promise.resolve({ status: 'skipped', value: false })); // Skip CSV on Vercel
-      }
-
+      // Always try the local Node.js server for CSV saving
+      tasks.push(submitToCSV(payload));
       if (sheetsConfigured) {
         tasks.push(submitToSheets(payload));
       }
 
       const results = await Promise.allSettled(tasks);
-
       const csvResult = results[0];
       const sheetsResult = sheetsConfigured ? results[1] : null;
+      const csvOk = csvResult?.status === 'fulfilled' && csvResult.value === true;
+      const sheetsOk = sheetsConfigured ? (sheetsResult?.status === 'fulfilled' && sheetsResult.value === true) : null;
 
-      const csvOk = isLocal && csvResult?.status === 'fulfilled' && csvResult.value === true;
-      const sheetsOk = sheetsConfigured
-        ? (sheetsResult?.status === 'fulfilled' && sheetsResult.value === true)
-        : null; // null = not applicable
-
-      console.info(
-        `[Sleekline] CSV: ${isLocal ? csvOk : 'Skipped (Live)'}` +
-        (sheetsConfigured ? ` | Sheets: ${sheetsOk}` : ' | Sheets: not configured')
-      );
-
-      // ── Success if CSV saved (local) OR Sheets saved (live) ────────
-      const anySuccess = (isLocal && csvOk) || sheetsOk === true;
+      const anySuccess = csvOk || sheetsOk === true;
 
       if (anySuccess) {
         btn.style.display = 'none';
         successBanner.classList.add('show');
         successBanner.querySelector('h4').textContent = 'Thank you! Your inquiry has been submitted.';
         form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
-
       } else {
         _isSubmitting = false;
         btn.disabled = false;
         btn.style.opacity = '1';
         btnText.textContent = 'Send Message';
-        showErrorBanner([
-          'Unable to submit your inquiry. Please try again.'
-        ]);
+        showErrorBanner(['Unable to submit your inquiry. Please try again or call us directly.']);
       }
     }
 
-    // ── Google Sheets submission ───────────────────────────────────────────
     async function submitToSheets(payload) {
-      if (!SHEETS_WEBHOOK_URL || SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE')) {
-        console.warn('[Sleekline] Google Sheets URL not set — skipping.');
-        return false;
-      }
-
+      if (!SHEETS_WEBHOOK_URL || SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE')) return false;
       try {
         const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 10000); // 10s timeout
-
+        const timer = setTimeout(() => controller.abort(), 10000);
         const resp = await fetch(SHEETS_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-
           signal: controller.signal,
         });
         clearTimeout(timer);
-
-        const data = await resp.json();             // Apps Script returns JSON
-        const ok = data && data.success === true;
-        console.info('[Sleekline] Sheets response:', data);
-        return ok;
-
+        const data = await resp.json();
+        return data && data.success === true;
       } catch (err) {
-        if (err.name === 'AbortError') {
-          console.warn('[Sleekline] Sheets timed out after 10s.');
-        } else {
-          console.error('[Sleekline] Sheets fetch error:', err.message);
-        }
+        console.warn('[Sleekline] Sheets error:', err.message);
         return false;
       }
     }
 
-    // ── Local CSV backend ─────────────────────────────────────────────────
     async function submitToCSV(payload) {
-      const API_URL = (window.location.port === '3000')
-        ? '/api/contact'
-        : 'http://localhost:3000/api/contact';
-
+      const API_URL = (window.location.port === '3000') ? '/api/contact' : 'http://localhost:3000/api/contact';
       try {
         const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 8000); // 8s timeout
-
+        const timer = setTimeout(() => controller.abort(), 8000);
         const resp = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -549,30 +435,23 @@
           signal: controller.signal,
         });
         clearTimeout(timer);
-
         const data = await resp.json();
         return !!(resp.ok && data.success);
       } catch (err) {
-        if (err.name === 'AbortError') {
-          console.warn('[Sleekline] CSV backend timed out after 8s.');
-        } else {
-          console.warn('[Sleekline] CSV backend not reachable:', err.message);
-        }
+        console.warn('[Sleekline] CSV error:', err.message);
         return false;
       }
     }
 
-    // ── Error banner ──────────────────────────────────────────────────────
     function showErrorBanner(errors) {
       const existing = document.getElementById('error-banner');
       if (existing) existing.remove();
-
       const banner = document.createElement('div');
       banner.id = 'error-banner';
       banner.style.cssText = `
-        background: linear-gradient(135deg, rgba(200,80,80,0.12) 0%, rgba(200,80,80,0.06) 100%);
-        border: 1px solid rgba(200,80,80,0.35);
-        border-radius: var(--radius-md, 10px);
+        background: linear-gradient(135deg, rgba(220,38,38,0.08) 0%, rgba(220,38,38,0.04) 100%);
+        border: 1px solid rgba(220,38,38,0.3);
+        border-radius: var(--radius-md, 8px);
         padding: 1rem 1.25rem;
         margin-bottom: 1rem;
         display: flex;
@@ -580,12 +459,10 @@
         gap: 0.75rem;
       `;
       banner.innerHTML = `
-        <span style="font-size:1.2rem;flex-shrink:0;">⚠️</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
         <div>
-          <p style="font-size:0.875rem;font-weight:700;color:#e07070;margin:0 0 0.25rem;">
-            Submission Failed
-          </p>
-          <ul style="margin:0;padding-left:1.1rem;font-size:0.83rem;color:var(--clr-silver,#a0a0a8);line-height:1.7;">
+          <p style="font-size:0.875rem;font-weight:700;color:#dc2626;margin:0 0 0.25rem;">Submission Failed</p>
+          <ul style="margin:0;padding-left:1.1rem;font-size:0.83rem;color:var(--clr-text3);line-height:1.7;">
             ${errors.map(err => `<li>${err}</li>`).join('')}
           </ul>
         </div>
@@ -596,5 +473,4 @@
     }
   </script>
 </body>
-
 </html>
