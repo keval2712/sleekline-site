@@ -56,8 +56,9 @@ const NAV_HTML = `
         <li><a href="about.html"          class="nav-link" data-page="about">About</a></li>
         <li><a href="products.html"       class="nav-link" data-page="products">Products</a></li>
         <li><a href="applications.html"   class="nav-link" data-page="applications">Applications</a></li>
-        <li><a href="services.html"       class="nav-link" data-page="services">Services</a></li>
-        <li><a href="faq.html"            class="nav-link" data-page="faq">FAQs</a></li>
+        <li><a href="projects.html"       class="nav-link" data-page="projects">Projects</a></li>
+        <li><a href="gallery.html"        class="nav-link" data-page="gallery">Gallery</a></li>
+        <li><a href="resources.html"      class="nav-link" data-page="resources">Resources</a></li>
         <li><a href="contact.html"        class="nav-link" data-page="contact">Contact</a></li>
       </ul>
 
@@ -84,8 +85,9 @@ const NAV_HTML = `
   <a href="about.html"        class="mobile-link" data-page="about">About Us</a>
   <a href="products.html"     class="mobile-link" data-page="products">Products</a>
   <a href="applications.html" class="mobile-link" data-page="applications">Applications</a>
-  <a href="services.html"     class="mobile-link" data-page="services">Services</a>
-  <a href="faq.html"          class="mobile-link" data-page="faq">FAQs</a>
+  <a href="projects.html"     class="mobile-link" data-page="projects">Projects</a>
+  <a href="gallery.html"      class="mobile-link" data-page="gallery">Gallery</a>
+  <a href="resources.html"    class="mobile-link" data-page="resources">Resources</a>
   <a href="contact.html"      class="mobile-link" data-page="contact">Contact</a>
   <a href="contact.html" class="btn btn-primary mobile-cta">Request a Quote &nbsp;${SVG.arrow}</a>
 </nav>`;
@@ -167,8 +169,10 @@ const FOOTER_HTML = `
         <h4>Company</h4>
         <ul class="footer-links">
           <li><a href="about.html"        class="footer-link">About Us</a></li>
-          <li><a href="services.html"     class="footer-link">Services</a></li>
           <li><a href="applications.html" class="footer-link">Applications</a></li>
+          <li><a href="projects.html"     class="footer-link">Projects</a></li>
+          <li><a href="gallery.html"      class="footer-link">Gallery</a></li>
+          <li><a href="resources.html"    class="footer-link">Resources</a></li>
           <li><a href="faq.html"          class="footer-link">FAQs</a></li>
           <li><a href="contact.html"      class="footer-link">Contact Us</a></li>
         </ul>
@@ -208,7 +212,10 @@ const FOOTER_HTML = `
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Sleekline. All Rights Reserved.</p>
+      <p class="footer-copy">© 2026 Sleekline. All rights reserved. &nbsp;·&nbsp;
+        <a href="#" style="color:var(--clr-dark-muted); transition:color 0.15s;" onmouseover="this.style.color='var(--clr-accent)'" onmouseout="this.style.color='var(--clr-dark-muted)'">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="#" style="color:var(--clr-dark-muted); transition:color 0.15s;" onmouseover="this.style.color='var(--clr-accent)'" onmouseout="this.style.color='var(--clr-dark-muted)'">Terms &amp; Conditions</a>
+      </p>
       <div class="footer-iso">
         <span class="iso-badge">ISO 9001:2013</span>
         Certified Quality Management System

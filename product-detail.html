@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Product Detail — Sleekline | Premium Metal Ceiling Systems</title>
+  <meta name="description" id="page-desc" content="Detailed specifications, images, dimensions, and applications for Sleekline's premium metal ceiling systems and exterior solutions." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Product Hero -->
+  <section class="product-hero-detail" id="product-hero">
+    <div class="product-hero-bg" id="product-hero-bg">
+      <!-- Image injected by JS -->
+    </div>
+    <div class="product-hero-overlay"></div>
+    <div class="container" style="width:100%;position:relative;z-index:2;">
+      <div class="product-hero-content">
+        <div class="breadcrumb" style="justify-content:flex-start; margin-bottom:1.5rem;">
+          <a href="index.html" style="color:rgba(255,255,255,0.5);">Home</a>
+          <span class="sep" style="color:rgba(255,255,255,0.3);">›</span>
+          <a href="products.html" style="color:rgba(255,255,255,0.5);">Products</a>
+          <span class="sep" style="color:rgba(255,255,255,0.3);">›</span>
+          <span id="breadcrumb-name" style="color:var(--clr-accent);">Product</span>
+        </div>
+        <div class="product-category-label" id="product-category-label">Metal Ceiling System</div>
+        <h1 class="product-hero-title" id="product-hero-title">Linear Ceiling</h1>
+        <p class="product-hero-subtitle" id="product-hero-subtitle">Precision-engineered for seamless architectural integration.</p>
+        <div class="product-quick-highlights" id="product-highlights">
+          <!-- Chips injected by JS -->
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+          <a href="contact.html" class="btn btn-primary" id="product-quote-btn">
+            Request a Quote
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="resources.html" class="btn btn-outline-light" id="product-tech-btn">Technical Data</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Image Gallery -->
+  <section class="product-gallery-section section-pad" id="product-gallery-section">
+    <div class="container">
+      <div class="product-gallery-wrap" id="product-gallery-wrap">
+        <div class="product-gallery-main" id="gallery-main">
+          <img id="gallery-main-img" src="" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="product-gallery-thumbs" id="gallery-thumbs"></div>
+      </div>
+      <div class="product-gallery-strip" id="gallery-strip"></div>
+    </div>
+  </section>
+
+  <!-- Product Overview & Specifications -->
+  <section class="section-pad" id="product-overview" style="background:var(--clr-bg);">
+    <div class="container">
+      <div class="product-overview-grid">
+        <div>
+          <div class="badge" id="product-overview-badge">Overview</div>
+          <h2 class="section-title" id="product-overview-title">Product Overview</h2>
+          <div class="divider-line"></div>
+          <div id="product-overview-desc" style="color:var(--clr-text3); line-height:1.85; font-size:0.95rem; margin-bottom:2rem;"></div>
+
+          <!-- Key Features List -->
+          <h4 style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--clr-text); margin-bottom:1rem;">Key Features</h4>
+          <ul id="product-features-list" style="display:flex; flex-direction:column; gap:0.625rem; margin-bottom:2rem;"></ul>
+
+          <!-- Applications Chips -->
+          <h4 style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--clr-text); margin-bottom:0.875rem;">Suitable Applications</h4>
+          <div id="product-apps-chips" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
+        </div>
+
+        <div>
+          <!-- Technical Specifications Table -->
+          <h3 style="font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--clr-text); margin-bottom:1rem;">Technical Specifications</h3>
+          <div class="product-spec-table-wrap">
+            <table class="spec-table-premium" id="product-spec-table">
+              <thead>
+                <tr><th>Property</th><th>Specification</th></tr>
+              </thead>
+              <tbody id="product-spec-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Available Models / Dimensions -->
+  <section class="section-pad" id="product-models" style="background:var(--clr-bg2); border-top:1px solid var(--clr-border);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="badge" id="models-badge">Models</div>
+        <h2 class="section-title" id="models-title">Available Models &amp; <span class="text-accent">Dimensions</span></h2>
+        <div class="divider-line"></div>
+        <p class="section-subtitle" id="models-subtitle">Standard dimensions available. Custom sizes manufactured on request.</p>
+      </div>
+      <div class="models-grid" id="models-grid"></div>
+      <p style="font-size:0.82rem; color:var(--clr-text3); margin-top:1.5rem; font-style:italic;">* Custom dimensions available. Contact us for project-specific requirements.</p>
+    </div>
+  </section>
+
+  <!-- Performance Properties -->
+  <section class="section-pad" id="product-performance" style="background:var(--clr-bg);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="badge">Performance</div>
+        <h2 class="section-title">Built to <span class="text-accent">Perform</span></h2>
+        <div class="divider-line"></div>
+      </div>
+      <div class="perf-props-grid reveal">
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+          <div class="perf-prop-label">Corrosion Resistant</div>
+        </div>
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="perf-prop-label">Fire Safe</div>
+        </div>
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/></svg></div>
+          <div class="perf-prop-label">Light Reflective</div>
+        </div>
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg></div>
+          <div class="perf-prop-label">Acoustic Ready</div>
+        </div>
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+          <div class="perf-prop-label">Humidity Resistant</div>
+        </div>
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8 17.72"/></svg></div>
+          <div class="perf-prop-label">Easy Maintenance</div>
+        </div>
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><path d="M17 8C8 10 5.9 16.17 3.82 19.34a1 1 0 001.69 1.05L7 19"/></svg></div>
+          <div class="perf-prop-label">Recyclable</div>
+        </div>
+        <div class="perf-prop-item">
+          <div class="perf-prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="18" height="18"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <div class="perf-prop-label">ISO Certified</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="section-pad" id="related-products" style="background:var(--clr-bg2); border-top:1px solid var(--clr-border);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="badge">Related Products</div>
+        <h2 class="section-title">You May Also <span class="text-accent">Like</span></h2>
+        <div class="divider-line"></div>
+      </div>
+      <div class="related-products-grid" id="related-grid"></div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <div class="footer-cta-band">
+    <div class="container">
+      <div class="footer-cta-inner">
+        <h2>Ready to Specify This Product?</h2>
+        <div class="footer-cta-actions">
+          <a href="contact.html" class="btn btn-outline-light" id="pd-footer-quote">Request a Quote</a>
+          <a href="resources.html" class="btn btn-outline-light" id="pd-footer-tech">Technical Resources</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="components.js"></script>
+  <script src="slideshow.js"></script>
+  <script>
+    // ── Product Database ──
+    var PRODUCTS_DB = {
+      'linear-c-series': {
+        name: 'Linear Ceiling – C Series',
+        category: 'Metal Ceiling System',
+        categoryShort: 'Linear Ceiling',
+        subtitle: 'A refined linear ceiling system designed for seamless visual continuity. Ideal for modern commercial and institutional interiors.',
+        description: 'The Sleekline Linear Ceiling C Series is our flagship open linear ceiling system crafted from high-quality galvanized steel or aluminum. The C-shaped profile creates smooth, continuous linear bands of ceiling — delivering a modern, minimalist aesthetic while providing practical access to services above. It is the preferred choice of architects for corporate offices, retail spaces, hotels, and transit hubs across India.',
+        highlights: [
+          { label: 'Material', value: 'GI Steel / Aluminum' },
+          { label: 'Width', value: '75–300mm' },
+          { label: 'Thickness', value: '0.6–0.8mm' },
+          { label: 'Finish', value: 'Powder Coat / Anodized' }
+        ],
+        features: [
+          'Continuous linear visual flow with concealed grid system',
+          'Compatible with recessed lighting and sprinkler integration',
+          'Open plenum design for easy access to MEP services',
+          'Available in custom widths and lengths for any project scale',
+          'Powder-coated in standard RAL colours or custom specifications',
+          'Lightweight construction reducing structural load',
+          'Quick and precise installation with adjustable suspension system'
+        ],
+        specs: [
+          ['Material', 'Galvanized Steel / Aluminum'],
+          ['Thickness', '0.6mm – 0.8mm'],
+          ['Panel Width', '75mm, 100mm, 150mm, 200mm, 300mm (custom available)'],
+          ['Panel Length', 'Up to 6000mm (custom on request)'],
+          ['Gap Between Panels', '6mm, 10mm, 15mm, 20mm'],
+          ['Weight', 'Approx. 2.2 – 3.5 kg/m²'],
+          ['Surface Finish', 'Powder Coat (RAL range) / Anodized / PVDF'],
+          ['Fire Rating', 'Non-combustible (metal core)'],
+          ['Humidity Resistance', 'Excellent — suitable for humid environments'],
+          ['Installation System', 'Proprietary T-bar / Z-clip suspension'],
+          ['Ceiling Height Range', '2400mm – unlimited (suspended)'],
+          ['Recycled Content', '100% recyclable at end of life'],
+          ['Certification', 'ISO 9001:2013 Quality Management System']
+        ],
+        models: [
+          { name: 'C-75',   dims: '75mm wide · up to 6000mm long · 0.6/0.8mm thick' },
+          { name: 'C-100',  dims: '100mm wide · up to 6000mm long · 0.6/0.8mm thick' },
+          { name: 'C-150',  dims: '150mm wide · up to 6000mm long · 0.8mm thick' },
+          { name: 'C-200',  dims: '200mm wide · up to 6000mm long · 0.8mm thick' },
+          { name: 'C-300',  dims: '300mm wide · up to 6000mm long · 0.8mm thick' },
+          { name: 'Custom', dims: 'Any width/length — engineered to your spec' }
+        ],
+        applications: ['Corporate Offices', 'Retail Spaces', 'Hotels & Hospitality', 'Airports', 'Healthcare', 'Educational Institutions'],
+        relatedProducts: ['u-shaped-baffle', 'linear-r-series', 'tile-ceiling']
+      },
+      'linear-r-series': {
+        name: 'Linear Ceiling – R Series',
+        category: 'Metal Ceiling System',
+        categoryShort: 'Linear Ceiling',
+        subtitle: 'Rounded-profile linear panels offering a softer architectural character while maintaining the precision of Sleekline engineering.',
+        description: 'The Sleekline Linear Ceiling R Series features a distinctive rounded profile that softens the ceiling plane while maintaining the structural precision expected of premium metal systems. The R profile creates a subtle shadow line effect — adding depth and texture to large ceiling areas without visual complexity. Ideal for hospitality, healthcare, and educational environments where warmth and approachability are key design goals.',
+        highlights: [
+          { label: 'Material', value: 'GI Steel / Aluminum' },
+          { label: 'Profile', value: 'Rounded (R) Section' },
+          { label: 'Thickness', value: '0.6–0.8mm' },
+          { label: 'Finish', value: 'Powder Coat / Anodized' }
+        ],
+        features: [
+          'Distinctive rounded profile creating elegant shadow lines',
+          'Softer aesthetic ideal for hospitality and healthcare',
+          'Compatible with the full Sleekline suspension system',
+          'Available in all standard powder-coat RAL colours',
+          'Custom lengths up to 6000mm for seamless installation',
+          'Lightweight yet structurally robust construction'
+        ],
+        specs: [
+          ['Material', 'Galvanized Steel / Aluminum'],
+          ['Thickness', '0.6mm – 0.8mm'],
+          ['Panel Width', '75mm, 100mm, 150mm, 200mm (custom available)'],
+          ['Panel Length', 'Up to 6000mm'],
+          ['Gap Between Panels', '10mm, 15mm, 20mm'],
+          ['Weight', 'Approx. 2.0 – 3.2 kg/m²'],
+          ['Surface Finish', 'Powder Coat (RAL) / Anodized / PVDF'],
+          ['Fire Rating', 'Non-combustible'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: 'R-75',   dims: '75mm wide · up to 6000mm long' },
+          { name: 'R-100',  dims: '100mm wide · up to 6000mm long' },
+          { name: 'R-150',  dims: '150mm wide · up to 6000mm long' },
+          { name: 'Custom', dims: 'Any width/length on request' }
+        ],
+        applications: ['Hotels & Hospitality', 'Healthcare', 'Educational Institutions', 'Retail', 'Residential Lobbies'],
+        relatedProducts: ['linear-c-series', 'u-shaped-baffle', 'tile-ceiling']
+      },
+      'u-shaped-baffle': {
+        name: 'U Shaped Baffle Ceiling',
+        category: 'Baffle Ceiling System',
+        categoryShort: 'Baffle Ceiling',
+        subtitle: 'Dramatic three-dimensional ceiling depth through precision-formed U-profile baffles — an architectural statement in any space.',
+        description: 'The Sleekline U Shaped Baffle Ceiling system creates a spectacular visual effect through repeating vertical baffle elements suspended from the structural ceiling. Each U-shaped aluminum baffle panel creates deep shadow lines that add rich texture and three-dimensional interest to commercial interiors. Highly versatile for lighting integration, acoustic management, and design flexibility — the U Baffle system is a favourite of architects for high-ceilinged commercial and institutional spaces.',
+        highlights: [
+          { label: 'Material', value: 'Aluminum' },
+          { label: 'Heights', value: '50–300mm' },
+          { label: 'Thickness', value: '0.8–1.2mm' },
+          { label: 'Finish', value: 'Powder Coat / Anodized' }
+        ],
+        features: [
+          'Dramatic three-dimensional visual depth through open baffle system',
+          'Integrated lighting integration between baffle elements',
+          'Optional acoustic infill panels within baffle channels',
+          'Available in a wide range of baffle heights for design control',
+          'Open plenum design allows full access to services above',
+          'Precision-formed aluminum for exact parallel alignment',
+          'Ideal for double-height and atrium spaces'
+        ],
+        specs: [
+          ['Material', 'Aluminum'],
+          ['Thickness', '0.8mm – 1.2mm'],
+          ['Baffle Width', '50mm, 75mm, 100mm, 150mm, 200mm (custom)'],
+          ['Baffle Height', '50mm, 75mm, 100mm, 150mm, 200mm, 300mm (custom)'],
+          ['Baffle Length', 'Up to 6000mm'],
+          ['Baffle Spacing', 'Custom — architectural requirement'],
+          ['Weight', 'Approx. 1.8 – 3.5 kg/m² (depending on density)'],
+          ['Surface Finish', 'Powder Coat (RAL) / Anodized'],
+          ['Fire Rating', 'Non-combustible (aluminum)'],
+          ['Humidity Resistance', 'Excellent'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: 'U-50×75',   dims: '50mm wide × 75mm high' },
+          { name: 'U-75×100',  dims: '75mm wide × 100mm high' },
+          { name: 'U-100×150', dims: '100mm wide × 150mm high' },
+          { name: 'U-150×200', dims: '150mm wide × 200mm high' },
+          { name: 'Custom',    dims: 'Any width/height configuration' }
+        ],
+        applications: ['Corporate Atriums', 'Hotels & Hospitality', 'Airports', 'Shopping Malls', 'Educational Institutions', 'Auditoriums'],
+        relatedProducts: ['linear-c-series', 'open-cell', 'exterior-louvers']
+      },
+      'exterior-louvers': {
+        name: 'Exterior Louvers and Cladding',
+        category: 'Exterior System',
+        categoryShort: 'Exterior Louvers',
+        subtitle: 'High-performance aluminum louver systems for solar shading, facade screening, and striking contemporary architectural expression.',
+        description: 'Sleekline Exterior Louvers and Cladding systems are precision-engineered aluminum architectural facades that combine functional solar control with bold aesthetic impact. Each louver element is individually formed for structural integrity and precise alignment — creating facades that modulate light, control heat gain, and give buildings a distinctive architectural identity. Available in horizontal, vertical, and angled configurations with a full range of powder-coat finishes.',
+        highlights: [
+          { label: 'Material', value: 'Aluminum' },
+          { label: 'Profiles', value: 'Horizontal / Vertical / Angled' },
+          { label: 'Thickness', value: '1.5–2.5mm' },
+          { label: 'Finish', value: 'Powder Coat / PVDF / Anodized' }
+        ],
+        features: [
+          'High-performance solar shading reducing HVAC loads by up to 30%',
+          'Bold architectural expression enhancing building identity',
+          'Full range of blade profiles: flat, curved, aerofoil sections',
+          'Adjustable and fixed blade configurations available',
+          'PVDF and powder-coat finishes for coastal and urban environments',
+          'Compatible with LEED and GRIHA green building systems',
+          'Engineered for structural wind loading compliance'
+        ],
+        specs: [
+          ['Material', 'Aluminum Extrusion / Sheet'],
+          ['Thickness', '1.5mm – 2.5mm'],
+          ['Louver Width', '75mm – 400mm'],
+          ['Louver Height/Depth', '50mm – 300mm'],
+          ['Louver Length', 'Up to 8000mm (project specific)'],
+          ['Configuration', 'Horizontal, Vertical, Angled'],
+          ['Surface Finish', 'Powder Coat (RAL) / PVDF / Anodized'],
+          ['Structural Load', 'Engineered to IS 875 wind load codes'],
+          ['Weight', 'Approx. 4.0 – 8.0 kg/m²'],
+          ['Fire Rating', 'Non-combustible (aluminum)'],
+          ['Weather Resistance', 'Excellent — coastal and industrial environments'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: 'EL-75',  dims: '75mm blade width · flat section' },
+          { name: 'EL-100', dims: '100mm blade width · flat / curved' },
+          { name: 'EL-150', dims: '150mm blade width · flat / aerofoil' },
+          { name: 'EL-200', dims: '200mm blade width · aerofoil section' },
+          { name: 'EL-V',   dims: 'Vertical louver — any width' },
+          { name: 'Custom', dims: 'Project-specific blade profiles' }
+        ],
+        applications: ['Commercial Facades', 'Residential Buildings', 'Institutional Buildings', 'Industrial Screening', 'Parking Structures', 'Transit Hubs'],
+        relatedProducts: ['cladding', 'sun-louvers', 'u-shaped-baffle']
+      },
+      'open-cell': {
+        name: 'Open Cell Ceiling',
+        category: 'Open Grid Ceiling System',
+        categoryShort: 'Open Cell',
+        subtitle: 'A striking lattice of precision-formed aluminum cells — combining visual openness with practical access to services above.',
+        description: 'The Sleekline Open Cell Ceiling system creates a visually dynamic grid of open aluminum cells that reveals the plenum above in a controlled, aesthetically considered way. Ideal for large-span retail, commercial, and institutional ceilings where MEP access is critical, the open cell system provides a premium alternative to conventional service-exposed ceilings while maintaining full visual and physical access to the space above.',
+        highlights: [
+          { label: 'Material', value: 'Aluminum' },
+          { label: 'Cell Size', value: '50×50mm – 150×150mm' },
+          { label: 'Thickness', value: '0.6–0.8mm' },
+          { label: 'Finish', value: 'Powder Coat / Anodized' }
+        ],
+        features: [
+          'Full visual and physical access to services above the ceiling plane',
+          'Lightweight aluminum grid requiring minimal structural support',
+          'Available in a range of cell sizes for varying visual densities',
+          'Integrated lighting, sprinkler, and HVAC integration',
+          'Quick installation with standard suspension system',
+          'Excellent acoustic performance with open plenum',
+          '100% recyclable aluminum construction'
+        ],
+        specs: [
+          ['Material', 'Aluminum'],
+          ['Thickness', '0.6mm – 0.8mm'],
+          ['Cell Size', '50×50mm, 75×75mm, 100×100mm, 150×150mm'],
+          ['Grid Height', '25mm, 38mm, 50mm'],
+          ['Weight', 'Approx. 1.5 – 2.8 kg/m²'],
+          ['Surface Finish', 'Powder Coat (RAL) / Anodized'],
+          ['Fire Rating', 'Non-combustible'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: 'OC-50',  dims: '50×50mm cell · 25mm deep' },
+          { name: 'OC-75',  dims: '75×75mm cell · 38mm deep' },
+          { name: 'OC-100', dims: '100×100mm cell · 38mm or 50mm deep' },
+          { name: 'OC-150', dims: '150×150mm cell · 50mm deep' }
+        ],
+        applications: ['Shopping Malls', 'Retail Stores', 'Airports', 'Warehouses', 'Industrial Facilities', 'Exhibition Spaces'],
+        relatedProducts: ['linear-c-series', 'tile-ceiling', 'u-shaped-baffle']
+      },
+      'tile-ceiling': {
+        name: 'Tile Ceiling',
+        category: 'Metal Tile Ceiling System',
+        categoryShort: 'Tile Ceiling',
+        subtitle: 'Precision-formed metal ceiling tiles delivering a clean, uniform ceiling plane with the durability and performance of metal.',
+        description: 'The Sleekline Metal Tile Ceiling system offers the clean, regular pattern of traditional tile ceilings with the superior performance of premium metal. Each tile is precision-pressed for dimensional accuracy and installed into a concealed or exposed grid system. Available in a wide range of sizes and surface textures — perforated, embossed, and smooth — the tile ceiling system adapts to any design intent while meeting demanding performance requirements.',
+        highlights: [
+          { label: 'Material', value: 'GI Steel / Aluminum' },
+          { label: 'Tile Size', value: '300×300 to 1200×600mm' },
+          { label: 'Thickness', value: '0.5–0.8mm' },
+          { label: 'Finish', value: 'Powder Coat / Plain' }
+        ],
+        features: [
+          'Precision-pressed for exact dimensional uniformity',
+          'Available in plain, perforated, and embossed surface textures',
+          'Compatible with standard exposed or concealed T-grid systems',
+          'Easy demountable design for service access above',
+          'Wide range of tile sizes for design flexibility',
+          'Excellent fire resistance — non-combustible metal core',
+          'Long service life with minimal maintenance'
+        ],
+        specs: [
+          ['Material', 'Galvanized Steel / Aluminum'],
+          ['Thickness', '0.5mm – 0.8mm'],
+          ['Tile Sizes', '300×300, 600×600, 600×1200mm (custom available)'],
+          ['Grid System', 'Exposed T-bar or Concealed clip system'],
+          ['Surface Options', 'Smooth, Perforated (15%, 20% open area), Embossed'],
+          ['Weight', 'Approx. 2.5 – 4.0 kg/m²'],
+          ['Surface Finish', 'Powder Coat (RAL) / Plain galvanized'],
+          ['Fire Rating', 'Non-combustible'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: '300×300', dims: '300×300mm · exposed/concealed grid' },
+          { name: '600×600', dims: '600×600mm · exposed/concealed grid' },
+          { name: '600×1200',dims: '600×1200mm · concealed grid' },
+          { name: 'Custom',  dims: 'Any tile size on request' }
+        ],
+        applications: ['Offices', 'Healthcare Facilities', 'Educational Institutions', 'Retail Stores', 'Government Buildings'],
+        relatedProducts: ['linear-c-series', 'open-cell', 'linear-r-series']
+      },
+      'cladding': {
+        name: 'Cladding Systems',
+        category: 'Exterior Cladding',
+        categoryShort: 'Cladding',
+        subtitle: 'Premium aluminum cladding panels for modern building envelopes — combining thermal performance with architectural expression.',
+        description: 'Sleekline Cladding Systems offer premium aluminum panel solutions for contemporary building facades. From smooth flat-panel cladding to profiled corrugated and cassette systems, Sleekline cladding transforms building envelopes with modern precision. Engineered for weather resistance, thermal performance, and long service life — our cladding systems are specified for commercial, residential, and industrial projects across India.',
+        highlights: [
+          { label: 'Material', value: 'Aluminum / GI' },
+          { label: 'Profiles', value: 'Flat / Cassette / Corrugated' },
+          { label: 'Thickness', value: '1.0–3.0mm' },
+          { label: 'Finish', value: 'Powder Coat / PVDF / Anodized' }
+        ],
+        features: [
+          'High-performance weathering protection for building envelopes',
+          'Multiple profile options: flat panel, cassette, corrugated, standing seam',
+          'PVDF coating for superior UV and chemical resistance',
+          'Thermally broken fixing systems available',
+          'Compatible with ventilated facade design principles',
+          'Available in any RAL colour on request',
+          'Engineered for wind and structural load compliance'
+        ],
+        specs: [
+          ['Material', 'Aluminum Sheet / Aluminum Composite Panel'],
+          ['Thickness', '1.0mm – 3.0mm sheet / 4mm ACP'],
+          ['Panel Width', 'Up to 1500mm'],
+          ['Panel Height', 'Up to 6000mm'],
+          ['Profiles', 'Flat, Cassette, Corrugated, Custom'],
+          ['Surface Finish', 'Powder Coat / PVDF / Anodized / Brushed'],
+          ['Weather Resistance', 'Excellent — coastal and industrial zones'],
+          ['Fire Rating', 'Non-combustible (metal core / FR ACP options)'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: 'Flat Panel',     dims: 'Smooth flat aluminum — any size' },
+          { name: 'Cassette Panel', dims: 'Return edge cassette system' },
+          { name: 'Corrugated',     dims: 'Standard corrugated profile' },
+          { name: 'Custom Profile', dims: 'Bespoke profile on request' }
+        ],
+        applications: ['Commercial Facades', 'Industrial Buildings', 'Residential Towers', 'Retail Frontages', 'Signage Canopies'],
+        relatedProducts: ['exterior-louvers', 'sun-louvers', 'linear-c-series']
+      },
+      'sun-louvers': {
+        name: 'Sun Louvers',
+        category: 'Solar Shading System',
+        categoryShort: 'Sun Louvers',
+        subtitle: 'Purpose-engineered sun control louver systems designed to precisely manage solar gain and glare in modern buildings.',
+        description: 'Sleekline Sun Louvers are aerodynamically profiled aluminum blades designed to provide precise control of solar radiation entering a building. Each blade profile is calculated for the building\'s geographic location and facade orientation — maximising shading effectiveness while maintaining views and natural daylighting. Available as fixed, manually adjustable, or motorized systems for full solar management.',
+        highlights: [
+          { label: 'Material', value: 'Aluminum Extrusion' },
+          { label: 'Profiles', value: 'Fixed / Adjustable / Motorized' },
+          { label: 'Thickness', value: '2.0–3.0mm' },
+          { label: 'Finish', value: 'Powder Coat / Anodized / PVDF' }
+        ],
+        features: [
+          'Precision aerodynamic blade profiles optimized for solar control',
+          'Fixed, manually adjustable, or motorized operation available',
+          'Reduces solar heat gain by up to 40% when optimally positioned',
+          'Maintains external views while controlling direct sunlight',
+          'PVDF coating for 25-year colour durability in all climates',
+          'Compatible with building management and automation systems',
+          'Engineered for regional wind load compliance across India'
+        ],
+        specs: [
+          ['Material', 'Aluminum Extrusion'],
+          ['Blade Thickness', '2.0mm – 3.0mm wall'],
+          ['Blade Width', '75mm – 300mm'],
+          ['Blade Profile', 'Flat, Aerofoil, Z-section'],
+          ['Operation', 'Fixed / Manual tilt / Motorized (BMS compatible)'],
+          ['Surface Finish', 'Powder Coat / PVDF / Anodized'],
+          ['Solar Shading Coefficient', 'Up to 0.40 (position dependent)'],
+          ['Wind Load Rating', 'Engineered to IS 875 Part 3'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: 'SL-75 Fixed',      dims: '75mm aerofoil · fixed angle' },
+          { name: 'SL-100 Fixed',     dims: '100mm aerofoil · fixed angle' },
+          { name: 'SL-150 Adjustable',dims: '150mm blade · ±90° tilt' },
+          { name: 'SL-200 Motorized', dims: '200mm blade · BMS motorized' }
+        ],
+        applications: ['Office Towers', 'Educational Institutions', 'Healthcare Buildings', 'Residential Blocks', 'Airport Terminals'],
+        relatedProducts: ['exterior-louvers', 'cladding', 'u-shaped-baffle']
+      },
+      'linear-150f': {
+        name: 'Linear 150F',
+        category: 'Metal Ceiling System',
+        categoryShort: 'Linear 150F',
+        subtitle: 'Wide-format linear panel system with a flat face profile — delivering bold scale and architectural authority to large ceiling areas.',
+        description: 'The Sleekline Linear 150F is a wide-face linear ceiling panel designed for large-scale commercial and institutional ceilings. The flat face profile and 150mm panel width creates broad, authoritative ceiling planes that command architectural attention. Ideally suited for airport terminals, large foyers, shopping malls, and institutional lobbies where the ceiling must make a strong design statement.',
+        highlights: [
+          { label: 'Material', value: 'GI Steel / Aluminum' },
+          { label: 'Width', value: '150mm flat face' },
+          { label: 'Thickness', value: '0.8mm' },
+          { label: 'Finish', value: 'Powder Coat / Anodized' }
+        ],
+        features: [
+          '150mm flat-face profile for bold architectural impact',
+          'Ideal for large-span ceilings in airports and civic buildings',
+          'Compatible with integrated lighting and HVAC systems',
+          'Available in custom lengths up to 6000mm',
+          'Full range of powder-coat finishes'
+        ],
+        specs: [
+          ['Material', 'Galvanized Steel / Aluminum'],
+          ['Panel Width', '150mm flat face'],
+          ['Thickness', '0.8mm'],
+          ['Panel Length', 'Up to 6000mm'],
+          ['Gap', '10mm, 15mm, 20mm'],
+          ['Weight', 'Approx. 2.8 – 3.5 kg/m²'],
+          ['Finish', 'Powder Coat (RAL) / Anodized'],
+          ['Certification', 'ISO 9001:2013']
+        ],
+        models: [
+          { name: '150F-10', dims: '150mm wide · 10mm gap' },
+          { name: '150F-15', dims: '150mm wide · 15mm gap' },
+          { name: '150F-20', dims: '150mm wide · 20mm gap' }
+        ],
+        applications: ['Airport Terminals', 'Civic Buildings', 'Shopping Malls', 'Hotel Lobbies', 'Institutional Foyers'],
+        relatedProducts: ['linear-c-series', 'linear-r-series', 'u-shaped-baffle']
+      }
+    };
+
+    var PRODUCT_LINKS = {
+      'linear-c-series': 'product-detail.html?product=linear-c-series',
+      'linear-r-series': 'product-detail.html?product=linear-r-series',
+      'u-shaped-baffle': 'product-detail.html?product=u-shaped-baffle',
+      'exterior-louvers': 'product-detail.html?product=exterior-louvers',
+      'open-cell':        'product-detail.html?product=open-cell',
+      'tile-ceiling':     'product-detail.html?product=tile-ceiling',
+      'cladding':         'product-detail.html?product=cladding',
+      'sun-louvers':      'product-detail.html?product=sun-louvers',
+      'linear-150f':      'product-detail.html?product=linear-150f'
+    };
+
+    // ── Read URL parameter ──
+    function getParam(name) {
+      var params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    var productKey = getParam('product') || 'linear-c-series';
+    var product = PRODUCTS_DB[productKey];
+    if (!product) {
+      productKey = 'linear-c-series';
+      product = PRODUCTS_DB[productKey];
+    }
+
+    // ── Update page meta ──
+    document.getElementById('page-title').textContent = product.name + ' — Sleekline';
+    document.getElementById('page-desc').setAttribute('content', product.description.slice(0, 160));
+    document.getElementById('breadcrumb-name').textContent = product.name;
+    document.getElementById('product-category-label').textContent = product.category;
+    document.getElementById('product-hero-title').textContent = product.name;
+    document.getElementById('product-hero-subtitle').textContent = product.subtitle;
+
+    // Highlights chips
+    var chipsEl = document.getElementById('product-highlights');
+    product.highlights.forEach(function(chip) {
+      var c = document.createElement('span');
+      c.className = 'pq-chip';
+      c.innerHTML = chip.label + ': <strong>' + chip.value + '</strong>';
+      chipsEl.appendChild(c);
+    });
+
+    // ── Hero background image ──
+    var heroImages = typeof SleekImages !== 'undefined' ? SleekImages.getProductImages(productKey) : [];
+    var heroBgEl = document.getElementById('product-hero-bg');
+    if (heroImages.length > 0) {
+      var firstSrc = typeof heroImages[0] === 'string' ? heroImages[0] : heroImages[0].src;
+      var bgImg = document.createElement('img');
+      bgImg.src = firstSrc;
+      bgImg.alt = product.name;
+      bgImg.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+      heroBgEl.appendChild(bgImg);
+    }
+
+    // ── Gallery ──
+    document.addEventListener('DOMContentLoaded', function() {
+      var mainImg = document.getElementById('gallery-main-img');
+      var thumbsEl = document.getElementById('gallery-thumbs');
+      var stripEl = document.getElementById('gallery-strip');
+      var galleryImages = typeof SleekImages !== 'undefined' ? SleekImages.getProductImages(productKey) : [];
+
+      if (galleryImages.length > 0) {
+        var getSrc = function(img) { return typeof img === 'string' ? img : img.src; };
+        var currentMain = 0;
+
+        function setMain(idx) {
+          currentMain = idx;
+          var src = getSrc(galleryImages[idx]);
+          mainImg.src = src;
+          mainImg.alt = product.name + ' image ' + (idx + 1);
+          // Update active strip thumb
+          document.querySelectorAll('.product-strip-thumb').forEach(function(t, i) {
+            t.classList.toggle('active', i === idx);
+          });
+        }
+
+        // Main image click → lightbox
+        mainImg.style.cursor = 'zoom-in';
+        mainImg.addEventListener('click', function() {
+          getLightbox().open(galleryImages, currentMain, product.name);
+        });
+
+        // Set first image
+        setMain(0);
+
+        // Thumbs (up to 4 in sidebar)
+        var sideThumbCount = Math.min(galleryImages.length, 4);
+        for (var t = 0; t < sideThumbCount; t++) {
+          (function(idx) {
+            var th = document.createElement('div');
+            th.className = 'product-gallery-thumb' + (idx === 0 ? ' active-thumb' : '');
+            var tImg = document.createElement('img');
+            tImg.src = getSrc(galleryImages[idx]);
+            tImg.alt = product.name + ' view ' + (idx + 1);
+            tImg.loading = 'lazy';
+            th.appendChild(tImg);
+            th.addEventListener('click', function() {
+              setMain(idx);
+              document.querySelectorAll('.product-gallery-thumb').forEach(function(el, i) {
+                el.classList.toggle('active-thumb', i === idx);
+              });
+            });
+            thumbsEl.appendChild(th);
+          })(t);
+        }
+
+        // Strip
+        galleryImages.forEach(function(img, idx) {
+          (function(i) {
+            var st = document.createElement('div');
+            st.className = 'product-strip-thumb' + (i === 0 ? ' active' : '');
+            var stImg = document.createElement('img');
+            stImg.src = getSrc(galleryImages[i]);
+            stImg.alt = product.name + ' thumbnail';
+            stImg.loading = 'lazy';
+            st.appendChild(stImg);
+            st.addEventListener('click', function() { setMain(i); });
+            stripEl.appendChild(st);
+          })(idx);
+        });
+      } else {
+        // No images — hide gallery section
+        var galEl = document.getElementById('product-gallery-section');
+        if (galEl) galEl.style.display = 'none';
+      }
+
+      // ── Overview ──
+      document.getElementById('product-overview-badge').textContent = product.categoryShort;
+      document.getElementById('product-overview-title').innerHTML = product.name + ' <span class="text-accent">Overview</span>';
+      document.getElementById('product-overview-desc').textContent = product.description;
+
+      // Features list
+      var featEl = document.getElementById('product-features-list');
+      product.features.forEach(function(feat) {
+        var li = document.createElement('li');
+        li.className = 'product-key-feature';
+        li.textContent = feat;
+        featEl.appendChild(li);
+      });
+
+      // Applications chips
+      var appsEl = document.getElementById('product-apps-chips');
+      product.applications.forEach(function(app) {
+        var chip = document.createElement('span');
+        chip.style.cssText = 'display:inline-flex;align-items:center;gap:0.375rem;font-size:0.78rem;font-weight:600;padding:0.3rem 0.75rem;background:var(--clr-accent-light);border:1px solid var(--clr-accent-border);color:var(--clr-accent);border-radius:2px;';
+        chip.textContent = app;
+        appsEl.appendChild(chip);
+      });
+
+      // ── Specs Table ──
+      var tbody = document.getElementById('product-spec-body');
+      product.specs.forEach(function(row, i) {
+        var tr = document.createElement('tr');
+        var td1 = document.createElement('td');
+        var td2 = document.createElement('td');
+        td1.textContent = row[0];
+        td2.textContent = row[1];
+        tr.appendChild(td1); tr.appendChild(td2);
+        tbody.appendChild(tr);
+      });
+
+      // ── Models Grid ──
+      var modelsEl = document.getElementById('models-grid');
+      product.models.forEach(function(model) {
+        var mc = document.createElement('div');
+        mc.className = 'model-card';
+        mc.innerHTML = '<div class="model-name">' + model.name + '</div><div class="model-dim">' + model.dims + '</div>';
+        modelsEl.appendChild(mc);
+      });
+
+      // ── Related Products ──
+      var relEl = document.getElementById('related-grid');
+      if (product.relatedProducts && relEl) {
+        product.relatedProducts.slice(0, 3).forEach(function(relKey) {
+          var relProd = PRODUCTS_DB[relKey];
+          if (!relProd) return;
+          var relImgs = typeof SleekImages !== 'undefined' ? SleekImages.getProductImages(relKey) : [];
+          var relSrc = relImgs.length > 0 ? (typeof relImgs[0] === 'string' ? relImgs[0] : relImgs[0].src) : '';
+
+          var card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = '<div class="product-visual" style="height:200px;">' +
+            (relSrc ? '<img src="' + relSrc + '" alt="' + relProd.name + '" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>' : '<div class="product-visual-bg vis-linear-c"></div>') +
+            '</div>' +
+            '<div class="product-body"><h3>' + relProd.name + '</h3><p>' + relProd.subtitle + '</p></div>' +
+            '<div class="product-footer"><span class="product-material">' + relProd.highlights[0].value + '</span>' +
+            '<a href="' + (PRODUCT_LINKS[relKey] || 'products.html') + '" class="product-view-btn">View Product <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>';
+          relEl.appendChild(card);
+        });
+      }
+    });
+
+    // ── Init after body ──
+    initSleekline("products");
+  </script>
+</body>
+</html>

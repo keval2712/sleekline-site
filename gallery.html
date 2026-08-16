@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Sleekline | Metal Ceiling &amp; Exterior Product Gallery</title>
+  <meta name="description" content="Browse Sleekline's gallery of premium metal ceiling systems, exterior louvers, and architectural cladding installed across India's leading commercial and residential projects." />
+  <link rel="canonical" href="https://sleekline.in/gallery.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">›</span>
+        <span>Gallery</span>
+      </div>
+      <div class="badge" style="margin:0 auto 1rem;">Product Gallery</div>
+      <h1>Sleekline in Action</h1>
+      <p>A visual showcase of our premium metal ceiling systems, exterior louvers, and architectural cladding installations.</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section-pad" id="gallery-section" style="background:var(--clr-bg);">
+    <div class="container">
+
+      <!-- Filter Buttons -->
+      <div class="gallery-controls" id="gallery-filters" role="tablist" aria-label="Gallery filters">
+        <button class="gallery-filter-btn active" data-filter="all" id="filter-all" role="tab" aria-selected="true">All</button>
+        <button class="gallery-filter-btn" data-filter="linear-c" id="filter-linear-c" role="tab" aria-selected="false">Linear – C Series</button>
+        <button class="gallery-filter-btn" data-filter="linear-r" id="filter-linear-r" role="tab" aria-selected="false">Linear – R Series</button>
+        <button class="gallery-filter-btn" data-filter="baffle" id="filter-baffle" role="tab" aria-selected="false">Baffle Ceiling</button>
+        <button class="gallery-filter-btn" data-filter="open-cell" id="filter-open-cell" role="tab" aria-selected="false">Open Cell</button>
+        <button class="gallery-filter-btn" data-filter="tile" id="filter-tile" role="tab" aria-selected="false">Tile Ceiling</button>
+        <button class="gallery-filter-btn" data-filter="exterior" id="filter-exterior" role="tab" aria-selected="false">Exterior Louvers</button>
+        <button class="gallery-filter-btn" data-filter="cladding" id="filter-cladding" role="tab" aria-selected="false">Cladding</button>
+      </div>
+
+      <!-- Masonry Grid -->
+      <div class="gallery-grid" id="gallery-grid" aria-label="Product gallery"></div>
+
+      <!-- Count display -->
+      <p id="gallery-count" style="text-align:center; font-size:0.82rem; color:var(--clr-text3); margin-top:1.5rem;"></p>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="section-pad" style="background:var(--clr-bg2); border-top:1px solid var(--clr-border); text-align:center;">
+    <div class="container">
+      <div class="badge" style="margin:0 auto 1rem;">Ready to Transform Your Space?</div>
+      <h2 class="section-title">Interested in a Specific Product?</h2>
+      <div class="divider-line" style="margin-left:auto; margin-right:auto;"></div>
+      <p class="section-subtitle" style="margin:0 auto 2rem;">Browse our complete product range or speak with our team about your project requirements.</p>
+      <div class="cta-actions">
+        <a href="products.html" class="btn btn-primary" id="gallery-products-btn">
+          Explore Products
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="contact.html" class="btn btn-outline" id="gallery-contact-btn">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="components.js"></script>
+  <script src="slideshow.js"></script>
+  <script>
+    initSleekline("gallery");
+
+    // ── Gallery Data ──
+    // Build from PRODUCT_IMAGES registry
+    const GALLERY_ITEMS = [];
+
+    // Map product keys to filter categories and human-readable names
+    const GALLERY_MAP = {
+      'linear-c-series': { filter: 'linear-c',  label: 'Linear Ceiling – C Series' },
+      'linear-r-series': { filter: 'linear-r',  label: 'Linear Ceiling – R Series' },
+      'u-shaped-baffle': { filter: 'baffle',    label: 'U Shaped Baffle Ceiling' },
+      'open-cell':       { filter: 'open-cell', label: 'Open Cell Ceiling' },
+      'tile-ceiling':    { filter: 'tile',       label: 'Tile Ceiling' },
+      'exterior-louvers':{ filter: 'exterior',  label: 'Exterior Louvers' },
+      'cladding':        { filter: 'cladding',  label: 'Cladding' },
+      'linear-150f':     { filter: 'linear-c',  label: 'Linear Ceiling 150F' },
+      'sun-louvers':     { filter: 'exterior',  label: 'Sun Louvers' },
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const grid = document.getElementById('gallery-grid');
+      if (!grid) return;
+
+      // Build items from PRODUCT_IMAGES if available
+      var allItems = [];
+      if (typeof PRODUCT_IMAGES !== 'undefined') {
+        Object.keys(PRODUCT_IMAGES).forEach(function(key) {
+          var meta = GALLERY_MAP[key];
+          if (!meta) return;
+          var imgs = SleekImages.getProductImages(key);
+          imgs.forEach(function(imgData) {
+            var src = typeof imgData === 'string' ? imgData : imgData.src;
+            allItems.push({ src: src, filter: meta.filter, label: meta.label });
+          });
+        });
+      }
+
+      if (allItems.length === 0) {
+        grid.innerHTML = '<p style="text-align:center;color:var(--clr-text3);padding:3rem 0;">Gallery images loading...</p>';
+        return;
+      }
+
+      // Render gallery items
+      function renderGallery(filter) {
+        grid.innerHTML = '';
+        var visible = filter === 'all' ? allItems : allItems.filter(function(it) { return it.filter === filter; });
+        visible.forEach(function(item, i) {
+          var el = document.createElement('div');
+          el.className = 'gallery-item';
+          el.setAttribute('data-filter', item.filter);
+          el.setAttribute('role', 'button');
+          el.setAttribute('tabindex', '0');
+          el.setAttribute('aria-label', 'View ' + item.label);
+
+          var img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.label;
+          img.loading = i < 6 ? 'eager' : 'lazy';
+
+          var ov = document.createElement('div');
+          ov.className = 'gallery-item-overlay';
+          var lbl = document.createElement('span');
+          lbl.className = 'gallery-item-label';
+          lbl.textContent = item.label;
+          ov.appendChild(lbl);
+
+          el.appendChild(img);
+          el.appendChild(ov);
+
+          el.addEventListener('click', function() {
+            SleekImages.getGalleryLightbox().open(visible, i);
+          });
+          el.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              SleekImages.getGalleryLightbox().open(visible, i);
+            }
+          });
+
+          grid.appendChild(el);
+        });
+        var countEl = document.getElementById('gallery-count');
+        if (countEl) countEl.textContent = visible.length + ' image' + (visible.length !== 1 ? 's' : '') + (filter !== 'all' ? ' in this category' : ' total');
+      }
+
+      renderGallery('all');
+
+      // ── Filter buttons ──
+      document.querySelectorAll('.gallery-filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.gallery-filter-btn').forEach(function(b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          renderGallery(btn.dataset.filter);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

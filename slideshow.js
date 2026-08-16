@@ -554,3 +554,178 @@ window.SleekImages = {
   getLightbox,
   attachLightbox
 };
+
+/* =========================================
+   SLEEKLINE - Cinematic Hero Crossfade
+   10-second autoplay with zoom + crossfade
+   ========================================= */
+const HERO_SLIDES_CONFIG = [
+  { src: 'images/linear-c-series/2.jpeg',   label: 'Linear Ceiling - C Series' },
+  { src: 'images/exterior-louvers/1.jpeg',  label: 'Exterior Louvers & Cladding' },
+  { src: 'images/u-shaped-baffle/1.jpeg',   label: 'U Shaped Baffle Ceiling' },
+  { src: 'images/linear-c-series/5.jpeg',   label: 'Linear Ceiling - C Series' },
+  { src: 'images/open-cell/1.jpeg',         label: 'Open Cell Ceiling' },
+  { src: 'images/exterior-louvers/3.jpeg',  label: 'Exterior Louvers & Cladding' },
+  { src: 'images/linear-r-series/1.jpeg',   label: 'Linear Ceiling - R Series' },
+  { src: 'images/u-shaped-baffle/3.jpeg',   label: 'U Shaped Baffle Ceiling' },
+];
+
+class HeroCrossfade {
+  constructor(containerId, opts) {
+    this.container = typeof containerId === 'string' ? document.getElementById(containerId) : containerId;
+    opts = opts || {};
+    this.interval = opts.interval || 10000;
+    this.slides = opts.slides || HERO_SLIDES_CONFIG;
+    this.indicatorId = opts.indicatorContainerId || null;
+    this.current = 0; this.timer = null; this.paused = false;
+    this.slideEls = []; this.dotEls = [];
+    if (this.container && this.slides.length > 0) this._init();
+  }
+  _init() {
+    var self = this;
+    this.container.classList.add('hero-crossfade');
+    this.slides.forEach(function(slide, i) {
+      var el = document.createElement('div');
+      el.className = 'hero-crossfade-slide' + (i === 0 ? ' active' : '');
+      var img = document.createElement('img');
+      img.src = slide.src; img.alt = slide.label || 'Sleekline';
+      img.loading = i === 0 ? 'eager' : 'lazy'; img.draggable = false;
+      img.onerror = function() { el.style.display = 'none'; };
+      el.appendChild(img); self.container.appendChild(el); self.slideEls.push(el);
+    });
+    var ov = document.createElement('div');
+    ov.className = 'hero-crossfade-overlay';
+    this.container.appendChild(ov);
+    if (this.indicatorId) {
+      var indEl = document.getElementById(this.indicatorId);
+      if (indEl) {
+        this.slides.forEach(function(_, i) {
+          var dot = document.createElement('button');
+          dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+          dot.addEventListener('click', function() { self._goTo(i); });
+          indEl.appendChild(dot); self.dotEls.push(dot);
+        });
+      }
+    }
+    this._preloadNext(); this._start();
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) self._stop(); else if (!self.paused) self._start();
+    });
+  }
+  _start() {
+    var self = this; this._stop();
+    this.timer = setInterval(function() { if (!self.paused) self._step(1); }, this.interval);
+  }
+  _stop() { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+  _step(dir) { this._goTo((this.current + dir + this.slides.length) % this.slides.length); }
+  _goTo(index) {
+    if (index === this.current) return;
+    this.slideEls[this.current].classList.remove('active');
+    if (this.dotEls[this.current]) this.dotEls[this.current].classList.remove('active');
+    this.current = index;
+    this.slideEls[index].classList.add('active');
+    if (this.dotEls[index]) this.dotEls[index].classList.add('active');
+    var img = this.slideEls[index].querySelector('img');
+    if (img) { img.style.animation = 'none'; void img.offsetHeight; img.style.animation = ''; }
+    this._preloadNext();
+  }
+  _preloadNext() {
+    var nextSrc = this.slides[(this.current + 1) % this.slides.length].src;
+    var lnk = document.createElement('link');
+    lnk.rel = 'prefetch'; lnk.as = 'image'; lnk.href = nextSrc;
+    document.head.appendChild(lnk);
+  }
+  pause()  { this.paused = true;  this._stop(); }
+  resume() { this.paused = false; this._start(); }
+}
+
+/* =========================================
+   Gallery Lightbox (for gallery.html)
+   Full-screen lightbox with swipe, keyboard
+   ========================================= */
+class GalleryLightbox {
+  constructor() {
+    this._items = []; this._index = 0; this._touchStartX = 0; this._built = false;
+    this._build();
+  }
+  _build() {
+    if (this._built) return; this._built = true;
+    var self = this;
+    this.overlay = document.createElement('div');
+    this.overlay.className = 'gallery-lightbox';
+    this.overlay.setAttribute('role','dialog'); this.overlay.setAttribute('aria-modal','true');
+    this.inner = document.createElement('div'); this.inner.className = 'glb-inner';
+    this.img = document.createElement('img'); this.img.className = 'glb-img';
+    this.closeBtn = document.createElement('button'); this.closeBtn.className = 'glb-close';
+    this.closeBtn.setAttribute('aria-label','Close'); this.closeBtn.innerHTML = '&times;';
+    this.closeBtn.addEventListener('click', function() { self.close(); });
+    this.prevBtn = document.createElement('button'); this.prevBtn.className = 'glb-nav glb-prev';
+    this.prevBtn.setAttribute('aria-label','Previous image');
+    this.prevBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>';
+    this.prevBtn.addEventListener('click', function() { self._step(-1); });
+    this.nextBtn = document.createElement('button'); this.nextBtn.className = 'glb-nav glb-next';
+    this.nextBtn.setAttribute('aria-label','Next image');
+    this.nextBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>';
+    this.nextBtn.addEventListener('click', function() { self._step(1); });
+    this.meta = document.createElement('div'); this.meta.className = 'glb-meta';
+    this.caption = document.createElement('div'); this.caption.className = 'glb-caption';
+    this.counter = document.createElement('div'); this.counter.className = 'glb-counter';
+    this.meta.appendChild(this.caption); this.meta.appendChild(this.counter);
+    this.inner.appendChild(this.img);
+    this.overlay.appendChild(this.closeBtn); this.overlay.appendChild(this.prevBtn);
+    this.overlay.appendChild(this.nextBtn); this.overlay.appendChild(this.inner); this.overlay.appendChild(this.meta);
+    document.body.appendChild(this.overlay);
+    this.overlay.addEventListener('click', function(e) { if (e.target === self.overlay || e.target === self.inner) self.close(); });
+    document.addEventListener('keydown', function(e) {
+      if (!self.overlay.classList.contains('open')) return;
+      if (e.key === 'Escape') self.close();
+      if (e.key === 'ArrowLeft') self._step(-1);
+      if (e.key === 'ArrowRight') self._step(1);
+    });
+    this.overlay.addEventListener('touchstart', function(e) { self._touchStartX = e.touches[0].clientX; }, { passive: true });
+    this.overlay.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - self._touchStartX;
+      if (Math.abs(dx) > 50) self._step(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  }
+  open(items, index) {
+    index = index || 0; this._items = items; this._showAt(index);
+    var multi = items.length > 1;
+    this.prevBtn.style.display = multi ? '' : 'none'; this.nextBtn.style.display = multi ? '' : 'none';
+    document.body.style.overflow = 'hidden';
+    var self = this; requestAnimationFrame(function() { self.overlay.classList.add('open'); });
+  }
+  close() { this.overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  _step(dir) {
+    if (this._items.length < 2) return;
+    this._showAt((this._index + dir + this._items.length) % this._items.length);
+  }
+  _showAt(index) {
+    this._index = index;
+    var item = this._items[index];
+    var src = typeof item === 'string' ? item : item.src;
+    var label = (typeof item === 'object' && item.label) ? item.label : '';
+    var self = this;
+    this.img.classList.add('transitioning');
+    setTimeout(function() {
+      self.img.src = src; self.img.alt = label;
+      self.img.onload = function() { self.img.classList.remove('transitioning'); };
+    }, 120);
+    this.caption.textContent = label;
+    this.counter.textContent = this._items.length > 1 ? (index + 1) + ' / ' + this._items.length : '';
+  }
+}
+
+var _galleryLightbox = null;
+function getGalleryLightbox() {
+  if (!_galleryLightbox) _galleryLightbox = new GalleryLightbox();
+  return _galleryLightbox;
+}
+
+window.HeroCrossfade = HeroCrossfade;
+window.GalleryLightbox = GalleryLightbox;
+window.HERO_SLIDES_CONFIG = HERO_SLIDES_CONFIG;
+window.SleekImages.HeroCrossfade = HeroCrossfade;
+window.SleekImages.getGalleryLightbox = getGalleryLightbox;
+window.SleekImages.HERO_SLIDES_CONFIG = HERO_SLIDES_CONFIG;
