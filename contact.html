@@ -305,6 +305,8 @@
   <script>
     initSleekline('contact');
 
+    // ── Google Sheets Webhook (primary — works from anywhere, no server needed) ──
+    // To update this URL: go to google-apps-script.js for setup instructions
     const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzfPpRKGCCC1hd-3QvsZZyUViCLRDWYxRJVLNisFJM5R5E3cZL6YbhvtPYEaqre1JPP-w/exec';
 
     let _isSubmitting = false;
@@ -374,20 +376,32 @@
       const sheetsConfigured = SHEETS_WEBHOOK_URL && !SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE');
       const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
+      // ── Strategy: Google Sheets is PRIMARY (works from any URL, any device, no server needed)
+      // Node.js server CSV is secondary (only tried if on localhost or explicit port 3000)
       const tasks = [];
-      // Always try the local Node.js server for CSV saving
-      tasks.push(submitToCSV(payload));
       if (sheetsConfigured) {
-        tasks.push(submitToSheets(payload));
+        tasks.push(submitToSheets(payload));  // index 0: Google Sheets (primary)
+      }
+      if (isLocal || window.location.port === '3000') {
+        tasks.push(submitToCSV(payload));    // index 1: CSV via Node server (local fallback)
+      }
+
+      if (tasks.length === 0) {
+        // No backend configured at all — use direct mailto as last resort
+        _isSubmitting = false;
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btnText.textContent = 'Send Message';
+        showErrorBanner(['Could not connect to submission backend. Please email us directly at sleekline7@gmail.com or call +91 92652 46156.']);
+        return;
       }
 
       const results = await Promise.allSettled(tasks);
-      const csvResult = results[0];
-      const sheetsResult = sheetsConfigured ? results[1] : null;
+      const sheetsResult = sheetsConfigured ? results[0] : null;
+      const csvResult = (isLocal || window.location.port === '3000') ? results[sheetsConfigured ? 1 : 0] : null;
+      const sheetsOk = sheetsResult?.status === 'fulfilled' && sheetsResult.value === true;
       const csvOk = csvResult?.status === 'fulfilled' && csvResult.value === true;
-      const sheetsOk = sheetsConfigured ? (sheetsResult?.status === 'fulfilled' && sheetsResult.value === true) : null;
-
-      const anySuccess = csvOk || sheetsOk === true;
+      const anySuccess = sheetsOk || csvOk;
 
       if (anySuccess) {
         btn.style.display = 'none';

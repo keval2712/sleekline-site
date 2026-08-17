@@ -59,6 +59,7 @@ const NAV_HTML = `
         <li><a href="projects.html"       class="nav-link" data-page="projects">Projects</a></li>
         <li><a href="gallery.html"        class="nav-link" data-page="gallery">Gallery</a></li>
         <li><a href="resources.html"      class="nav-link" data-page="resources">Resources</a></li>
+        <li><a href="catalogue.html"      class="nav-link" data-page="catalogue">Catalogue</a></li>
         <li><a href="contact.html"        class="nav-link" data-page="contact">Contact</a></li>
       </ul>
 
@@ -88,6 +89,7 @@ const NAV_HTML = `
   <a href="projects.html"     class="mobile-link" data-page="projects">Projects</a>
   <a href="gallery.html"      class="mobile-link" data-page="gallery">Gallery</a>
   <a href="resources.html"    class="mobile-link" data-page="resources">Resources</a>
+  <a href="catalogue.html"    class="mobile-link" data-page="catalogue">Catalogue</a>
   <a href="contact.html"      class="mobile-link" data-page="contact">Contact</a>
   <a href="contact.html" class="btn btn-primary mobile-cta">Request a Quote &nbsp;${SVG.arrow}</a>
 </nav>`;
@@ -173,6 +175,7 @@ const FOOTER_HTML = `
           <li><a href="projects.html"     class="footer-link">Projects</a></li>
           <li><a href="gallery.html"      class="footer-link">Gallery</a></li>
           <li><a href="resources.html"    class="footer-link">Resources</a></li>
+          <li><a href="catalogue.html"    class="footer-link">Product Catalogue</a></li>
           <li><a href="faq.html"          class="footer-link">FAQs</a></li>
           <li><a href="contact.html"      class="footer-link">Contact Us</a></li>
         </ul>
